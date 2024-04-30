@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CrudeController;
 use App\Http\Controllers\BeneficiaryController;
+use App\Http\Controllers\FamilyController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -21,3 +22,5 @@ Route::resource('crud', CrudeController::class);
 
 // Route::get('/create',[BeneficiaryController::class, 'create']);
 Route::resource('beneficiary', BeneficiaryController::class);
+
+Route::resource('family', FamilyController::class);
