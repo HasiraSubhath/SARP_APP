@@ -23,6 +23,7 @@
                 <th scope="col">Family Members</th>
                 <th scope="col">Education level</th>
                 <th scope="col">Land Ownership</th>
+                <th scope="col">Actions</th> 
 
             </tr>
         </thead>
@@ -42,6 +43,9 @@
                 <td>{{$beneficiary->family_members_count}}</td>
                 <td>{{$beneficiary->education}}</td>
                 <td>{{$beneficiary->land_ownership}}</td>
+                <td>
+                    <a href="{{ route('family/create', ['beneficiaryId' => $beneficiary->id]) }}" class="btn btn-primary">Add Family Member</a>
+                </td>
             </tr>
             @endforeach
         </tbody>

@@ -54,6 +54,12 @@
             <label for="nutrition_level">Nutrition Level</label>
             <input type="text" name="nutrition_level" id="nutrition_level" class="form-control" required>
         </div>
+
+        <div>
+            <input type="hidden" name="beneficiary_id" value="{{ $beneficiaryId }}">
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
     
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>

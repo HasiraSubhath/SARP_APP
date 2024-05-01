@@ -12,7 +12,7 @@ class Family extends Model
 
     public function beneficiary()
     {
-        return $this->belongsTo(Beneficiary::class, 'beneficiary_id', 'id');
+        return $this->belongsTo(Beneficiary::class);
     }
-    //one benificiary can have many family members
+    //one benificiary can have many family members , 'beneficiary_id', 'id'
 }
