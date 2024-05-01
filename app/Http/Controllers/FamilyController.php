@@ -12,7 +12,8 @@ class FamilyController extends Controller
      */
     public function index()
     {
-        //
+        $families = Family::all();
+        return view('family\family_index', compact('families'));
     }
 
     /**
@@ -20,7 +21,7 @@ class FamilyController extends Controller
      */
     public function create()
     {
-        //
+        return view('family.family_create');
     }
 
     /**
@@ -28,7 +29,26 @@ class FamilyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $family = new Family;
+
+        $family->first_name = request('first_name');
+        $family->last_name = request('last_name');
+        $family->phone = request('phone');
+        $family->gender = request('gender');
+        $family->dob = request('dob');
+        $family->youth = request('youth');
+        $family->education = request('education');
+        $family->employment = request('employment');
+        $family->nutrition_level = request('nutrition_level');
+       // $family->beneficiary_id = request('beneficiary_id');
+       try {
+        $family->save();
+    } catch (\Exception $e) {
+        dd($e->getMessage()); // This will print any error messages
+    }
+        return redirect('/family');
+
+
     }
 
     /**
