@@ -75,15 +75,30 @@ class FamilyController extends Controller
      */
     public function edit(Family $family)
     {
-        //
+        return view('family.family_edit', compact('family'));
     }
-
+    // public function editDetails(Family $family)
+    // {
+    //     return view('family.family_edit', compact('family'));
+    // }
+    
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, Family $family)
     {
-        //
+        $family->first_name = request('first_name');
+        $family->last_name = request('last_name');
+        $family->phone = request('phone');
+        $family->gender = request('gender');
+        $family->dob = request('dob');
+        $family->youth = request('youth');
+        $family->education = request('education');
+        $family->employment = request('employment');
+        $family->nutrition_level = request('nutrition_level');
+        $family->save();
+
+        return redirect('/family');
     }
 
     /**

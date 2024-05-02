@@ -21,7 +21,7 @@ use App\Http\Controllers\FamilyController;
     Route::resource('crud', CrudeController::class);
 
     //Route::get('/beneficiary/{beneficiary}/edit', 'BeneficiaryController@edit')->name('beneficiary_edit');
-    
+
     //Route::get('beneficiary/edit/{id}', [BeneficiaryController::class, 'edit'])->name('beneficiary_edit');
 
     Route::resource('beneficiary', BeneficiaryController::class);
@@ -30,6 +30,10 @@ use App\Http\Controllers\FamilyController;
     //Route::get('family/create/{beneficiaryId}', 'FamilyController@create')->name('family/create');
 
     Route::get('family/create/{beneficiaryId}', [FamilyController::class, 'create'])->name('family/create');
+
+
+    //Route::get('family/{family}/edit', [FamilyController::class, 'editDetails']);
+
 
     Route::resource('family', FamilyController::class);
 

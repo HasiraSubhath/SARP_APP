@@ -14,7 +14,7 @@
         @csrf
         @method('PUT')
         
-        <input type="text" name="nic" value="{{$beneficiary->nic}}" placeholder="NIC">
+<input type="text" name="nic" value="{{$beneficiary->nic}}" placeholder="NIC">
 <input type="text" name="first_name" value="{{$beneficiary->first_name}}" placeholder="First Name">
 <input type="text" name="last_name" value="{{$beneficiary->last_name}}" placeholder="Last Name">
 <input type="text" name="address" value="{{$beneficiary->address}}" placeholder="Address">

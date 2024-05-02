@@ -13,7 +13,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     Beneficiary Detailsssssssss
@@ -64,8 +64,9 @@
                     
                 </td>
                 <td>
-                    <button type="button" class="btn btn-primary edit-btn" data-toggle="modal" data-target="#editBeneficiaryModal" data-beneficiaryid="{{ $beneficiary->id }}">Edit</button>
-                   
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editBeneficiary" data-id="{{ $beneficiary->id }}">
+                        Edit
+                    </button>
                     <div>
                         <a href='beneficiary/{{$beneficiary->id}}/edit'>Edit</a>
                     </div>
@@ -79,14 +80,16 @@
             @endforeach
         </tbody>
     </table>
-
+    @foreach ($beneficiaries as $beneficiary)
     {{-- popup modal --}}
     <!-- Bootstrap modal code -->
-<div class="modal fade" id="editBeneficiaryModal" tabindex="-1" role="dialog" aria-labelledby="editBeneficiaryModalLabel" aria-hidden="true">
+{{-- <div class="modal fade" id="editBeneficiary" tabindex="-1" role="dialog" aria-labelledby="editBeneficiaryLabel" aria-hidden="true"> --}}
+ <!-- Modal for editing beneficiary -->
+ <div class="modal fade" id="editBeneficiary{{ $beneficiary->id }}" tabindex="-1" role="dialog" aria-labelledby="editBeneficiaryLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="editBeneficiaryModalLabel">Edit Beneficiary Details</h5>
+                <h5 class="modal-title" id="editBeneficiaryLabel">Edit Beneficiary Details</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -94,6 +97,7 @@
             <div class="modal-body">
                 <!-- Edit form goes here -->
                 <form id="editBeneficiaryForm" method="POST" action="{{ route('beneficiary.update', $beneficiary->id) }}">
+                    {{-- <form class="form-horizontal" id="editBeneficiaryForm" method="POST" action="/beneficiary/{{$beneficiary->id}}"> --}}
                     @csrf
                     @method('PUT')
                     <!-- Form fields for editing beneficiary details -->
@@ -153,34 +157,34 @@
         </div>
     </div>
 </div>
-
+@endforeach
 <!-- JavaScript to open modal and populate form fields -->
 <script>
     $(document).ready(function() {
         // Function to populate modal fields with beneficiary details
         $('.edit-btn').click(function() {
-            var beneficiaryId = $(this).data('beneficiaryid');
+            var beneficiaryId = $(this).data('id');
             $.ajax({
                 url: '/beneficiary/' + beneficiaryId,
                 type: 'GET',
                 success: function(response) {
                     // Populate modal fields with beneficiary details
-                    $('#editBeneficiary #editNic').val(response.id);
-                    $('#editBeneficiary #editFirstName').val(response.first_name);
-                    $('#editBeneficiary #editlastName').val(response.last_name);
-                    $('#editBeneficiary #editAddress').val(response.address);
-                    $('#editBeneficiary #editDob').val(response.dob);
-                    $('#editBeneficiary #editGender').
-                    $('#editBeneficiary #editAge').val(response.age);
-                    $('#editBeneficiary #editPhone').val(response.phone);
-                    $('#editBeneficiary #editIncome').val(response.income);
-                    $('#editBeneficiary #editFamilyMembersCount').val(response.family_members_count);
-                    $('#editBeneficiary #editEducation').val(response.education);
-                    $('#editBeneficiary #editLandOwnership').val(response.land_ownership);
+                    $('#editBeneficiary' + beneficiaryId + ' #editNic').val(response.nic);
+                $('#editBeneficiary' + beneficiaryId + ' #editFirstName').val(response.first_name);
+                $('#editBeneficiary' + beneficiaryId + ' #editlastName').val(response.last_name);
+                $('#editBeneficiary' + beneficiaryId + ' #editAddress').val(response.address);
+                $('#editBeneficiary' + beneficiaryId + ' #editDob').val(response.dob);
+                $('#editBeneficiary' + beneficiaryId + ' #editGender').val(response.gender);
+                $('#editBeneficiary' + beneficiaryId + ' #editAge').val(response.age);
+                $('#editBeneficiary' + beneficiaryId + ' #editPhone').val(response.phone);
+                $('#editBeneficiary' + beneficiaryId + ' #editIncome').val(response.income);
+                $('#editBeneficiary' + beneficiaryId + ' #editFamilyMembersCount').val(response.family_members_count);
+                $('#editBeneficiary' + beneficiaryId + ' #editEducation').val(response.education);
+                $('#editBeneficiary' + beneficiaryId + ' #editLandOwnership').val(response.land_ownership);
 
                     // Repeat for other fields
                     // Open the modal
-                    $('#editBeneficiary').modal('show');
+                    $('#editBeneficiary' + beneficiaryId).modal('show');
                 },
                 error: function(xhr) {
                     // Handle errors
