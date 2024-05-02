@@ -60,7 +60,7 @@ class BeneficiaryController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Beneficiarymodel $beneficiarymodel)
+    public function show(Beneficiary $beneficiary)
     {
         //
     }
@@ -68,17 +68,37 @@ class BeneficiaryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Beneficiarymodel $beneficiarymodel)
+    public function edit(Beneficiary $beneficiary)
     {
-        //
+        //return view('beneficiary.beneficiary_edit', compact('beneficiary'));
+
+       // $beneficiary = Beneficiary::findOrFail($id);
+        return view('beneficiary.beneficiary_edit', compact('beneficiary'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Beneficiarymodel $beneficiarymodel)
+    public function update(Request $request, Beneficiary $beneficiary)
     {
-        //
+        //dd("updated");
+       $beneficiary->nic = request('nic');
+        $beneficiary->first_name = request('first_name');
+        $beneficiary->last_name = request('last_name');
+        $beneficiary->gender = request('gender');
+        $beneficiary->dob = request('dob');
+        $beneficiary->address = request('address');
+        $beneficiary->phone = request('phone');
+        $beneficiary->income = request('income');
+        $beneficiary->family_members_count = request('family_members_count');
+        $beneficiary->education = request('education');
+        $beneficiary->land_ownership = request('land_ownership');
+        $beneficiary->age = request('age');
+        $beneficiary->save();
+
+        return redirect('/beneficiary')->with('success', 'Beneficiary updated successfully');
+
+        
     }
 
     /**

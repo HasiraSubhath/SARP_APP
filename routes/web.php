@@ -18,17 +18,20 @@ use App\Http\Controllers\FamilyController;
 // });
 // Route::get('/crud', 'CrudeController@create');
 //Route::resource('crud', 'CrudeController');
-Route::resource('crud', CrudeController::class);
+    Route::resource('crud', CrudeController::class);
+
+    //Route::get('/beneficiary/{beneficiary}/edit', 'BeneficiaryController@edit')->name('beneficiary_edit');
+    
+    //Route::get('beneficiary/edit/{id}', [BeneficiaryController::class, 'edit'])->name('beneficiary_edit');
+
+    Route::resource('beneficiary', BeneficiaryController::class);
 
 
-Route::resource('beneficiary', BeneficiaryController::class);
+    //Route::get('family/create/{beneficiaryId}', 'FamilyController@create')->name('family/create');
 
+    Route::get('family/create/{beneficiaryId}', [FamilyController::class, 'create'])->name('family/create');
 
-//Route::get('family/create/{beneficiaryId}', 'FamilyController@create')->name('family/create');
-
-Route::get('family/create/{beneficiaryId}', [FamilyController::class, 'create'])->name('family/create');
-
-Route::resource('family', FamilyController::class);
+    Route::resource('family', FamilyController::class);
 
 
 
