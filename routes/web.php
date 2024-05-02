@@ -20,7 +20,16 @@ use App\Http\Controllers\FamilyController;
 //Route::resource('crud', 'CrudeController');
 Route::resource('crud', CrudeController::class);
 
-// Route::get('/create',[BeneficiaryController::class, 'create']);
+
 Route::resource('beneficiary', BeneficiaryController::class);
 
+
+//Route::get('family/create/{beneficiaryId}', 'FamilyController@create')->name('family/create');
+
+Route::get('family/create/{beneficiaryId}', [FamilyController::class, 'create'])->name('family/create');
+
 Route::resource('family', FamilyController::class);
+
+
+
+

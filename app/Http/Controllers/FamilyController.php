@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Family;
 use Illuminate\Http\Request;
+use App\Models\Beneficiary;
 
 class FamilyController extends Controller
 {
@@ -12,15 +13,16 @@ class FamilyController extends Controller
      */
     public function index()
     {
-        //
+        $families = Family::all();
+        return view('family\family_index', compact('families'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create($beneficiaryId)
     {
-        //
+        return view('family.family_create', ['beneficiaryId' => $beneficiaryId]);
     }
 
     /**
@@ -28,7 +30,36 @@ class FamilyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $family = new Family;
+
+        $family->first_name = request('first_name');
+        $family->last_name = request('last_name');
+        $family->phone = request('phone');
+        $family->gender = request('gender');
+        $family->dob = request('dob');
+        $family->youth = request('youth');
+        $family->education = request('education');
+        $family->employment = request('employment');
+        $family->nutrition_level = request('nutrition_level');
+       // $family->beneficiary_id = request('beneficiary_id');
+
+         // Get the beneficiary ID from the request
+          $beneficiaryId = $request->input('beneficiary_id');
+
+         // Find the beneficiary
+         $beneficiary = Beneficiary::findOrFail($beneficiaryId);
+
+         // Associate the family member with the beneficiary
+          $family->beneficiary()->associate($beneficiary);
+
+       try {
+        $family->save();
+    } catch (\Exception $e) {
+        dd($e->getMessage()); // This will print any error messages
+    }
+        return redirect('/family');
+
+
     }
 
     /**

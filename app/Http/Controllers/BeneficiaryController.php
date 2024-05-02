@@ -47,8 +47,14 @@ class BeneficiaryController extends Controller
         $beneficiary->age = request('age');
         $beneficiary->save();
 
-        return redirect('/beneficiary');
+       return redirect('/beneficiary');
 
+       // After saving the beneficiary, get its ID
+    $beneficiaryId = $beneficiary->id; // Assuming you've saved the $beneficiary instance
+
+    // Redirect to the family creation form for the newly created beneficiary
+    //return redirect()->route('family/create', ['beneficiaryId' => $beneficiaryId]);
+       
     }
 
     /**
