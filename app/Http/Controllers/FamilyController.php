@@ -67,7 +67,7 @@ class FamilyController extends Controller
      */
     public function show(Family $family)
     {
-        //
+        return view('family.family_show', compact('family'));
     }
 
     /**
