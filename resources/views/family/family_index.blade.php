@@ -101,9 +101,23 @@
                     <form action="/family/{{ $family->id }}" method="POST">
                         @csrf
                         @method('DELETE')
+                        <form action="/crud/{{$crud->id}}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit">delete</button>
+                </form>
+                    <a href="/family/{{ $family->id }}/delete
+                        
                         <button type="submit">Delete</button> --}}
-                        <a class="btn btn-primary" href='family/{{$family->id}}/edit'>Edit</a>
-                    </form>
+                        <div class="d-flex">
+                        <a class="btn btn-primary  mr-2" href='family/{{$family->id}}/edit'>Edit</a>
+
+                        <form action="/family/{{ $family->id }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">Delete</a>
+                        </form>
+                    </div>
                 </td>
             </tr>
             @endforeach

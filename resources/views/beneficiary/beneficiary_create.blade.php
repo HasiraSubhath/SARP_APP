@@ -20,17 +20,37 @@
         }
     </style>
 
-    <script>
-        $(function() {
-            // Initialize datepicker
-            $("#dob").datepicker({
-                dateFormat: 'yy-mm-dd',
-                maxDate: '0', // Restrict selection to today or earlier
-                changeYear: true, // Allow changing year
-                yearRange: '-100:+0' // Allow selection of dates up to 100 years ago
-            });
+<script>
+    $(function() {
+        // Initialize datepicker
+        $("#dob").datepicker({
+            dateFormat: 'yy-mm-dd',
+            maxDate: '0', // Restrict selection to today or earlier
+            changeYear: true, // Allow changing year
+            yearRange: '-100:+0', // Allow selection of dates up to 100 years ago
+            onSelect: function() {
+                calculateAge();
+            }
         });
-    </script>
+
+        // Function to calculate age
+        function calculateAge() {
+            var dob = $("#dob").datepicker("getDate");
+            var today = new Date();
+            var age = today.getFullYear() - dob.getFullYear();
+            var m = today.getMonth() - dob.getMonth();
+
+            if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) {
+                age--;
+            }
+
+            $("#age").val(age);
+        }
+
+        // Call calculateAge function initially to set the age based on the initial dob value
+        calculateAge();
+    });
+</script>
     
 </head>
 <body>
@@ -86,7 +106,7 @@
                     </div>
                     <div class="form-group">
                         <label for="age">Age</label>
-                        <input type="text" class="form-control" id="age" name="age" placeholder="Age" >
+                        <input type="text" class="form-control" id="age" name="age" placeholder="Age" readonly>
                     </div>
                     
                     <div class="form-group">
