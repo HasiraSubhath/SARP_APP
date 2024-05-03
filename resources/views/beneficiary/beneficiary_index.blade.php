@@ -7,7 +7,9 @@
     <title>Document</title>
     {{-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> --}}
-    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ asset('assets/css/pagination.css')}} ">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
 </head>
 <body>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -15,8 +17,72 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    Beneficiary Detailsssssssss
+    {{-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> --}}
+    
+    <div class="container-fluid">
+        <div class="center-heading">
+            <h1>Beneficiary Details</h1>
+        </div>
+        <div class="row">
+            <div class="col">
+                <input placeholder="beneficiary"/>
+                <button onclick="window.location.href='{{ route('beneficiary.create') }}'" class="add_new"> + Add New </button>
+            </div>
+        </div>
+        
+        <div class="row table-container">
+            <div class="col">
+                <table id="beneficiariesTable" class="table table-bordered border-primary">
+                    <thead>
+                        <tr>
+                            <th scope="col">NIC</th>
+                            <th scope="col">First Name</th>
+                            <th scope="col">Last Name</th>
+                            <th scope="col">Address</th>
+                            <th scope="col">Date Of Birth</th>
+                            <th scope="col">gender</th>
+                            <th scope="col">Age</th>
+                            <th scope="col">phone</th>
+                            <th scope="col">Income</th>
+                            <th scope="col">Family Members</th>
+                            <th scope="col">Education level</th>
+                            <th scope="col">Land Ownership</th>
+                            <th scope="col">Actions</th> 
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($beneficiaries as $beneficiary)
+                        <tr>
+                            <td>{{$beneficiary->nic}}</td>
+                            <td>{{$beneficiary->first_name}}</td>
+                            <td>{{$beneficiary->last_name}}</td>
+                            <td>{{$beneficiary->address}}</td>
+                            <td>{{$beneficiary->dob}}</td>
+                            <td>{{$beneficiary->gender}}</td>
+                            <td>{{$beneficiary->age}}</td>
+                            <td>{{$beneficiary->phone}}</td>
+                            <td>{{$beneficiary->income}}</td>
+                            <td>{{$beneficiary->family_members_count}}</td>
+                            <td>{{$beneficiary->education}}</td>
+                            <td>{{$beneficiary->land_ownership}}</td>
+                            <td>
+                                <a href="{{ route('family/create', ['beneficiaryId' => $beneficiary->id]) }}" class="btn btn-primary">Add Family Member</a>
+                            {{-- </td> --}}
+                            {{-- <td> --}}
+                                {{-- <a href="{{ route('beneficiary/edit', ['id' => $beneficiary->id]) }}" class="btn btn-primary">Edit</a>
+                                <a href="{{ route('beneficiary/delete', ['id' => $beneficiary->id]) }}" class="btn btn-danger">Delete</a> --}}
+                                <a href="beneficiary/{{$beneficiary->id}}/edit" class="btn btn-primary">Edit</a>
+                            {{-- </td> --}}
+                            {{-- <td> --}}
+                                <a href="" class="btn btn-danger">Delete</a>
+                            </td>
+                        </tr>
+                        @endforeach
+                        </tbody>
+                </table>
+    
+    
+    {{-- Beneficiary Detailsssssssss
     
 
     <table class="table">
@@ -62,7 +128,7 @@
                     {{-- <a href="{{ route('beneficiary/edit', ['id' => $beneficiary->id]) }}" class="btn btn-primary">Edit</a>
                     <a href="{{ route('beneficiary/delete', ['id' => $beneficiary->id]) }}" class="btn btn-danger">Delete</a> --}}
                     
-                </td>
+                {{-- </td>
                 <td>
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editBeneficiary" data-id="{{ $beneficiary->id }}">
                         Edit
@@ -79,7 +145,33 @@
             </tr>
             @endforeach
         </tbody>
-    </table>
+    </table> --}}
+
+<!-- Pagination Section -->
+<nav aria-label="Page navigation example">
+    <ul class="pagination">
+        <li class="page-item {{ $beneficiaries->onFirstPage() ? 'disabled' : '' }}">
+            <a class="page-link" href="{{ $beneficiaries->previousPageUrl() }}" tabindex="-1" aria-disabled="true">Previous</a>
+        </li>
+        @for ($i = 1; $i <= $beneficiaries->lastPage(); $i++)
+            <li class="page-item {{ $i == $beneficiaries->currentPage() ? 'active' : '' }}">
+                <a class="page-link" href="{{ $beneficiaries->url($i) }}">{{ $i }}</a>
+            </li>
+        @endfor
+        <li class="page-item {{ $beneficiaries->hasMorePages() ? '' : 'disabled' }}">
+            <a class="page-link" href="{{ $beneficiaries->nextPageUrl() }}">Next</a>
+        </li>
+    </ul>
+</nav>
+
+                </nav>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+
     @foreach ($beneficiaries as $beneficiary)
     {{-- popup modal --}}
     <!-- Bootstrap modal code -->
@@ -219,5 +311,8 @@
 });
         </script> --}}
             {{-- <a href="{{ route('beneficiary/create') }}" class="btn btn-primary">Add Beneficiary</a> --}}
-</body>
+            <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+            <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+
+        </body>
 </html>

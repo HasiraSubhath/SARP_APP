@@ -14,6 +14,7 @@ class FamilyController extends Controller
     public function index()
     {
         $families = Family::all();
+        $families = Family::paginate(10); // Change 10 to the desired number of records per page
         return view('family\family_index', compact('families'));
     }
 

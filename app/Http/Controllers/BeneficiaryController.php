@@ -15,6 +15,7 @@ class BeneficiaryController extends Controller
     {
        // return view('beneficiary.beneficiary_index');
         $beneficiaries = Beneficiary::all();
+        $beneficiaries = Beneficiary::paginate(8); // Change 10 to the desired number of records per page
         return view('beneficiary\beneficiary_index', compact('beneficiaries'));
     }
 

@@ -6,16 +6,19 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 
-    <!-- Add Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+
     <!-- Add jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <!-- Add Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ asset('assets/css/pagination.css')}} ">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
 
 </head>
 <body>
-    <div class="modal fade" id="editFamilyModal" tabindex="-1" role="dialog" aria-labelledby="editFamilyModalLabel" aria-hidden="true">
+    @csrf
+    {{-- <div class="modal fade" id="editFamilyModal" tabindex="-1" role="dialog" aria-labelledby="editFamilyModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -49,22 +52,35 @@
                 </form>
             </div>
         </div>
-    </div>
+    </div> --}}
+
+    <div class="container-fluid">
+        <div class="center-heading">
+            <h1>Beneficiary Famaily Members Details</h1>
+        </div>
+        
 
 
-    <table>
+   
+        <div class="row table-container">
+            <div class="col">
+                <table  class="table table-bordered border-primary">
+</div>
         <thead>
             <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Phone</th>
-                <th>Gender</th>
-                <th>Date of Birth</th>
-                <th>Youth</th>
-                <th>Education</th>
-                <th>Employment</th>
-                <th>Nutrition Level</th>
-                <th>Action</th>
+             
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Phone</th>
+                <th scope="col">gender</th>
+                <th scope="col">Date Of Birth</th>
+                <th scope="col">Youth</th>
+                
+                
+                <th scope="col">Education</th>
+                <th scope="col">Employment</th>
+                <th scope="col">Nutrition Level</th>
+                <th scope="col">Actions</th> 
             </tr>
         </thead>
         <tbody>
@@ -86,13 +102,29 @@
                         @csrf
                         @method('DELETE')
                         <button type="submit">Delete</button> --}}
-                        <a href='family/{{$family->id}}/edit'>Edit</a>
+                        <a class="btn btn-primary" href='family/{{$family->id}}/edit'>Edit</a>
                     </form>
                 </td>
             </tr>
             @endforeach
         </tbody>
     </table>
+
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item {{ $families->onFirstPage() ? 'disabled' : '' }}">
+                <a class="page-link" href="{{ $families->previousPageUrl() }}" tabindex="-1" aria-disabled="true">Previous</a>
+            </li>
+            @for ($i = 1; $i <= $families->lastPage(); $i++)
+                <li class="page-item {{ $i == $families->currentPage() ? 'active' : '' }}">
+                    <a class="page-link" href="{{ $families->url($i) }}">{{ $i }}</a>
+                </li>
+            @endfor
+            <li class="page-item {{ $families->hasMorePages() ? '' : 'disabled' }}">
+                <a class="page-link" href="{{ $families->nextPageUrl() }}">Next</a>
+            </li>
+        </ul>
+    </nav>
 
     <script>
         // JavaScript to handle edit button click and populate form fields

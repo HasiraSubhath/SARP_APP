@@ -34,31 +34,10 @@
     
 </head>
 <body>
+    <div class="container mt-5 border rounded border-primary p-4">
     <form class="form-horizontal" method="POST" action="/beneficiary">
         @csrf
-        <!--
-        <input type="text" name="nic" value="" placeholder="NIC">
-        <input type="text" name="first_name" value="" placeholder="firstName">
-        <input type="text" name="last_name" value="" placeholder="lastName">
-        <input type="text" name="address" value="" placeholder="Address">
-        <input type="date" name="dob" value="" placeholder="Date Of Birth">
-        <select name="gender">
-            <option value="">Select Gender</option>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-            <option value="other">Other</option>
-        </select>
-        <input type="text" name="age" value="" placeholder="age">
-        <input type="number" name="phone" value="" placeholder="phone">
-        <input type="text" name="income" value="" placeholder="Income">
-        <input type="text" name="family_members_count" value="" placeholder="Family Members">
-        <input type="text" name="education" value="" placeholder="Education level">
-        <input type="text" name="land_ownership" value="" placeholder="Land Ownership">
-        <input type="text" name="" value="" placeholder="">
 
-
-        <button type="submit" name="button">Submit</button>
-    -->
 
 
         <div class="container mt-5">
@@ -89,10 +68,7 @@
                        
                         <img src="https://jqueryui.com/resources/demos/datepicker/images/calendar.gif" class="ui-datepicker-trigger" alt="calendar">
                     </div>
-                    <!-- <div class="form-group">
-                        <label for="serial">Serial Number</label>
-                        <input type="text" class="form-control" id="serial" placeholder="Enter Serial Number" required>
-                    </div> -->
+                    
                     <div class="form-group">
                         <label>Gender</label>
                         <div class="form-check">
@@ -165,6 +141,7 @@
             <button type="submit" name="button" class="btn btn-primary mt-3">Submit</button>
             </form>
     
+    </div>
     </div>
 </body>
 </html>

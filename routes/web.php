@@ -5,9 +5,9 @@ use App\Http\Controllers\CrudeController;
 use App\Http\Controllers\BeneficiaryController;
 use App\Http\Controllers\FamilyController;
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+    return view('welcome');
+});
 // Route::get('/',[CrudeController::class, 'index']);
 // Route::get('/create',[CrudeController::class, 'create']);
 // Route::post('/create',[CrudeController::class, 'store']);
