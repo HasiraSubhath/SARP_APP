@@ -95,9 +95,10 @@ class BeneficiaryController extends Controller
         $beneficiary->education = request('education');
         $beneficiary->land_ownership = request('land_ownership');
         $beneficiary->age = request('age');
-        $beneficiary->save();
+        // $beneficiary->save();
 
         return redirect('/beneficiary')->with('success', 'Beneficiary updated successfully');
+     
 
         
     }
@@ -107,6 +108,6 @@ class BeneficiaryController extends Controller
      */
     public function destroy(Beneficiarymodel $beneficiarymodel)
     {
-        //
+        
     }
 }

@@ -60,6 +60,16 @@ class FamilyController extends Controller
     }
         return redirect('/family');
 
+    // try {
+    //     $family->save();
+    //     Session::flash('success', 'Family member added successfully!');
+    // } catch (\Exception $e) {
+    //     Session::flash('error', 'Failed to add family member.');
+    //     return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+    // }
+
+    return redirect('/family');
+
 
     }
 

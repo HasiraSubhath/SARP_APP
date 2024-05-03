@@ -121,12 +121,12 @@
     
         <div class="form-group">
             <label for="employment">Employment</label>
-            <input type="text" name="employment" id="employment" value="Enter employement status" class="form-control" required>
+            <input type="text" name="employment" id="employment"  class="form-control" required>
         </div>
     
         <div class="form-group">
             <label for="nutrition_level">Nutrition Level</label>
-            <input type="text" name="nutrition_level" id="nutrition_level" value="Enter Nutrition Level" class="form-control" required>
+            <input type="text" name="nutrition_level" id="nutrition_level"  class="form-control" required>
         </div>
 
         <div>
