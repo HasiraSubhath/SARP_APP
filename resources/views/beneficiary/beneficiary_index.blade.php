@@ -47,6 +47,10 @@
                             <th scope="col">Family Members</th>
                             <th scope="col">Education level</th>
                             <th scope="col">Land Ownership</th>
+                            <th scope="col">Province</th>
+                            <th scope="col">District</th>
+                            <th scope="col">DS Division</th>
+
                             <th scope="col">Actions</th> 
                         </tr>
                     </thead>
@@ -65,6 +69,10 @@
                             <td>{{$beneficiary->family_members_count}}</td>
                             <td>{{$beneficiary->education}}</td>
                             <td>{{$beneficiary->land_ownership}}</td>
+                            <td>{{$beneficiary->province}}</td>
+                            <td>{{$beneficiary->district}}</td>
+                            <td>{{$beneficiary->ds_division}}</td>
+
                             <td>
                                 <a href="{{ route('family/create', ['beneficiaryId' => $beneficiary->id]) }}" class="btn btn-primary">Add Family Member</a>
                             {{-- </td> --}}

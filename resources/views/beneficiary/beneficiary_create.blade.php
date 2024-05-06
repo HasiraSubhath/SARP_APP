@@ -140,6 +140,8 @@
                         <label for="landOwnership">Land Ownership</label>
                         <input type="text" class="form-control" id="land_ownership" name="land_ownership" placeholder="Enter Land Ownership" required>
                     </div>
+
+                    
                     <!--
                     <div class="card">
                         <div class="card-header bg-primary text-white">
@@ -158,10 +160,151 @@
                     </div>
                 </div>
             </div> -->
+            <div class="form-group">
+                <label for="provinceDropdown">Province</label>
+                <select class="form-control" id="provinceDropdown" name="province" required>
+                    
+                    <option value="">Select Province</option>
+                    <!-- Options will be populated by jQuery -->
+                </select>
+                {{-- <input type="hidden" id="provinceName" name="province_name"> --}}
+            </div>
+            
+            <div class="form-group">
+                <label for="districtDropdown">District</label>
+                <select class="form-control" id="districtDropdown" name="district" required>
+                    <option value="">Select District</option>
+                    <!-- Options will be populated by jQuery -->
+                </select>
+                {{-- <input type="hidden" id="districtName" name="district_name"> --}}
+            </div>
+
+            <div class="form-group">
+                <label for="dsDivisionDropdown">DS Division</label>
+                <select class="form-control" id="dsDivisionDropdown" name="ds_division" required>
+                    <option value="">Select DS Division</option>
+                    <!-- Options will be populated by jQuery -->
+                </select>
+                {{-- <input type="hidden" id="dsDivisionName" name="ds_division_name"> --}}
+            </div>
+
             <button type="submit" name="button" class="btn btn-primary mt-3">Submit</button>
             </form>
     
     </div>
     </div>
+
+    <script>
+        
+        $(document).ready(function() {
+            // Fetch provinces
+            $.ajax({
+                url: '/provinces',
+                type: 'GET',
+                success: function(data) {
+                    // Populate province dropdown
+                    console.log(data);//debug
+                    $.each(data, function(index, province) {
+                        $('#provinceDropdown').append($('<option>', {
+                            value: province.id,
+                            text: province.name
+                        }));
+                    });
+                }
+            });
+    
+            // Fetch districts based on selected province
+            $('#provinceDropdown').change(function() {
+                var provinceId = $(this).val();
+    
+                // Check if a province is selected
+                if (provinceId !== '') {
+                    // Clear the district and DS Division dropdowns
+                    $('#districtDropdown').empty().append($('<option>', {
+                        value: '',
+                        text: 'Select District'
+                    }));
+                    $('#dsDivisionDropdown').empty().append($('<option>', {
+                        value: '',
+                        text: 'Select DS Division'
+                    }));
+    
+                    // Fetch districts only if a valid province ID is selected
+                    $.ajax({
+                        url: '/provinces/' + provinceId + '/districts',
+                        type: 'GET',
+                        success: function(data) {
+                            // Populate district dropdown
+                            console.log(data);//debug
+
+                            $.each(data, function(index, district) {
+                                $('#districtDropdown').append($('<option>', {
+                                    value: district.id,
+                                    text: district.district
+                                }));
+                            });
+                        },
+                        error: function(xhr, status, error) {
+                            console.error(xhr.responseText);
+                            // Handle error - show a message to the user or handle it as needed
+                        }
+                    });
+                } else {
+                    // Clear the district and DS Division dropdowns if no province is selected
+                    $('#districtDropdown').empty().append($('<option>', {
+                        value: '',
+                        text: 'Select District'
+                    }));
+                    $('#dsDivisionDropdown').empty().append($('<option>', {
+                        value: '',
+                        text: 'Select DS Division'
+                    }));
+                }
+            });
+    
+            // Fetch DS Divisions based on selected district
+            $('#districtDropdown').change(function() {
+                var districtId = $(this).val();
+    
+                // Check if a district is selected
+                if (districtId !== '') {
+                    // Fetch DS Divisions only if a valid district ID is selected
+                    $.ajax({
+                        url: '/districts/' + districtId + '/ds-divisions',
+                        type: 'GET',
+                        success: function(data) {
+                            console.log(data);//debug
+
+                            // Clear the DS Division dropdown
+                            $('#dsDivisionDropdown').empty().append($('<option>', {
+                                value: '',
+                                text: 'Select DS Division'
+                            }));
+    
+                            // Populate DS Division dropdown
+                            $.each(data, function(index, dsDivision) {
+                                $('#dsDivisionDropdown').append($('<option>', {
+                                    value: dsDivision.id,
+                                    text: dsDivision.division
+                                }));
+                            });
+                        },
+                        error: function(xhr, status, error) {
+                            console.error(xhr.responseText);
+                            // Handle error - show a message to the user or handle it as needed
+                        }
+                    });
+                } else {
+                    // Clear the DS Division dropdown if no district is selected
+                    $('#dsDivisionDropdown').empty().append($('<option>', {
+                        value: '',
+                        text: 'Select DS Division'
+                    }));
+                }
+            });
+        });
+    </script>
+    
+    
 </body>
 </html>

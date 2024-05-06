@@ -5,12 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Province extends Model
+class DSDivision extends Model
 {
     use HasFactory;
+    protected $table = 'ds_divisions';
 
-    public function districts()
+    
+    public function district()
     {
-        return $this->hasMany(District::class, province_id);
+        return $this->belongsTo(District::class);
     }
 }

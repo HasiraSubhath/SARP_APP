@@ -46,6 +46,9 @@ class BeneficiaryController extends Controller
         $beneficiary->education = request('education');
         $beneficiary->land_ownership = request('land_ownership');
         $beneficiary->age = request('age');
+        $beneficiary->province = request('province');
+        $beneficiary->district = request('district');
+        $beneficiary->ds_division = request('ds_division');
         $beneficiary->save();
 
        return redirect('/beneficiary');
@@ -95,6 +98,10 @@ class BeneficiaryController extends Controller
         $beneficiary->education = request('education');
         $beneficiary->land_ownership = request('land_ownership');
         $beneficiary->age = request('age');
+        $beneficiary->province = request('province');
+        $beneficiary->district = request('district');
+        $beneficiary->ds_division = request('ds_division');
+
         // $beneficiary->save();
 
         return redirect('/beneficiary')->with('success', 'Beneficiary updated successfully');

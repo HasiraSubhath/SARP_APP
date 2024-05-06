@@ -2,19 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Province;
+use App\Models\DSDivision;
 use Illuminate\Http\Request;
 
-class ProvinceController extends Controller
+class DSDivisionController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $provinces = Province::all();
-        return response()->json($provinces);
-        //return view('provinces.index', compact('provinces'));
+        //
+    }
+
+    public function getDSByDistrict(Request $request, $districtId)
+    {
+        $dsDivisions = DSDivision::where('district_id', $districtId)->get();
+    
+        return response()->json($dsDivisions);
     }
 
     /**
@@ -36,7 +41,7 @@ class ProvinceController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Province $province)
+    public function show(DSDivision $dSDivision)
     {
         //
     }
@@ -44,7 +49,7 @@ class ProvinceController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Province $province)
+    public function edit(DSDivision $dSDivision)
     {
         //
     }
@@ -52,7 +57,7 @@ class ProvinceController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Province $province)
+    public function update(Request $request, DSDivision $dSDivision)
     {
         //
     }
@@ -60,7 +65,7 @@ class ProvinceController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Province $province)
+    public function destroy(DSDivision $dSDivision)
     {
         //
     }

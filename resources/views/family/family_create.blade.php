@@ -138,6 +138,8 @@
             <input type="text" class="form-control" id="address" name="address" placeholder="Enter Address" required> 
         <button type="submit" name="button" class="btn btn-primary mt-3">Submit</button>
         {{-- <button type="submit" class="btn btn-primary">Submit</button> --}}
+
+        
     </form>
 </body>
 </html>

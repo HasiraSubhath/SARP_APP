@@ -8,32 +8,32 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
+     *
+     * @return void
      */
     public function up()
     {
-        // Create the provinces table
         Schema::create('provinces', function (Blueprint $table) {
-            $table->string('id', 3)->primary()->unique();
-            $table->string('province');
+            $table->id(); // Creates an auto-incrementing primary key column named `id`
+            $table->string('name')->unique(); // Unique province name
+            $table->timestamps(); // Creates `created_at` and `updated_at` columns
         });
 
-        // Define the provinces data
+        // Insert the provided provinces
         $provinces = [
-            ['id' => 'P01', 'province' => 'Eastern'],
-            ['id' => 'P02', 'province' => 'Western'],
-            ['id' => 'P03', 'province' => 'Northern'],
-            ['id' => 'P04', 'province' => 'Southern'],
-            ['id' => 'P05', 'province' => 'Central'],
-            ['id' => 'P06', 'province' => 'North Western'],
-            ['id' => 'P07', 'province' => 'North Central'],
-            ['id' => 'P08', 'province' => 'Sabaragamuwa'],
-            ['id' => 'P09', 'province' => 'Uva'],
-            
+            'Eastern',
+            'Western',
+            'Northern',
+            'Southern',
+            'Central',
+            'North Western',
+            'North Central',
+            'Sabaragamuwa',
+            'Uva'
         ];
 
-        // Insert data into the provinces table
         foreach ($provinces as $province) {
-            DB::table('provinces')->insert($province);
+            DB::table('provinces')->insert(['name' => $province]);
         }
     }
 
@@ -44,7 +44,6 @@ return new class extends Migration
      */
     public function down()
     {
-        // Drop the provinces table
         Schema::dropIfExists('provinces');
     }
 };

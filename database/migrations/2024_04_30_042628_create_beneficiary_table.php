@@ -26,6 +26,9 @@ return new class extends Migration
             $table->string("education");
             $table->string("land_ownership");
             $table->string("age");
+            $table->string("province");
+            $table->string("district");
+            $table->string("ds_division");
 
             $table->timestamps();
         });

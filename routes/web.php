@@ -4,7 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CrudeController;
 use App\Http\Controllers\BeneficiaryController;
 use App\Http\Controllers\FamilyController;
-
+use App\Http\Controllers\ProvinceController;
+use App\Http\Controllers\DistrictController;
+use App\Http\Controllers\DSDivisionController;
 Route::get('/', function () {
     return view('welcome');
 });
@@ -37,6 +39,22 @@ Route::get('/', function () {
 
     Route::resource('family', FamilyController::class);
 
+    Route::get('/provinces', [ProvinceController::class, 'index']);
+    // Route::get('/provinces/{province}/districts', [DistrictController::class, 'index']);
+
+Route::get('/provinces/{province}/districts', [DistrictController::class, 'indexByProvince']);
+
+
+Route::get('/districts/{district}/ds-divisions', [DSDivisionController::class, 'getDSByDistrict']);
+
+Route::get('/ds-divisions', [DSDivisionController::class, 'getDSByDistrict']);
+
+
+    
+
+    
+
+    
 
 
 
