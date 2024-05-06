@@ -69,9 +69,9 @@
                             <td>{{$beneficiary->family_members_count}}</td>
                             <td>{{$beneficiary->education}}</td>
                             <td>{{$beneficiary->land_ownership}}</td>
-                            <td>{{$beneficiary->province}}</td>
-                            <td>{{$beneficiary->district}}</td>
-                            <td>{{$beneficiary->ds_division}}</td>
+                            <td>{{$beneficiary->province_name}}</td>
+                            <td>{{$beneficiary->district_name}}</td>
+                            <td>{{$beneficiary->ds_division_name}}</td>
 
                             <td>
                                 <a href="{{ route('family/create', ['beneficiaryId' => $beneficiary->id]) }}" class="btn btn-primary">Add Family Member</a>

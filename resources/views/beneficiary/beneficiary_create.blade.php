@@ -160,42 +160,40 @@
                     </div>
                 </div>
             </div> -->
-            <div class="form-group">
-                <label for="provinceDropdown">Province</label>
-                <select class="form-control" id="provinceDropdown" name="province" required>
-                    
-                    <option value="">Select Province</option>
-                    <!-- Options will be populated by jQuery -->
-                </select>
-                {{-- <input type="hidden" id="provinceName" name="province_name"> --}}
-            </div>
-            
-            <div class="form-group">
-                <label for="districtDropdown">District</label>
-                <select class="form-control" id="districtDropdown" name="district" required>
-                    <option value="">Select District</option>
-                    <!-- Options will be populated by jQuery -->
-                </select>
-                {{-- <input type="hidden" id="districtName" name="district_name"> --}}
-            </div>
+                <div class="form-group">
+                    <label for="provinceDropdown">Province</label>
+                    <select class="form-control" id="provinceDropdown" name="province_name" required>
+                        
+                        <option value="">Select Province</option>
+                        <!-- Options will be populated by jQuery -->
+                    </select>
+                    <input type="hidden" id="provinceName" name="province_name">
+                </div>
+                
+                <div class="form-group">
+                    <label for="districtDropdown">District</label>
+                    <select class="form-control" id="districtDropdown" name="district" required>
+                        <option value="">Select District</option>
+                        <!-- Options will be populated by jQuery -->
+                    </select>
+                    <input type="hidden" id="districtName" name="district_name">
+                </div>
 
-            <div class="form-group">
-                <label for="dsDivisionDropdown">DS Division</label>
-                <select class="form-control" id="dsDivisionDropdown" name="ds_division" required>
-                    <option value="">Select DS Division</option>
-                    <!-- Options will be populated by jQuery -->
-                </select>
-                {{-- <input type="hidden" id="dsDivisionName" name="ds_division_name"> --}}
-            </div>
+                <div class="form-group">
+                    <label for="dsDivisionDropdown">DS Division</label>
+                    <select class="form-control" id="dsDivisionDropdown" name="ds_division" required>
+                        <option value="">Select DS Division</option>
+                        <!-- Options will be populated by jQuery -->
+                    </select>
+                    <input type="hidden" id="dsDivisionName" name="ds_division_name">
+                </div>
 
-            <button type="submit" name="button" class="btn btn-primary mt-3">Submit</button>
-            </form>
-    
-    </div>
-    </div>
-
-    <script>
+                <button type="submit" name="button" class="btn btn-primary mt-3">Submit</button>
+                </form>
         
+        </div>
+        </div>
+<script>
         $(document).ready(function() {
             // Fetch provinces
             $.ajax({
@@ -203,7 +201,6 @@
                 type: 'GET',
                 success: function(data) {
                     // Populate province dropdown
-                    console.log(data);//debug
                     $.each(data, function(index, province) {
                         $('#provinceDropdown').append($('<option>', {
                             value: province.id,
@@ -212,11 +209,11 @@
                     });
                 }
             });
-    
+        
             // Fetch districts based on selected province
             $('#provinceDropdown').change(function() {
                 var provinceId = $(this).val();
-    
+        
                 // Check if a province is selected
                 if (provinceId !== '') {
                     // Clear the district and DS Division dropdowns
@@ -228,15 +225,13 @@
                         value: '',
                         text: 'Select DS Division'
                     }));
-    
+        
                     // Fetch districts only if a valid province ID is selected
                     $.ajax({
                         url: '/provinces/' + provinceId + '/districts',
                         type: 'GET',
                         success: function(data) {
                             // Populate district dropdown
-                            console.log(data);//debug
-
                             $.each(data, function(index, district) {
                                 $('#districtDropdown').append($('<option>', {
                                     value: district.id,
@@ -260,12 +255,16 @@
                         text: 'Select DS Division'
                     }));
                 }
+                // Reset hidden fields
+                $('#provinceName').val('');
+                $('#districtName').val('');
+                $('#dsDivisionName').val('');
             });
-    
+        
             // Fetch DS Divisions based on selected district
             $('#districtDropdown').change(function() {
                 var districtId = $(this).val();
-    
+        
                 // Check if a district is selected
                 if (districtId !== '') {
                     // Fetch DS Divisions only if a valid district ID is selected
@@ -273,14 +272,12 @@
                         url: '/districts/' + districtId + '/ds-divisions',
                         type: 'GET',
                         success: function(data) {
-                            console.log(data);//debug
-
                             // Clear the DS Division dropdown
                             $('#dsDivisionDropdown').empty().append($('<option>', {
                                 value: '',
                                 text: 'Select DS Division'
                             }));
-    
+        
                             // Populate DS Division dropdown
                             $.each(data, function(index, dsDivision) {
                                 $('#dsDivisionDropdown').append($('<option>', {
@@ -301,9 +298,26 @@
                         text: 'Select DS Division'
                     }));
                 }
+                // Reset hidden field
+                $('#dsDivisionName').val('');
+            });
+        
+            // Update hidden fields when options are selected
+            $('#provinceDropdown').change(function() {
+                $('#provinceName').val($(this).find('option:selected').text());
+            });
+        
+            $('#districtDropdown').change(function() {
+                $('#districtName').val($(this).find('option:selected').text());
+            });
+        
+            $('#dsDivisionDropdown').change(function() {
+                $('#dsDivisionName').val($(this).find('option:selected').text());
             });
         });
-    </script>
+</script>
+    
+        
     
     
 </body>

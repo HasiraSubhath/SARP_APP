@@ -30,36 +30,44 @@ class BeneficiaryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
-        $beneficiary = new Beneficiary;
+        public function store(Request $request)
+        {
+            $beneficiary = new Beneficiary;
 
-        $beneficiary->nic = request('nic');
-        $beneficiary->first_name = request('first_name');
-        $beneficiary->last_name = request('last_name');
-        $beneficiary->gender = request('gender');
-        $beneficiary->dob = request('dob');
-        $beneficiary->address = request('address');
-        $beneficiary->phone = request('phone');
-        $beneficiary->income = request('income');
-        $beneficiary->family_members_count = request('family_members_count');
-        $beneficiary->education = request('education');
-        $beneficiary->land_ownership = request('land_ownership');
-        $beneficiary->age = request('age');
-        $beneficiary->province = request('province');
-        $beneficiary->district = request('district');
-        $beneficiary->ds_division = request('ds_division');
-        $beneficiary->save();
+            $beneficiary->nic = request('nic');
+            $beneficiary->first_name = request('first_name');
+            $beneficiary->last_name = request('last_name');
+            $beneficiary->gender = request('gender');
+            $beneficiary->dob = request('dob');
+            $beneficiary->address = request('address');
+            $beneficiary->phone = request('phone');
+            $beneficiary->income = request('income');
+            $beneficiary->family_members_count = request('family_members_count');
+            $beneficiary->education = request('education');
+            $beneficiary->land_ownership = request('land_ownership');
+            $beneficiary->age = request('age');
+            // $beneficiary->province = request('province');
+            // $beneficiary->district = request('district');
+            // $beneficiary->ds_division = request('ds_division');
 
-       return redirect('/beneficiary');
+            // $beneficiary->province_name = request('province_name');
+            // $beneficiary->district_name = request('district_name');
+            // $beneficiary->ds_division_name = request('ds_division_name');
 
-       // After saving the beneficiary, get its ID
-    $beneficiaryId = $beneficiary->id; // Assuming you've saved the $beneficiary instance
+            $beneficiary->province_name = $request->input('province_name');
+            $beneficiary->district_name = $request->input('district_name');
+            $beneficiary->ds_division_name = $request->input('ds_division_name');
+            $beneficiary->save();
 
-    // Redirect to the family creation form for the newly created beneficiary
-    //return redirect()->route('family/create', ['beneficiaryId' => $beneficiaryId]);
-       
-    }
+        return redirect('/beneficiary');
+
+        // After saving the beneficiary, get its ID
+        $beneficiaryId = $beneficiary->id; // Assuming you've saved the $beneficiary instance
+
+        // Redirect to the family creation form for the newly created beneficiary
+        //return redirect()->route('family/create', ['beneficiaryId' => $beneficiaryId]);
+        
+        }
 
     /**
      * Display the specified resource.
