@@ -7,8 +7,15 @@ use App\Http\Controllers\FamilyController;
 use App\Http\Controllers\ProvinceController;
 use App\Http\Controllers\DistrictController;
 use App\Http\Controllers\DSDivisionController;
+
+
+
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/dashboard', function () {
+    return view('dashboard.dashboard');
 });
 // Route::get('/',[CrudeController::class, 'index']);
 // Route::get('/create',[CrudeController::class, 'create']);
@@ -29,7 +36,7 @@ Route::get('/', function () {
     Route::resource('beneficiary', BeneficiaryController::class);
     // Route::get('/beneficiary/{nic}', [BeneficiaryController::class, 'fetchBeneficiaryDetails']);
     // Route::get('/beneficiary/{beneficiary}/family', [BeneficiaryController::class, 'getFamilyMembers']);
-    
+
 
 
 
