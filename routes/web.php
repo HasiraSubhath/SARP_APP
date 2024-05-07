@@ -7,6 +7,7 @@ use App\Http\Controllers\FamilyController;
 use App\Http\Controllers\ProvinceController;
 use App\Http\Controllers\DistrictController;
 use App\Http\Controllers\DSDivisionController;
+use App\Http\Controllers\TankRehabilationController;
 
 
 
@@ -60,6 +61,10 @@ Route::get('/provinces/{province}/districts', [DistrictController::class, 'index
 Route::get('/districts/{district}/ds-divisions', [DSDivisionController::class, 'getDSByDistrict']);
 
 Route::get('/ds-divisions', [DSDivisionController::class, 'getDSByDistrict']);
+
+Route::resource('tank_rehabilation', TankRehabilationController::class);
+
+
 
 
     
