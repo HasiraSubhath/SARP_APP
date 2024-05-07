@@ -142,6 +142,41 @@
                     <input type="text" class="form-control" id="land_ownership" name="land_ownership" value="{{$beneficiary->land_ownership}}" placeholder="Enter Land Ownership" required>
                 </div>
 
+                <!-- Province Dropdown -->
+<div class="form-group">
+    <label for="provinceDropdown">Province</label>
+    <select class="form-control" id="provinceDropdown" name="province_name">
+        <option value="">Select Province</option>
+        <!-- Options will be populated dynamically using JavaScript -->
+        <input type="hidden" id="provinceName" name="province_name">
+    </select>
+</div>
+
+<!-- District Dropdown -->
+<div class="form-group">
+    <label for="districtDropdown">District</label>
+    <select class="form-control" id="districtDropdown" name="district_name">
+        <option value="">Select District</option>
+        <!-- Options will be populated dynamically using JavaScript -->
+        <input type="hidden" id="districtName" name="district_name">
+
+    </select>
+</div>
+
+<!-- DS Division Dropdown -->
+<div class="form-group">
+    <label for="dsDivisionDropdown">DS Division</label>
+    <select class="form-control" id="dsDivisionDropdown" name="ds_division_name">
+        <option value="">Select DS Division</option>
+        <!-- Options will be populated dynamically using JavaScript -->
+        <input type="hidden" id="dsDivisionName" name="ds_division_name">
+
+    </select>
+</div>
+
+                
+                
+
 
        
         <button type="submit" class="btn btn-primary">Save Changes</button>
@@ -149,6 +184,130 @@
   
     </form>
 
+    <script>
+        $(document).ready(function() {
+            // Fetch provinces
+            $.ajax({
+                url: '/provinces',
+                type: 'GET',
+                success: function(data) {
+                    // Populate province dropdown
+                    $.each(data, function(index, province) {
+                        $('#provinceDropdown').append($('<option>', {
+                            value: province.id,
+                            text: province.name
+                        }));
+                    });
+                }
+            });
+        
+            // Fetch districts based on selected province
+            $('#provinceDropdown').change(function() {
+                var provinceId = $(this).val();
+        
+                // Check if a province is selected
+                if (provinceId !== '') {
+                    // Clear the district and DS Division dropdowns
+                    $('#districtDropdown').empty().append($('<option>', {
+                        value: '',
+                        text: 'Select District'
+                    }));
+                    $('#dsDivisionDropdown').empty().append($('<option>', {
+                        value: '',
+                        text: 'Select DS Division'
+                    }));
+        
+                    // Fetch districts only if a valid province ID is selected
+                    $.ajax({
+                        url: '/provinces/' + provinceId + '/districts',
+                        type: 'GET',
+                        success: function(data) {
+                            // Populate district dropdown
+                            $.each(data, function(index, district) {
+                                $('#districtDropdown').append($('<option>', {
+                                    value: district.id,
+                                    text: district.district
+                                  
+                                }));
+                            });
+                        },
+                        error: function(xhr, status, error) {
+                            console.error(xhr.responseText);
+                            // Handle error - show a message to the user or handle it as needed
+                        }
+                    });
+                } else {
+                    // Clear the district and DS Division dropdowns if no province is selected
+                    $('#districtDropdown').empty().append($('<option>', {
+                        value: '',
+                        text: 'Select District'
+                    }));
+                    $('#dsDivisionDropdown').empty().append($('<option>', {
+                        value: '',
+                        text: 'Select DS Division'
+                    }));
+                }
+                // Reset hidden fields
+                $('#provinceName').val('');
+                $('#districtName').val('');
+                $('#dsDivisionName').val('');
+            });
+        
+            // Fetch DS Divisions based on selected district
+            $('#districtDropdown').change(function() {
+                var districtId = $(this).val();
+        
+                // Check if a district is selected
+                if (districtId !== '') {
+                    // Fetch DS Divisions only if a valid district ID is selected
+                    $.ajax({
+                        url: '/districts/' + districtId + '/ds-divisions',
+                        type: 'GET',
+                        success: function(data) {
+                            // Clear the DS Division dropdown
+                            $('#dsDivisionDropdown').empty().append($('<option>', {
+                                value: '',
+                                text: 'Select DS Division'
+                            }));
+        
+                            // Populate DS Division dropdown
+                            $.each(data, function(index, dsDivision) {
+                                $('#dsDivisionDropdown').append($('<option>', {
+                                    value: dsDivision.id,
+                                    text: dsDivision.division
+                                }));
+                            });
+                        },
+                        error: function(xhr, status, error) {
+                            console.error(xhr.responseText);
+                            // Handle error - show a message to the user or handle it as needed
+                        }
+                    });
+                } else {
+                    // Clear the DS Division dropdown if no district is selected
+                    $('#dsDivisionDropdown').empty().append($('<option>', {
+                        value: '',
+                        text: 'Select DS Division'
+                    }));
+                }
+                // Reset hidden field
+                $('#dsDivisionName').val('');
+            });
+        
+            // Update hidden fields when options are selected
+            $('#provinceDropdown').change(function() {
+                $('#provinceName').val($(this).find('option:selected').text());
+            });
+        
+            $('#districtDropdown').change(function() {
+                $('#districtName').val($(this).find('option:selected').text());
+            });
+        
+            $('#dsDivisionDropdown').change(function() {
+                $('#dsDivisionName').val($(this).find('option:selected').text());
+            });
+        });
+</script>
    
 
 

@@ -106,11 +106,15 @@ class BeneficiaryController extends Controller
         $beneficiary->education = request('education');
         $beneficiary->land_ownership = request('land_ownership');
         $beneficiary->age = request('age');
-        $beneficiary->province = request('province');
-        $beneficiary->district = request('district');
-        $beneficiary->ds_division = request('ds_division');
+        // $beneficiary->province_name = $request->input('province_name');
+        // $beneficiary->district_name = $request->input('district_name');
+        // $beneficiary->ds_division_name = $request->input('ds_division_name');
 
-        // $beneficiary->save();
+        $beneficiary->province_name = request('province_name');
+            $beneficiary->district_name = request('district_name');
+            $beneficiary->ds_division_name = request('ds_division_name');
+
+         $beneficiary->save();
 
         return redirect('/beneficiary')->with('success', 'Beneficiary updated successfully');
      
