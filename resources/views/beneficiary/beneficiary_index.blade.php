@@ -19,6 +19,12 @@
     
     {{-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> --}}
     
+   
+
+
+
+
+
     <div class="container-fluid">
         <div class="center-heading">
             <h1>Beneficiary Details</h1>
@@ -72,6 +78,12 @@
                             <td>{{$beneficiary->province_name}}</td>
                             <td>{{$beneficiary->district_name}}</td>
                             <td>{{$beneficiary->ds_division_name}}</td>
+                            <td>
+                                <a href="{{ route('beneficiary.show', $beneficiary->id) }}" class="btn btn-info view-family-btn">View Details</a>
+                            </td>
+                            
+
+
 
                             <td>
                                 <a href="{{ route('family/create', ['beneficiaryId' => $beneficiary->id]) }}" class="btn btn-primary">Add Family Member</a>
@@ -258,8 +270,11 @@
     </div>
 </div>
 @endforeach
+
+
+
 <!-- JavaScript to open modal and populate form fields -->
-<script>
+{{-- <script>
     $(document).ready(function() {
         // Function to populate modal fields with beneficiary details
         $('.edit-btn').click(function() {
@@ -293,8 +308,7 @@
             });
         });
     });
-</script>
-
+</script> --}}
 
     {{-- <script>
         $(document).ready(function() {
@@ -318,6 +332,8 @@
     });
 });
         </script> --}}
+
+
             {{-- <a href="{{ route('beneficiary/create') }}" class="btn btn-primary">Add Beneficiary</a> --}}
             <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
             <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>

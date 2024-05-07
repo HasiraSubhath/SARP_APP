@@ -60,8 +60,110 @@
 
 
 
-        <div class="container mt-5">
-        <h2 class="text-center mb-4">Beneficiary Registration</h2>
+        <div class="col-md-12 text-center">
+            <h2 style="">Beneficiary Registration</h2>
+        </div>
+            <div class="container mt-5">
+            <div class="row mb-4">
+            
+        
+                <div class="container-fluid py-3">
+                <div class="container-fluid py-3">
+            <div class="row">
+       
+       <!-- Tank Name Dropdown -->
+       
+       <div class="col-md-4 mb-3">
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle btn-block text-black " type="button" id="" data-bs-toggle="dropdown" aria-expanded="false" style="padding-top: 10px; padding-bottom: 10px";>
+                Select Tank Name
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="tankNameDropdownButton">
+                <li><a class="dropdown-item" href="#">Tank1</a></li>
+                <li><a class="dropdown-item" href="#">Tank2</a></li>
+                <li><a class="dropdown-item" href="#">Tank3</a></li>
+                <!-- Add more items as needed -->
+            </ul>
+        </div>
+    </div>
+    
+    <!-- Province Dropdown -->
+    <div class="col-md-4 mb-3">
+        <div class="dropdown">
+            <select class="btn btn-secondary dropdown-toggle btn-block text-black " style="padding-top: 10px; padding-bottom: 10px"  id="provinceDropdown" name="province_name" required>
+                        
+                <option value="">Select Province</option>
+                <!-- Options will be populated by jQuery -->
+            </select>
+            <input type="hidden" id="provinceName" name="province_name">
+        </div>
+        
+    </div>
+    
+    <!-- District Dropdown -->
+    <div class="col-md-4 mb-3">
+        <div class="dropdown">
+            <select class="btn btn-secondary dropdown-toggle btn-block text-black " id="districtDropdown" name="district" style="padding-top: 10px; padding-bottom: 10px" required>
+               
+                <option value="">Select District</option>
+                <!-- Options will be populated by jQuery -->
+            </select>
+            <input type="hidden" id="districtName" name="district_name">
+
+        </div>
+    </div>
+
+
+
+</div>
+ 
+<!-- Second Row -->
+<div class="row">
+   
+     <!-- DSD Dropdown -->
+ <div class="col-md-4 mb-3">
+    <div class="dropdown">
+        <select class="btn btn-secondary dropdown-toggle btn-block text-black" style="padding-top: 10px; padding-bottom: 10px" id="dsDivisionDropdown" name="ds_division" required>
+            
+            <option value="">Select DS Division</option>
+            <!-- Options will be populated by jQuery -->
+        </select>
+        <input type="hidden" id="dsDivisionName" name="ds_division_name">
+
+    </div>
+</div>
+    <!-- GND Dropdown -->
+    <div class="col-md-4 mb-3">
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle btn-block text-black " type="button" id="" data-bs-toggle="dropdown" aria-expanded="false"style="padding-top: 10px; padding-bottom: 10px";>
+                Select GND
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="gndDropdownButton">
+                <li><a class="dropdown-item" href="#">GND1</a></li>
+                <li><a class="dropdown-item" href="#">GND2</a></li>
+                <li><a class="dropdown-item" href="#">GND3</a></li>
+                <!-- Add more items as needed -->
+            </ul>
+        </div>
+    </div>
+    
+    <!-- ASC Dropdown -->
+    <div class="col-md-4 mb-3">
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle btn-block text-black " type="button" id="" data-bs-toggle="dropdown" aria-expanded="false"style="padding-top: 10px; padding-bottom: 10px";>
+                Select ASC
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="ascDropdownButton">
+                <li><a class="dropdown-item" href="#">ASC1</a></li>
+                <li><a class="dropdown-item" href="#">ASC2</a></li>
+                <li><a class="dropdown-item" href="#">ASC3</a></li>
+                <!-- Add more items as needed -->
+            </ul>
+        </div>
+    </div>
+</div>
+       
+       
         <form action="#" method="post">
             <div class="row">
                 <div class="col-md-6">
@@ -142,7 +244,7 @@
                     </div>
 
                     
-                    <!--
+                    
                     <div class="card">
                         <div class="card-header bg-primary text-white">
                             <h5 class="card-title mb-0">Account Details</h5>
@@ -150,17 +252,17 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="accountName">Account Name</label>
-                                <input type="text" class="form-control" id="accountName" placeholder="Enter Account Name" required>
+                                <input type="text" class="form-control" id="" placeholder="Enter Account Name" required>
                             </div>
                             <div class="form-group">
                                 <label for="accountNumber">Account Number</label>
-                                <input type="text" class="form-control" id="accountNumber" placeholder="Enter Account Number" required>
+                                <input type="text" class="form-control" id="" placeholder="Enter Account Number" required>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div> -->
-                <div class="form-group">
+            </div> 
+                {{-- <div class="form-group">
                     <label for="provinceDropdown">Province</label>
                     <select class="form-control" id="provinceDropdown" name="province_name" required>
                         
@@ -168,9 +270,9 @@
                         <!-- Options will be populated by jQuery -->
                     </select>
                     <input type="hidden" id="provinceName" name="province_name">
-                </div>
+                </div> --}}
                 
-                <div class="form-group">
+                {{-- <div class="form-group">
                     <label for="districtDropdown">District</label>
                     <select class="form-control" id="districtDropdown" name="district" required>
                         <option value="">Select District</option>
@@ -186,8 +288,10 @@
                         <!-- Options will be populated by jQuery -->
                     </select>
                     <input type="hidden" id="dsDivisionName" name="ds_division_name">
-                </div>
-
+                </div> --}}
+            
+        
+    
                 <button type="submit" name="button" class="btn btn-primary mt-3">Submit</button>
                 </form>
         

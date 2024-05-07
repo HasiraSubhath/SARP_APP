@@ -95,6 +95,7 @@
                 <td>{{ $family->education }}</td>
                 <td>{{ $family->employment }}</td>
                 <td>{{ $family->nutrition_level }}</td>
+                
                 <td>
                     {{-- <button class="btn btn-primary edit-family-btn" data-toggle="modal" data-target="#editFamilyModal" data-family-id="{{ $family->id }}">Edit</button> --}}
                     {{-- <a href="/family/{{ $family->id }}/edit">Edit</a>

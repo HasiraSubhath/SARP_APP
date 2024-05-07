@@ -27,6 +27,11 @@ Route::get('/', function () {
     //Route::get('beneficiary/edit/{id}', [BeneficiaryController::class, 'edit'])->name('beneficiary_edit');
 
     Route::resource('beneficiary', BeneficiaryController::class);
+    // Route::get('/beneficiary/{nic}', [BeneficiaryController::class, 'fetchBeneficiaryDetails']);
+    // Route::get('/beneficiary/{beneficiary}/family', [BeneficiaryController::class, 'getFamilyMembers']);
+    
+
+
 
 
     //Route::get('family/create/{beneficiaryId}', 'FamilyController@create')->name('family/create');

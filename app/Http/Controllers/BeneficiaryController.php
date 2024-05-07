@@ -11,6 +11,11 @@ class BeneficiaryController extends Controller
     /**
      * Display a listing of the resource.
      */
+    // public function getFamilyMembers($beneficiaryId)
+    // {
+    //     $familyMembers = Family::where('beneficiary_id', $beneficiaryId)->get();
+    //     return response()->json($familyMembers);
+    // }
     public function index()
     {
        // return view('beneficiary.beneficiary_index');
@@ -74,7 +79,7 @@ class BeneficiaryController extends Controller
      */
     public function show(Beneficiary $beneficiary)
     {
-        //
+        return view('beneficiary.beneficiary_show', compact('beneficiary'));
     }
 
     /**
