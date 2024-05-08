@@ -12,50 +12,16 @@
     <!-- Add Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{{ asset('assets/css/pagination.css')}} ">
+    {{-- <link rel="stylesheet" href="{{ asset('assets/css/pagination.css')}} "> --}}
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
 
 </head>
 <body>
+    @include('dashboard.navbar')
     @csrf
-    {{-- <div class="modal fade" id="editFamilyModal" tabindex="-1" role="dialog" aria-labelledby="editFamilyModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="editFamilyModalLabel">Edit Family Member</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form id="editFamilyForm" method="POST" action="#">
-                    @csrf
-                    @method('PUT')
-                    <div class="modal-body">
-                        <!-- Your form fields for editing -->
-                        <!-- Example: -->
-                        <input type="text" name="first_name" id="edit_first_name" class="form-control" placeholder="First Name" required>
-                        <input type="text" name="last_name" id="edit_last_name" class="form-control" placeholder="Last Name" required>
-                        <input type="text" name="phone" id="edit_phone" class="form-control" placeholder="" required>
-                        <input type="text" name="gender" id="edit_gender" class="form-control" placeholder="" required>
-                        <input type="text" name="dob" id="edit_dob" class="form-control" placeholder="" required>
-                        <input type="text" name="youth" id="edit_youth" class="form-control" placeholder="" required>
-                        <input type="text" name="education_level" id="edit_"education_level class="form-control" placeholder="" required>
-                        <input type="text" name="employement" id="edit_employement" class="form-control" placeholder="" required>
-                        <input type="text" name="nutrition_level" id="edit_nutrition_level" class="form-control" placeholder="" required>
-                        
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Save changes</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div> --}}
-
+  
     <div class="container-fluid">
-        <div class="center-heading">
+        <div class="center-heading" style="text-align: center;">
             <h1>Beneficiary Famaily Members Details</h1>
         </div>
         
@@ -64,9 +30,9 @@
    
         <div class="row table-container">
             <div class="col">
-                <table  class="table table-bordered border-primary">
+                <table  class="table table-bordered ">
 </div>
-        <thead>
+        <thead class="thead-light">
             <tr>
              
                 <th scope="col">First Name</th>

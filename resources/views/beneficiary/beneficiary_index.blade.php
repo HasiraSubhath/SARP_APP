@@ -8,10 +8,17 @@
     {{-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> --}}
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{{ asset('assets/css/pagination.css')}} ">
+    {{-- <link rel="stylesheet" href="{{ asset('assets/css/pagination.css')}} ">    overrite navbar need to check        --}}
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+
+    <!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    {{-- @include('dashboard.navbar') --}}
 </head>
 <body>
+    @include('dashboard.navbar')
+    {{-- <body class="h-screen overflow-hidden flex items-center justify-center" style="background: #edf2f7;"> --}}
+    
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -32,21 +39,21 @@
         <div class="row">
             <div class="col">
                 <input placeholder="beneficiary"/>
-                <button onclick="window.location.href='{{ route('beneficiary.create') }}'" class="add_new"> + Add New </button>
+                <button onclick="window.location.href='{{ route('beneficiary.create') }}'" class="btn btn-primary"> + Add New </button>
+            
+                <a href="{{route('download.csv')}}" class="btn btn-primary">Generate CSV Report</a>
                 
             </div>
             
-            <div>
-                <a href="{{route('download.csv')}}" class="btn btn-primary">Generate CSV Report</a>
-                </div>
+           
             
         </div>
        
         <div class="row table-container">
             <div class="col">
                 
-                <table id="beneficiariesTable" class="table table-bordered border-primary table-sm">
-                    <thead class="thead-dark">
+                <table id="beneficiariesTable" class="table table-bordered  table-sm">
+                    <thead class="thead-light">
                         <tr>
                             <th scope="col">NIC</th>
                             <th scope="col">First Name</th>
@@ -332,9 +339,7 @@
     }
 </style>
 
-<div class="col-xs-12 text-center">
-    <h2>Donut Chart</h2>
-</div>
+
 
 
 

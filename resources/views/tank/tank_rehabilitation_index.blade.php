@@ -4,13 +4,33 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tank details</title>
+ <!-- Add jQuery -->
+ <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+ <!-- Add Bootstrap JS -->
+ <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+ {{-- <link rel="stylesheet" href="{{ asset('assets/css/pagination.css')}} "> --}}
+ <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+
 </head>
 <body>
+  @include('dashboard.navbar')
+</br>
  @csrf
- 
-    <a href="{{route('download.csv')}}" class="btn btn-primary">Generate CSV Report</a>
+ <div class="container-fluid">
+  <div class="center-heading" style="text-align: center;">
+      <h1>Tank Rehabilitation Details</h1>
+  </div>
+  <div >
+    <a href="{{route('download.csv')}}" class="btn btn-primary" >Generate CSV Report</a>
+    <a href="{{route('tank_rehabilitation.create')}}" class="btn btn-primary" >Add</a>
+  </div>
 </form>
-<table>
+<div class="row table-container">
+  <div class="col">
+      <table  class="table table-bordered ">
+</div>
+<thead class="thead-light">
   <tr>
     <th>Tank Id</th>
     <th>Tank Name</th>
@@ -57,7 +77,7 @@
     <td>{{ $tankRehabilitation->status }}</td>
     <td>{{ $tankRehabilitation->remarks }}</td>
     <td>
-      <a href="/tank_rehabilitation/{{ $tankRehabilitation->id }}/edit">Edit</a>
+      <a href="/tank_rehabilitation/{{ $tankRehabilitation->id }}/edit" class="btn btn-primary">Edit</a>
       <form action="/tank_rehabilitation/{{ $tankRehabilitation->id }}" method="POST">
         @csrf
         @method('DELETE')

@@ -84,17 +84,6 @@
             </div>
         </div>
     
-        {{-- <div class="form-group">
-            <label for="dob">Date Of Birth</label>
-            <input type="text" class="form-control" id="dob" name="dob" placeholder="Select Date of Birth" required>
-           
-            <img src="https://jqueryui.com/resources/demos/datepicker/images/calendar.gif" class="ui-datepicker-trigger" alt="calendar">
-        </div>
-    
-        <div class="form-group">
-            <label for="youth">Youth</label>
-            <input type="text" name="youth" id="youth" class="form-control" required>
-        </div> --}}
         <div class="form-group">
             <label for="dob">Date Of Birth</label>
             <input type="text" class="form-control" id="dob" name="dob" placeholder="Select Date of Birth" required>

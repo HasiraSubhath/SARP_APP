@@ -54,6 +54,7 @@
 
 </head>
 <body>
+    @include('dashboard.navbar')
 
     <div class="container">
         <div class="row">
