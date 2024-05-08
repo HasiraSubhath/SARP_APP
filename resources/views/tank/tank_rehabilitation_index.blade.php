@@ -22,7 +22,7 @@
       <h1>Tank Rehabilitation Details</h1>
   </div>
   <div >
-    <a href="{{route('download.csv')}}" class="btn btn-primary" >Generate CSV Report</a>
+    <a href="{{route('downloadtank.csv')}}" class="btn btn-primary" >Generate CSV Report</a>
     <a href="{{route('tank_rehabilitation.create')}}" class="btn btn-primary" >Add</a>
   </div>
 </form>

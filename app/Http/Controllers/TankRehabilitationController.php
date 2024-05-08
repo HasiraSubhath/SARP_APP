@@ -12,7 +12,7 @@ class TankRehabilitationController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function generateCsv()
+    public function reportCsv()
     {
         $tankRehabilitations = TankRehabilitation::latest()->get();
         $filename = 'tank_rehabilitation_report.csv';

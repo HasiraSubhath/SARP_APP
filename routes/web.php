@@ -69,9 +69,9 @@ Route::get('/ds-divisions', [DSDivisionController::class, 'getDSByDistrict']);
 
 Route::resource('tank_rehabilitation', TankRehabilitationController::class);
 
-Route::match(['get', 'post'], '/generate-report', [TankRehabilitationController::class, 'generateReport'])->name('generate.report');
+// Route::match(['get', 'post'], '/generate-report', [TankRehabilitationController::class, 'generateReport'])->name('generate.report');
 
-Route::get('generateCsv', [TankRehabilitationController::class, 'generateCsv'])->name('download.csv');
+Route::get('reportCsv', [TankRehabilitationController::class, 'reportCsv'])->name('downloadtank.csv');
 Route::get('generateCsv', [BeneficiaryController::class, 'generateCsv'])->name('download.csv');
 
 
