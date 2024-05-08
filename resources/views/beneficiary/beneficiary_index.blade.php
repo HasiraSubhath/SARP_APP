@@ -33,13 +33,20 @@
             <div class="col">
                 <input placeholder="beneficiary"/>
                 <button onclick="window.location.href='{{ route('beneficiary.create') }}'" class="add_new"> + Add New </button>
+                
             </div>
+            
+            <div>
+                <a href="{{route('download.csv')}}" class="btn btn-primary">Generate CSV Report</a>
+                </div>
+            
         </div>
-        
+       
         <div class="row table-container">
             <div class="col">
-                <table id="beneficiariesTable" class="table table-bordered border-primary">
-                    <thead>
+                
+                <table id="beneficiariesTable" class="table table-bordered border-primary table-sm">
+                    <thead class="thead-dark">
                         <tr>
                             <th scope="col">NIC</th>
                             <th scope="col">First Name</th>
@@ -56,8 +63,14 @@
                             <th scope="col">Province</th>
                             <th scope="col">District</th>
                             <th scope="col">DS Division</th>
+                            <th scope="col">GN Division</th>
+                            <th scope="col">ASC</th>
+                            <th scope="col">Tank Name</th>
+                            <th scope="col">Account Name</th>
+                            <th scope="col">Account Number</th>
                             <th scope="col">Actions</th> 
                             <th scope="col">Actions</th>
+                            
                         </tr>
                     </thead>
                     <tbody>
@@ -78,99 +91,39 @@
                             <td>{{$beneficiary->province_name}}</td>
                             <td>{{$beneficiary->district_name}}</td>
                             <td>{{$beneficiary->ds_division_name}}</td>
+                            <td>{{$beneficiary->gn_division_name}}</td>
+                            <td>{{$beneficiary->as_center}}</td>
+                            <td>{{$beneficiary->tank_name}}</td>
+                            <td>{{$beneficiary->acc_name}}</td>
+                            <td>{{$beneficiary->acc_number}}</td>
+
                             <td>
                                 
-                                <a href="{{ route('beneficiary.show', $beneficiary->id) }}" class="btn btn-info ">View Details</a>
+                                <a href="{{ route('beneficiary.show', $beneficiary->id) }}" class="btn btn-info btn-sm ">View Details</a>
 
-                                <a href="{{ route('family/create', ['beneficiaryId' => $beneficiary->id]) }}" class="btn btn-primary" type="button">Add Family Member</a>
+                                <a href="{{ route('family/create', ['beneficiaryId' => $beneficiary->id]) }}" class="btn btn-primary btn-sm" type="button">Add Members</a>
                             
                             </td>
                             
-
-
-
                             <td>
                                 
                             {{-- </td> --}}
                             {{-- <td> --}}
                                 {{-- <a href="{{ route('beneficiary/edit', ['id' => $beneficiary->id]) }}" class="btn btn-primary">Edit</a>
                                 <a href="{{ route('beneficiary/delete', ['id' => $beneficiary->id]) }}" class="btn btn-danger">Delete</a> --}}
-                                <a href="beneficiary/{{$beneficiary->id}}/edit" class="btn btn-primary">Edit</a>
+                                <a href="beneficiary/{{$beneficiary->id}}/edit" class="btn btn-primary btn-sm">Edit</a>
                             {{-- </td> --}}
                             {{-- <td> --}}
-                                <a href="" class="btn btn-danger">Delete</a>
+                                <a href="" class="btn btn-danger btn-sm">Delete</a>
                             </td>
                         </tr>
                         @endforeach
                         </tbody>
                 </table>
-    
-    
-    {{-- Beneficiary Detailsssssssss
+            
+        
     
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">NIC</th>
-                <th scope="col">First Name</th>
-                <th scope="col">Last Name</th>
-                <th scope="col">Address</th>
-                <th scope="col">Date Of Birth</th>
-                <th scope="col">gender</th>
-                <th scope="col">Age</th>
-                <th scope="col">phone</th>
-                <th scope="col">Income</th>
-                <th scope="col">Family Members</th>
-                <th scope="col">Education level</th>
-                <th scope="col">Land Ownership</th>
-                <th scope="col">Actions</th> 
-
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($beneficiaries as $beneficiary)
-            <tr>
-
-                <td>{{$beneficiary->nic}}</td>
-                <td>{{$beneficiary->first_name}}</td>
-                <td>{{$beneficiary->last_name}}</td>
-                <td>{{$beneficiary->address}}</td>
-                <td>{{$beneficiary->dob}}</td>
-                <td>{{$beneficiary->gender}}</td>
-                <td>{{$beneficiary->age}}</td>
-                <td>{{$beneficiary->phone}}</td>
-                <td>{{$beneficiary->income}}</td>
-                <td>{{$beneficiary->family_members_count}}</td>
-                <td>{{$beneficiary->education}}</td>
-                <td>{{$beneficiary->land_ownership}}</td>
-                
-                <td>
-                    <a href="{{ route('family/create', ['beneficiaryId' => $beneficiary->id]) }}" class="btn btn-primary">Add Family Member</a>
-                </td>
-                <td>
-                    {{-- <a href="{{ route('beneficiary/edit', ['id' => $beneficiary->id]) }}" class="btn btn-primary">Edit</a>
-                    <a href="{{ route('beneficiary/delete', ['id' => $beneficiary->id]) }}" class="btn btn-danger">Delete</a> --}}
-                    
-                {{-- </td>
-                <td>
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editBeneficiary" data-id="{{ $beneficiary->id }}">
-                        Edit
-                    </button>
-                    <div>
-                        <a href='beneficiary/{{$beneficiary->id}}/edit'>Edit</a>
-                    </div>
-               
-                </td>
-                
-                <td>
-                    <a href="" class="btn btn-danger">Delete</a>
-                </td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table> --}}
-    
 
     
 <!-- Pagination Section -->

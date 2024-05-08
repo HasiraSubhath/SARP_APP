@@ -72,6 +72,7 @@ Route::resource('tank_rehabilitation', TankRehabilitationController::class);
 Route::match(['get', 'post'], '/generate-report', [TankRehabilitationController::class, 'generateReport'])->name('generate.report');
 
 Route::get('generateCsv', [TankRehabilitationController::class, 'generateCsv'])->name('download.csv');
+Route::get('generateCsv', [BeneficiaryController::class, 'generateCsv'])->name('download.csv');
 
 
 

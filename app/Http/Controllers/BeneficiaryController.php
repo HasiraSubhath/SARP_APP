@@ -11,11 +11,24 @@ class BeneficiaryController extends Controller
     /**
      * Display a listing of the resource.
      */
-    // public function getFamilyMembers($beneficiaryId)
-    // {
-    //     $familyMembers = Family::where('beneficiary_id', $beneficiaryId)->get();
-    //     return response()->json($familyMembers);
-    // }
+    public function generateCsv()
+    {
+        $beneficiaries = Beneficiary::latest()->get();
+        $filename = 'beneficiary_report.csv';
+        $fp = fopen($filename, 'w+'); // Corrected file path
+        fputcsv($fp, ['NIC','First Name', 'Last Name','gender','dob','address','phone','income','family_members_count','education','land_ownership','age','province_name','district_name','ds_division_name','gn_division_name','as_center','tank_name','acc_number','acc_name']);
+    
+        foreach ($beneficiaries as $row) {
+            fputcsv($fp, [$row->nic,$row->first_name, $row->last_name,$row->gender,$row->dob,$row->address,$row->phone,$row->income,$row->family_members_count,$row->education,$row->land_ownership,$row->age,$row->province_name,$row->district_name,$row->ds_division_name,$row->gn_division_name,$row->as_center,$row->tank_name,$row->acc_number,$row->acc_name]);
+        }
+        fclose($fp);
+        $headers = [
+            'Content-Type' => 'text/csv',
+        ];
+    
+        return response()->download($filename, 'beneficiary_report.csv', $headers);
+    }
+
     public function index()
     {
        // return view('beneficiary.beneficiary_index');
@@ -60,10 +73,14 @@ class BeneficiaryController extends Controller
             // $beneficiary->province_name = request('province_name');
             // $beneficiary->district_name = request('district_name');
             // $beneficiary->ds_division_name = request('ds_division_name');
-
             $beneficiary->province_name = $request->input('province_name');
             $beneficiary->district_name = $request->input('district_name');
             $beneficiary->ds_division_name = $request->input('ds_division_name');
+            $beneficiary->ds_division_name = $request->input('gn_division_name');
+            $beneficiary->ds_division_name = $request->input('as_center');
+            $beneficiary->ds_division_name = $request->input('tank_name');
+            $beneficiary->acc_number = request('acc_number');
+            $beneficiary->acc_name = request('acc_name');
             $beneficiary->save();
 
         return redirect('/beneficiary');
@@ -116,10 +133,15 @@ class BeneficiaryController extends Controller
         // $beneficiary->province_name = $request->input('province_name');
         // $beneficiary->district_name = $request->input('district_name');
         // $beneficiary->ds_division_name = $request->input('ds_division_name');
-
+        
         $beneficiary->province_name = request('province_name');
             $beneficiary->district_name = request('district_name');
             $beneficiary->ds_division_name = request('ds_division_name');
+            $beneficiary->ds_division_name = $request->input('gn_division_name');
+            $beneficiary->ds_division_name = $request->input('as_center');
+            $beneficiary->ds_division_name = $request->input('tank_name');
+            $beneficiary->acc_number = request('acc_number');
+            $beneficiary->acc_name = request('acc_name');
 
          $beneficiary->save();
 

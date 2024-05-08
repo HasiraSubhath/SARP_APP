@@ -128,7 +128,7 @@
             <option value="">Select DS Division</option>
             <!-- Options will be populated by jQuery -->
         </select>
-        <input type="hidden" id="dsDivisionName" name="ds_division_name">
+        <input type="hidden" id="ds_division_name" name="ds_division_name">
 
     </div>
 </div>
@@ -252,11 +252,11 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="accountName">Account Name</label>
-                                <input type="text" class="form-control" id="" placeholder="Enter Account Name" required>
+                                <input type="text" class="form-control" id="acc_name" placeholder="Enter Account Name" required>
                             </div>
                             <div class="form-group">
                                 <label for="accountNumber">Account Number</label>
-                                <input type="text" class="form-control" id="" placeholder="Enter Account Number" required>
+                                <input type="text" class="form-control" id="acc_number" placeholder="Enter Account Number" required>
                             </div>
                         </div>
                     </div>
