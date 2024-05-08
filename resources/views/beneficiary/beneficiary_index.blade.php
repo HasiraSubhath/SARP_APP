@@ -56,8 +56,8 @@
                             <th scope="col">Province</th>
                             <th scope="col">District</th>
                             <th scope="col">DS Division</th>
-
                             <th scope="col">Actions</th> 
+                            <th scope="col">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -79,14 +79,18 @@
                             <td>{{$beneficiary->district_name}}</td>
                             <td>{{$beneficiary->ds_division_name}}</td>
                             <td>
-                                <a href="{{ route('beneficiary.show', $beneficiary->id) }}" class="btn btn-info view-family-btn">View Details</a>
+                                
+                                <a href="{{ route('beneficiary.show', $beneficiary->id) }}" class="btn btn-info ">View Details</a>
+
+                                <a href="{{ route('family/create', ['beneficiaryId' => $beneficiary->id]) }}" class="btn btn-primary" type="button">Add Family Member</a>
+                            
                             </td>
                             
 
 
 
                             <td>
-                                <a href="{{ route('family/create', ['beneficiaryId' => $beneficiary->id]) }}" class="btn btn-primary">Add Family Member</a>
+                                
                             {{-- </td> --}}
                             {{-- <td> --}}
                                 {{-- <a href="{{ route('beneficiary/edit', ['id' => $beneficiary->id]) }}" class="btn btn-primary">Edit</a>
@@ -166,10 +170,9 @@
             @endforeach
         </tbody>
     </table> --}}
-    <h1>BAR CHART </h1>
-<div id="donut-chart"></div>
+    
 
-
+    
 <!-- Pagination Section -->
 <nav aria-label="Page navigation example">
     <ul class="pagination">
@@ -186,6 +189,8 @@
         </li>
     </ul>
 </nav>
+<h1>BAR CHART </h1>
+<div id="donut-chart"></div>
 
                 </nav>
             </div>

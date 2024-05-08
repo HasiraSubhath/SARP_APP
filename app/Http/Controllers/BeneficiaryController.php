@@ -19,8 +19,8 @@ class BeneficiaryController extends Controller
     public function index()
     {
        // return view('beneficiary.beneficiary_index');
-        $beneficiaries = Beneficiary::all();
-        $beneficiaries = Beneficiary::paginate(10); // Change 10 to the desired number of records per page
+        // $beneficiaries = Beneficiary::all();
+        $beneficiaries = Beneficiary::latest()->paginate(10); // Change 10 to the desired number of records per page
         $maleCount = Beneficiary::where('gender', 'male')->count();
         $femaleCount = Beneficiary::where('gender', 'female')->count();
         return view('beneficiary\beneficiary_index', compact('beneficiaries', 'maleCount', 'femaleCount'));

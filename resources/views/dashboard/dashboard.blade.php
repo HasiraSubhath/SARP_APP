@@ -118,15 +118,9 @@
         </ul>
       </li>
       <li>
-    <div class="profile-details">
-      <div class="profile-content">
-        <img src="image/profile.jpg" alt="profileImg">
-      </div>
-      <div class="name-job">
-        <div class="profile_name">Prem </div>
-        <div class="job">Web Designer</div>
-      </div>
-      <i class='bx bx-log-out' ></i>
+    
+      
+      
     </div>
   </li>
 </ul>
@@ -140,26 +134,7 @@
   <div class="chart-container">
     <canvas id="chartjs-pie"></canvas>
   </div>
-    <script>new Chart(document.getElementById("chartjs-pie"), {
-  type: "pie",
-  data: {
-    labels: ["Social", "Search Engines", "Direct", "Other"],
-    datasets: [{
-      data: [260, 125, 54, 146],
-      backgroundColor: [
-        window.theme.primary,
-        window.theme.success,
-        window.theme.warning,
-        "#dee2e6"
-      ],
-      borderColor: "transparent"
-    }]
-  },
-  options: {
-    maintainAspectRatio: false,
-    cutoutPercentage: 65,
-  }
-});</script>
+   
   <script>
     
   let arrow = document.querySelectorAll(".arrow");

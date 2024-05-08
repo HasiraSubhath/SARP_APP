@@ -7,12 +7,17 @@ use App\Http\Controllers\FamilyController;
 use App\Http\Controllers\ProvinceController;
 use App\Http\Controllers\DistrictController;
 use App\Http\Controllers\DSDivisionController;
-use App\Http\Controllers\TankRehabilationController;
+use App\Http\Controllers\TankRehabilitationController;
+use App\Http\Controllers\ReportController;
 
 
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/test', function () {
+    return view('test');
 });
 
 Route::get('/dashboard', function () {
@@ -62,7 +67,11 @@ Route::get('/districts/{district}/ds-divisions', [DSDivisionController::class, '
 
 Route::get('/ds-divisions', [DSDivisionController::class, 'getDSByDistrict']);
 
-Route::resource('tank_rehabilation', TankRehabilationController::class);
+Route::resource('tank_rehabilitation', TankRehabilitationController::class);
+
+Route::match(['get', 'post'], '/generate-report', [TankRehabilitationController::class, 'generateReport'])->name('generate.report');
+
+Route::get('generateCsv', [TankRehabilitationController::class, 'generateCsv'])->name('download.csv');
 
 
 

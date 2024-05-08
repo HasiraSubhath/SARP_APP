@@ -8,12 +8,13 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
+     *
+     * @return void
      */
-    public function up(): void
+    public function up()
     {
-        Schema::create('tank_rehabilation', function (Blueprint $table) {
-            $table->id()-> unique;
-            $table->string('tank_id');
+        Schema::create('reports', function (Blueprint $table) {
+            $table->id();
             $table->string('tank_name');
             $table->string('river_basin');
             $table->string('cascade_name');
@@ -23,7 +24,7 @@ return new class extends Migration
             $table->string('gn_division');
             $table->string('as_centre');
             $table->string('agency');
-            $table->string('no_of_family');
+            $table->integer('no_of_family');
             $table->string('longitude');
             $table->string('latitude');
             $table->string('progress');
@@ -42,6 +43,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tank_rehabilation');
+        Schema::dropIfExists('reports');
     }
 };
