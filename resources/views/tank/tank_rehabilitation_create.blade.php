@@ -52,6 +52,7 @@
 
 </head>
 <body>
+    @include('dashboard.navbar')
     @csrf 
     {{-- <h1>Tank Registration</h1>
 
@@ -121,12 +122,13 @@
     </form> --}}
 
     <!-- neeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeewwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww -->
-
+    <div class="container mt-6 border rounded border-primary p-4">
     <h2 class="text-center mb-4">Tank Details</h2>
     <form action="/tank_rehabilitation" method="POST">
         @csrf  
 <div class="row">
-<div class="col">
+    <div class="col">
+        <div class="dropdown">
   <label for="province" class="form-label dropdown-label">Province</label>
   
   <select id="province" name="province" button class="btn btn-secondary dropdown-toggle" onchange="populateDistricts()">
@@ -140,7 +142,11 @@
     <!-- Add more options as needed -->
   </select>
   </div>
+    </div>
   <div class="col">
+     
+       
+    <div class="dropdown">
   <label for="district" class="form-label dropdown-labelbutton">District</label>
   <select id="district" name="district" button class="btn btn-secondary dropdown-toggle" onchange="populateDSDs()" disabled>
     <option value="">Select District</option>
@@ -156,24 +162,32 @@
     <!-- Add more options as needed -->
   </select>
   </div>
+</div>
   <div class="col">
+    <div class="dropdown">
   <label for="dsd" class="form-label dropdown-label">DSD</label>
   <select id="dsd" name="ds_division" button class="btn btn-secondary dropdown-toggle" onchange="populateGNDASC()" disabled>
     <option value="">Select DSD</option>
   </select>
   </div>
+</div>
   <div class="col">
+    <div class="dropdown">
   <label for="gnd" class="form-label dropdown-label">GND</label>
   <select id="gnd" name="gn_division" button class="btn btn-secondary dropdown-toggle" disabled>
     <option value="">Select GND</option>
   </select>
   </div>
+</div>
   <div class="col">
+    <div class="dropdown">
   <label for="asc"  class="form-label dropdown-label">ASC</label>
   <select id="asc" name="as_centre" button class="btn btn-secondary dropdown-toggle" disabled>
     <option value="">Select ASC</option>
   </select>
   </div>
+</div>
+
 <script>
   function populateDistricts() {
     var provinceSelect = document.getElementById("province");
@@ -343,27 +357,7 @@
 
   <div class="row">
     <div class="col">
-      {{-- <div class="dropdown">
-        <label for="formGroupExampleInput" class="form-label dropdown-label">Tank Name</label>
-        <!-- Tank Name Dropdown -->
-        <button class="btn btn-secondary dropdown-toggle" type="button" name="tank_name" id="tankNameDropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
-          Select Tank Name
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="tankNameDropdownButton" id="tank_name" name="tank_name">
-          <li>
-            <input type="search" class="form-control" id="searchInput" placeholder="Search..." onkeyup="filterDropdown('searchInput', 'tank_name')">
-          </li>
-          <li><hr class="dropdown-divider"></li>
-          <li><a class="dropdown-item" href="#">Manankattiya</a></li>
-          <li><a class="dropdown-item" href="#">Kuda Halmilla Wewa</a></li>
-          <li><a class="dropdown-item" href="#">Nika wewa</a></li>
-          <li><a class="dropdown-item" href="#">Moragassegama wewa</a></li>
-          <li><a class="dropdown-item" href="#">Randenigama Wewa</a></li>
-          <li><a class="dropdown-item" href="#">Karambankulama Wewa</a></li>
-          <li><a class="dropdown-item" href="#">Linda Wewa Maha Wewa</a></li>
-          <li><a class="dropdown-item" href="#">Pahalagama Wewa</a></li>
-        </ul>
-      </div> --}}
+        
       <div class="dropdown">
         <label for="tank">Select Tank Name</label>
         <select class="form-control btn btn-secondary" id="education" name="tank_name" data-bs-toggle="dropdown" aria-expanded="false" required>
@@ -382,28 +376,7 @@
 
     <div class="col">
      
-        {{-- <label for="formGroupExampleInput" class="form-label dropdown-label">Tank Progress</label>
-        <!-- Tank Progress Dropdown -->
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="tankProgressDropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
-          Tank Progress
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="tankProgressDropdownButton" id="progress">
-          <li>
-            <input type="search" class="form-control" id="progressSearchInput" placeholder="Search..." onkeyup="filterDropdown('progressSearchInput', 'progress')">
-          </li>
-          <li><hr class="dropdown-divider"></li>
-          <li><a class="dropdown-item" href="#">10%</a></li>
-          <li><a class="dropdown-item" href="#">20%</a></li>
-          <li><a class="dropdown-item" href="#">30%</a></li>
-          <li><a class="dropdown-item" href="#">40%</a></li>
-          <li><a class="dropdown-item" href="#">50%</a></li>
-          <li><a class="dropdown-item" href="#">60%</a></li>
-          <li><a class="dropdown-item" href="#">70%</a></li>
-          <li><a class="dropdown-item" href="#">80%</a></li>
-          <li><a class="dropdown-item" href="#">90%</a></li>
-          <li><a class="dropdown-item" href="#">100%</a></li>
-        </ul>
-      </div> --}}
+       
       <div class="dropdown">
         <label for="tank">Tank Progress</label>
         <select class="form-control btn btn-secondary"  name="progress" data-bs-toggle="dropdown" aria-expanded="false" required>
@@ -419,23 +392,7 @@
     </div>
     </div>
     <div class="col">
-      {{-- <div class="dropdown">
-        <label for="formGroupExampleInput" class="form-label dropdown-label">Tank Status</label>
-        <!-- Tank Status Dropdown -->
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="tankStatusDropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
-          Tank Status
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="tankStatusDropdownButton" id="status">
-          <li>
-            <input type="search" class="form-control" id="statusSearchInput" placeholder="Search..." onkeyup="filterDropdown('statusSearchInput', 'status')">
-          </li>
-          <li><hr class="dropdown-divider"></li>
-          <li><a class="dropdown-item" href="#">Identified</a></li>
-          <li><a class="dropdown-item" href="#">Started</a></li>
-          <li><a class="dropdown-item" href="#">On Going</a></li>
-          <li><a class="dropdown-item" href="#">Finished</a></li>
-        </ul>
-      </div> --}}
+     
       <div class="dropdown">
         <label for="tank">Tank Status</label>
         <select class="form-control btn btn-secondary"  name="status" data-bs-toggle="dropdown" aria-expanded="false" required>
@@ -449,24 +406,7 @@
     </div>
     </div>
     <div class="col">
-      {{-- <div class="dropdown">
-        <label for="formGroupExampleInput" class="form-label dropdown-label">Implmenting Agency</label>
-        <!-- Implmenting Agency Dropdown -->
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="implmentingAgencyDropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
-        Implmenting Agency
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="implmentingAgencyDropdownButton" id="agency">
-          <li>
-            <input type="search" class="form-control" id="agencySearchInput" placeholder="Search..." onkeyup="filterDropdown('agencySearchInput', 'agency')">
-          </li>
-          <li><hr class="dropdown-divider"></li>
-          <li><a class="dropdown-item" href="#">Central(ID)</a></li>
-          <li><a class="dropdown-item" href="#">DAD</a></li>
-          <li><a class="dropdown-item" href="#">PID</a></li>
-          <li><a class="dropdown-item" href="#">ID</a></li>
-          <li><a class="dropdown-item" href="#">DI</a></li>
-        </ul>
-      </div> --}}
+     
       <div class="dropdown">
         <label for="tank">Implmenting Agency</label>
         <select class="form-control btn btn-secondary"  name="agency" data-bs-toggle="dropdown" aria-expanded="false" required>
@@ -480,25 +420,7 @@
   </div>
     </div>
     <div class="col">
-      {{-- <div class="dropdown">
-        <label for="formGroupExampleInput" class="form-label dropdown-label">Cascade Name</label>
-        <!-- Cascade Name Dropdown -->
-        <button class="btn btn-secondary dropdown-toggle" name="cascade_name" type="button" id="cascadeNameDropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
-        Cascade Name
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="cascadeNameDropdownButton" id="cascade_name">
-          <li>
-            <input type="search" class="form-control" id="cascadeSearchInput" name="" placeholder="Search..." onkeyup="filterDropdown('cascadeSearchInput', 'cascade_name')">
-          </li>
-          <li><hr class="dropdown-divider"></li>
-          <li><a class="dropdown-item" href="#">Dumminnegama</a></li>
-          <li><a class="dropdown-item" href="#">Kardan Kulam</a></li>
-          <li><a class="dropdown-item" href="#">Lidawewa</a></li>
-          <li><a class="dropdown-item" href="#">Sangilikanadarawa</a></li>
-          <li><a class="dropdown-item" href="#">Boo Oya</a></li>
-          <li><a class="dropdown-item" href="#">Pahala Moragollagama wewa</a></li>
-          <li><a class="dropdown-item" href="#">Tambiriyawa</a></li>
-        </ul> --}}
+     
         <div class="dropdown">
             <label for="tank">Cascade Name</label>
             <select class="form-control btn btn-secondary"  name="cascade_name" data-bs-toggle="dropdown" aria-expanded="false" required>
@@ -574,6 +496,7 @@
 </form>
 
   
+</div>
 </div>
 
 <!-- Bootstrap Bundle JS (includes Popper) -->

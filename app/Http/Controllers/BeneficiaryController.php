@@ -76,9 +76,9 @@ class BeneficiaryController extends Controller
             $beneficiary->province_name = $request->input('province_name');
             $beneficiary->district_name = $request->input('district_name');
             $beneficiary->ds_division_name = $request->input('ds_division_name');
-            $beneficiary->ds_division_name = $request->input('gn_division_name');
-            $beneficiary->ds_division_name = $request->input('as_center');
-            $beneficiary->ds_division_name = $request->input('tank_name');
+            $beneficiary->gn_division_name = $request->input('gn_division_name');
+            $beneficiary->as_center = $request->input('as_center');
+            $beneficiary->tank_name = $request->input('tank_name');
             $beneficiary->acc_number = request('acc_number');
             $beneficiary->acc_name = request('acc_name');
             $beneficiary->save();
@@ -137,9 +137,9 @@ class BeneficiaryController extends Controller
         $beneficiary->province_name = request('province_name');
             $beneficiary->district_name = request('district_name');
             $beneficiary->ds_division_name = request('ds_division_name');
-            $beneficiary->ds_division_name = $request->input('gn_division_name');
-            $beneficiary->ds_division_name = $request->input('as_center');
-            $beneficiary->ds_division_name = $request->input('tank_name');
+            $beneficiary->gn_division_name = $request->input('gn_division_name');
+            $beneficiary->as_center = $request->input('as_center');
+            $beneficiary->tank_name = $request->input('tank_name');
             $beneficiary->acc_number = request('acc_number');
             $beneficiary->acc_name = request('acc_name');
 
