@@ -56,29 +56,36 @@
         <div class="form-group">
             <label for="first_name">First Name</label>
             <input type="text" name="first_name" id="first_name" class="form-control" required>
+            {{-- <label for="first_name">First Name</label> --}}
+                    {{-- <input type="text" name="first_name[]" class="form-control" required> --}}
         </div>
     
         <div class="form-group">
             <label for="last_name">Last Name</label>
             <input type="text" name="last_name" id="last_name" class="form-control" required>
+            {{-- <input type="text" name="last_name[]" class="form-control" required> --}}
         </div>
     
         <div class="form-group">
             <label for="phone">Phone</label>
             <input type="text" name="phone" id="phone" class="form-control" required>
+            {{-- <input type="text" name="phone[]" class="form-control" required> --}}
         </div>
     
         <div class="form-group">
             <label>Gender</label>
             <div class="form-check">
+                {{-- <input type="radio" name="gender[]" class="form-control" value="Male" required> --}}
                 <input class="form-check-input" type="radio" name="gender" id="male" value="Male" required>
                 <label class="form-check-label" for="male">Male</label>
             </div>
             <div class="form-check">
+                {{-- <input type="radio" name="gender[]" class="form-control" value="Female" required> --}}
                 <input class="form-check-input" type="radio" name="gender" id="female" value="Female" required>
                 <label class="form-check-label" for="female">Female</label>
             </div>
             <div class="form-check">
+                {{-- <input type="radio" name="gender[]" class="form-control" value="Other" required> --}}
                 <input class="form-check-input" type="radio" name="gender" id="other" value="Other" required>
                 <label class="form-check-label" for="other">Other</label>
             </div>
@@ -86,17 +93,20 @@
     
         <div class="form-group">
             <label for="dob">Date Of Birth</label>
+            {{-- <input type="text" name="dob[]" class="form-control" required> --}}
             <input type="text" class="form-control" id="dob" name="dob" placeholder="Select Date of Birth" required>
             <img src="https://jqueryui.com/resources/demos/datepicker/images/calendar.gif" class="ui-datepicker-trigger" alt="calendar">
         </div>
 
         <div class="form-group">
             <label for="youth">Youth</label>
+            {{-- <input type="text" name="youth[]" class="form-control"  readonl> --}}
             <input type="text" name="youth" id="youth" class="form-control" readonly>
         </div>
     
         <div class="form-group">
             <label for="education">Education Level</label>
+            {{-- <select class="form-control" name="education[]" class="form-control" required> --}}
             <select class="form-control" id="education" name="education" required>
                 <option value="">Select Education Level</option>
                 <option value="Primary">Primary</option>
@@ -110,25 +120,49 @@
     
         <div class="form-group">
             <label for="employment">Employment</label>
+            {{-- <input type="text" name="employment[]" class="form-control" required> --}}
             <input type="text" name="employment" id="employment"  class="form-control" required>
         </div>
     
         <div class="form-group">
             <label for="nutrition_level">Nutrition Level</label>
+            {{-- <input type="text" name="nutrition_level[]" class="form-control" required> --}}
             <input type="text" name="nutrition_level" id="nutrition_level"  class="form-control" required>
         </div>
 
         <div>
             <input type="hidden" name="beneficiary_id" value="{{ $beneficiaryId }}">
+            {{-- <input type="hidden" name="beneficiary_id[]" value="{{ $beneficiaryId }}">
+             --}}
         </div>
 
         <div class="form-group">
             <label for="address">Address</label>
+            {{-- <input type="text" name="address[]" class="form-control" required> --}}
             <input type="text" class="form-control" id="address" name="address" placeholder="Enter Address" required> 
+
+            <button type="button" id="addFamilyMember" class="btn btn-primary">Add Family Member</button>
         <button type="submit" name="button" class="btn btn-primary mt-3">Submit</button>
         {{-- <button type="submit" class="btn btn-primary">Submit</button> --}}
 
         
     </form>
+{{-- looping add family member --}}
+    {{-- <script>
+        document.getElementById('addFamilyMember').addEventListener('click', function() {
+            // Clone the template for a new family member
+            var template = document.querySelector('.family-member').cloneNode(true);
+    
+            // Clear the values of input fields in the cloned template
+            var inputs = template.querySelectorAll('input');
+            inputs.forEach(function(input) {
+                input.value = '';
+            });
+    
+            // Append the cloned template to the container
+            document.getElementById('familyMembers').appendChild(template);
+        });
+    </script>
+     --}}
 </body>
 </html>

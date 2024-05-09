@@ -13,8 +13,8 @@ class FamilyController extends Controller
      */
     public function index()
     {
-        $families = Family::all();
-        $families = Family::paginate(10); // Change 10 to the desired number of records per page
+        // $families = Family::all();
+        $families = Family::latest()->paginate(10); // Change 10 to the desired number of records per page
         return view('family\family_index', compact('families'));
     }
 
@@ -31,6 +31,40 @@ class FamilyController extends Controller
      */
     public function store(Request $request)
     {
+    //         // Retrieve the beneficiary ID from the request
+    // $beneficiaryId = $request->input('beneficiary_id');
+
+    // // Find the beneficiary
+    // $beneficiary = Beneficiary::findOrFail($beneficiaryId);
+
+    // // Loop through the submitted data to create and associate family members
+    // foreach ($request->input('family_members') as $member) {
+    //     $family = new Family;
+
+    //     // Populate family member details
+    //     $family->first_name = $member['first_name'];
+    //     $family->last_name = $member['last_name'];
+    //     $family->phone = $member['phone'];
+    //     $family->gender = $member['gender'];
+    //     $family->dob = $member['dob'];
+    //     $family->youth = $member['youth'];
+    //     $family->education = $member['education'];
+    //     $family->employment = $member['employment'];
+    //     $family->nutrition_level = $member['nutrition_level'];
+
+    //     // Associate the family member with the beneficiary
+    //     $family->beneficiary()->associate($beneficiary);
+
+    //     // Save the family member
+    //     try {
+    //         $family->save();
+    //     } catch (\Exception $e) {
+    //         dd($e->getMessage()); // This will print any error messages
+    //     }
+    // }
+
+    // return redirect('/family');
+
         $family = new Family;
 
         $family->first_name = request('first_name');
@@ -60,14 +94,7 @@ class FamilyController extends Controller
     }
         return redirect('/family');
 
-    // try {
-    //     $family->save();
-    //     Session::flash('success', 'Family member added successfully!');
-    // } catch (\Exception $e) {
-    //     Session::flash('error', 'Failed to add family member.');
-    //     return redirect()->back()->withErrors(['error' => $e->getMessage()]);
-    // }
-
+   
     return redirect('/family');
 
 

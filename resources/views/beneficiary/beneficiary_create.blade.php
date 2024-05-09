@@ -88,6 +88,7 @@
     
 </head>
 <body>
+    @include('dashboard.navbar')
     <div class="container mt-5 border rounded border-primary p-4">
     <form class="form-horizontal" method="POST" action="/beneficiary">
         @csrf

@@ -106,7 +106,7 @@
 
                             <td>
                                 
-                                <a href="{{ route('beneficiary.show', $beneficiary->id) }}" class="btn btn-info btn-sm ">View Details</a>
+                                <a href="{{ route('beneficiary.show', $beneficiary->id) }}" class="btn btn-info btn-sm">View Details</a>
 
                                 <a href="{{ route('family/create', ['beneficiaryId' => $beneficiary->id]) }}" class="btn btn-primary btn-sm" type="button">Add Members</a>
                             
