@@ -191,7 +191,8 @@
                                 <p>Nutrition Level: {{$familyMember->nutrition_level}}</p>
                                 <!-- Add other family member details as needed -->
                                 <div class="icon-container">
-                                    <a href="#" class="text-primary me-2"><i class="fas fa-edit"></i></a>
+                                    <a href="" class="text-primary me-2"><i class="fas fa-edit"></i></a>
+                                    <a class="btn btn-primary  mr-2" href='/family/{{$familyMember->id}}/edit'>Edit</a>
                                     <a href="#" class="text-danger"><i class="fas fa-trash-alt"></i></a>
                                 </div>
                             </div>

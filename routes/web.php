@@ -23,6 +23,7 @@ Route::get('/test', function () {
 Route::get('/dashboard', function () {
     return view('dashboard.dashboard');
 });
+
 // Route::get('/',[CrudeController::class, 'index']);
 // Route::get('/create',[CrudeController::class, 'create']);
 // Route::post('/create',[CrudeController::class, 'store']);
@@ -54,7 +55,7 @@ Route::get('/dashboard', function () {
 
     //Route::get('family/{family}/edit', [FamilyController::class, 'editDetails']);
 
-
+//    Route::post('/family', [FamilyController::class, 'store']);
     Route::resource('family', FamilyController::class);
 
     Route::get('/provinces', [ProvinceController::class, 'index']);

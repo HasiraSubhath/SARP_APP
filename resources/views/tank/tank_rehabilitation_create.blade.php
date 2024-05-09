@@ -486,10 +486,7 @@
     <label for="longitudeInput" class="form-label">Remarks</label>
     <input type="text" class="form-control" id="" name="remarks" required>
   </div>
-  <div class="mb-3">
-    <label for="longitudeInput" class="form-label">Longitude</label>
-    <input type="text" class="form-control" id="" name="longitude" required>
-  </div>
+  
   <div class="text-center">
     <button type="submit" class="btn btn-primary">Submit</button>
   </div>

@@ -55,7 +55,7 @@
 
         
     <div class="container mt-5 border rounded border-primary p-4">
-        <h2 class="text-center mb-4">Family Member Registration</h2>
+        <h2 class="text-center mb-4">Family Member Details Edit</h2>
     <form class="form-horizontal" method="POST" action="/family/{{$family->id}}">
     
     @csrf
