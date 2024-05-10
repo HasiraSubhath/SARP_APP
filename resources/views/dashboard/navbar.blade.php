@@ -25,7 +25,7 @@
             <a class="nav-link" href="/tank_rehabilitation">Tank Rehabilation</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Features</a>
+            <a class="nav-link" href="/training">Training Program</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#"></a>

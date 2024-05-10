@@ -10,7 +10,7 @@ use App\Http\Controllers\DSDivisionController;
 use App\Http\Controllers\TankRehabilitationController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\TankController;
-
+use App\Http\Controllers\TrainingController;
 
 
 Route::get('/', function () {
@@ -79,6 +79,7 @@ Route::resource('tank_rehabilitation', TankRehabilitationController::class);
 Route::get('reportCsv', [TankRehabilitationController::class, 'reportCsv'])->name('downloadtank.csv');
 Route::get('generateCsv', [BeneficiaryController::class, 'generateCsv'])->name('download.csv');
 
+Route::resource('training', TrainingController::class);
 
 
 
