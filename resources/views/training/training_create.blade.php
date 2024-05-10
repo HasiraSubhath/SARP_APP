@@ -12,13 +12,55 @@
     <!-- Include jQuery UI library -->
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <style>
+        /* Custom styles */
+        body {
+          background-color: #f8f9fa;
+        }
+    
+        .container {
+          margin-top: 50px;
+        }
+        
+        .dropdown {
+          margin-bottom: 20px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+    
+        .dropdown-menu {
+          min-width: auto;
+        }
+    
+        .dropdown-item {
+          padding: 10px;
+          font-size: 16px;
+        }
+    
+        /* Adjust button width to fit the content */
+        .dropdown-toggle {
+          min-width: 250px; /* Increase the width */
+        }
+    
+        /* Center align labels */
+        .dropdown-label {
+          text-align: center;
+          font-size:20px;
+        }
+        /* Adjust dropdown button text alignment */
+    
+    
+      </style>
 </head>
 <body>
+    @include('dashboard.navbar')
     <div class="container mt-5 border rounded border-primary p-4">
         <form class="form-horizontal" method="POST" action="/training">
             @csrf
             <div class="col-md-12 text-center">
-                <h2>Training Programme Registration</h2>
+                <h2>Training Programe Registration</h2>
             </div>
 
             <div class="container mt-5">
@@ -44,8 +86,6 @@
                     </div>
                     
                   <div class="col">
-                     
-                       
                     <div class="dropdown">
                   <label for="district" class="form-label dropdown-labelbutton">District</label>
                   <select id="district" name="district" button class="btn btn-secondary dropdown-toggle" onchange="populateDSDs()" disabled>
@@ -63,6 +103,7 @@
                   </select>
                   </div>
                 </div>
+                
                   <div class="col">
                     <div class="dropdown">
                   <label for="dsd" class="form-label dropdown-label">DSD</label>
@@ -81,6 +122,7 @@
                   </select>
                   </div>
                 </div>
+            
                   <div class="col">
                     <div class="dropdown">
                   <label for="asc"  class="form-label dropdown-label">ASC</label>
@@ -89,10 +131,15 @@
                   </select>
                   </div>
                 </div>
-                </div>
                 
+          </div>
                 
-
+                        </div>
+                    </div>
+            </div>
+            
+        
+        
                 
                 <!-- Rest of the Form Fields -->
                 
@@ -121,7 +168,7 @@
             <div>
                 <div class="row">
                     <div class="col-md-12 mb-3 text-center">
-                        <h5>Gender</h5>
+                        <h5>Participation  Gender wise</h5>
                     </div>
                 </div>
                 <div class="row">
@@ -138,7 +185,12 @@
                 </div>
 
                 <div>
-                
+                </br>
+                    <div class="row">
+                        <div class="col-md-12 mb-3 text-center">
+                            <h5>Participation  Age wise</h5>
+                        </div>
+                    </div>
                 <div class="row">
                     <!-- youth Input -->
                     <div class="col-md-6 mb-3">
@@ -176,9 +228,11 @@
                     </div>
                 </div>
             </div>
-            <div class="row justify-content-center">
-                <button type="submit" name="button" class="btn btn-primary mt-3">Submit</button>
-            </div>
+            
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </div>
+            
         </form>
     </div>
     <script>
