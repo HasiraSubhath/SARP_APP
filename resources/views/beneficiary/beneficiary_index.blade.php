@@ -77,6 +77,8 @@
                             <th scope="col">Tank Name</th>
                             <th scope="col">Account Name</th>
                             <th scope="col">Account Number</th>
+                            <th scope="col">Latitude</th>
+                            <th scope="col">Longitude</th>
                             <th scope="col">Actions</th> 
                             <th scope="col">Actions</th>
                             
@@ -105,6 +107,8 @@
                             <td>{{$beneficiary->tank_name}}</td>
                             <td>{{$beneficiary->acc_name}}</td>
                             <td>{{$beneficiary->acc_number}}</td>
+                            <td>{{$beneficiary->latitude}}</td>
+                            <td>{{$beneficiary->longitude}}</td>
 
                             <td>
                                 
@@ -123,7 +127,12 @@
                                 <a href="beneficiary/{{$beneficiary->id}}/edit" class="btn btn-primary btn-sm">Edit</a>
                             {{-- </td> --}}
                             {{-- <td> --}}
-                                <a href="" class="btn btn-danger btn-sm">Delete</a>
+                                
+                                <form action="beneficiary/{{$beneficiary->id}}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger">Delete</a>
+                                </form>
                             </td>
                         </tr>
                         @endforeach

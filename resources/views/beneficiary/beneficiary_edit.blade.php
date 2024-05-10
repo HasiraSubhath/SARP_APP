@@ -226,6 +226,14 @@
                     <label for="landOwnership">Land Ownership</label>
                     <input type="text" class="form-control" id="land_ownership" name="land_ownership" value="{{$beneficiary->land_ownership}}" placeholder="Enter Land Ownership" required>
                 </div>
+                <div class="form-group">
+                    <label for="latitude">Latitude</label>
+                    <input type="text" class="form-control" name="latitude" value="{{$beneficiary->latitude}}" placeholder="Enter Latitude Cordination" required>
+                </div>
+                <div class="form-group">
+                    <label for="Longitude">Longitude</label>
+                    <input type="text" class="form-control" name="longitude" value="{{$beneficiary->longitude}}" placeholder="Enter Account Cordination" required>
+                </div>
                 <div class="card">
                     <div class="card-header bg-primary text-white">
                         <h5 class="card-title mb-0">Account Details</h5>
@@ -239,6 +247,7 @@
                             <label for="accountNumber">Account Number</label>
                             <input type="text" class="form-control" name="acc_number" value="{{$beneficiary->acc_number}}" placeholder="Enter Account Number" required>
                         </div>
+                        
                     </div>
                 </div>
             </div>

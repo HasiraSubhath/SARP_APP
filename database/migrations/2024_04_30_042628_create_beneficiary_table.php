@@ -37,6 +37,8 @@ return new class extends Migration
             $table->string("tank_name");
             $table->string("acc_number");
             $table->string("acc_name");
+            $table->string("latitude");
+            $table->string("longitude");
 
 
 

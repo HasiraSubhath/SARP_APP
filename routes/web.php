@@ -9,6 +9,7 @@ use App\Http\Controllers\DistrictController;
 use App\Http\Controllers\DSDivisionController;
 use App\Http\Controllers\TankRehabilitationController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\TankController;
 
 
 
@@ -59,6 +60,9 @@ Route::get('/dashboard', function () {
     Route::resource('family', FamilyController::class);
 
     Route::get('/provinces', [ProvinceController::class, 'index']);
+    
+    Route::get('/tanks', [TankController::class, 'index']);
+
     // Route::get('/provinces/{province}/districts', [DistrictController::class, 'index']);
 
 Route::get('/provinces/{province}/districts', [DistrictController::class, 'indexByProvince']);

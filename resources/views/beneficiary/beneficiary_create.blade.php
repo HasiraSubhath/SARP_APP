@@ -114,10 +114,7 @@
                 Select Tank Name
             </button>
             <ul class="dropdown-menu" aria-labelledby="tankNameDropdownButton">
-                <li><a class="dropdown-item" href="#">Tank1</a></li>
-                <li><a class="dropdown-item" href="#">Tank2</a></li>
-                <li><a class="dropdown-item" href="#">Tank3</a></li>
-                <!-- Add more items as needed -->
+                
             </ul>
         </div>
     </div>
@@ -264,15 +261,11 @@
                 
               <div class="dropdown">
                 <label for="tank" class="form-label dropdown-label">Select Tank Name</label>
-                <select class="btn btn-secondary dropdown-toggle" id="education" name="tank_name" data-bs-toggle="dropdown" aria-expanded="false" required>
-                    <option value="">Select Tank Name</option>
-                    <option value="Manankattiya">Manankattiya</option>
-                    <option value="Kuda Halmilla Wewa">Kuda Halmilla Wewa</option>
-                    <option value="Nika wewa">Nika wewa</option>
-                    <option value="Moragassegama wewa">Moragassegama</option>
-                    <option value="Randenigama Wewa">Randenigama Wewa</option>
-                    <option value="Karambankulama Wewa">Karambankulama Wewa</option>
+                <select id="tankDropdown"button class="btn btn-secondary dropdown-toggle" name="tank_name"   required>
+                    <option value="">Select Tank</option>
                 </select>
+
+                
             </div>
             </div>
                 </div>
@@ -355,7 +348,14 @@
                         <label for="landOwnership">Land Ownership</label>
                         <input type="text" class="form-control" id="land_ownership" name="land_ownership" placeholder="Enter Land Ownership" required>
                     </div>
-
+                    <div class="form-group">
+                        <label for="latitude">Latitude</label>
+                        <input type="text" class="form-control" name="latitude" placeholder="Enter Latitude Cordination" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="Longitude">Longitude</label>
+                        <input type="text" class="form-control" name="longitude" placeholder="Enter Longitude Cordination" required>
+                    </div>
                     
                     
                     <div class="card">
@@ -371,6 +371,7 @@
                                 <label for="accountNumber">Account Number</label>
                                 <input type="text" class="form-control" name="acc_number" placeholder="Enter Account Number" required>
                             </div>
+                            
                         </div>
                     </div>
                 </div>
@@ -402,15 +403,27 @@
                     </select>
                     <input type="hidden" id="dsDivisionName" name="ds_division_name">
                 </div> --}}
-            
-        
-    
+                
                 <button type="submit" name="button" class="btn btn-primary mt-3">Submit</button>
                 </form>
         
         </div>
         </div>
 
+        <script>
+            $(document).ready(function () {
+                // Fetch tank names from the API endpoint
+                $.get('/tanks', function (data) {
+                    // Populate the dropdown menu with tank names
+                    $.each(data, function (index, tank) {
+                        $('#tankDropdown').append($('<option>', {
+                            value: tank.tank_name,
+                            text: tank.tank_name 
+                        }));
+                    });
+                });
+            });
+        </script>
 
         <script>
             function populateDistricts() {
@@ -493,6 +506,7 @@
               if (selectedDSD !== "") {
                 // Sample Data: GNDs and ASCs based on DSD
                 var gnds = {
+                  
                   "Galenbidunuwewa": ["Select GND","Manankattiya"],
                   "Ma.Nu.Pa": ["Select GND","Maha Ehetuwewa"],
                   "Mahavilachchiya": ["Select GND"," 369-Sadamaleliya"],

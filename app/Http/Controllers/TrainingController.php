@@ -2,20 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Tank;
+use App\Models\Training;
 use Illuminate\Http\Request;
 
-class TankController extends Controller
+class TrainingController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        // $tanks = Tank::all();
-        // return response()->json($tanks);
-        $tanks = Tank::select('id', 'tank_name')->get();
-        return response()->json($tanks);
+        //
     }
 
     /**
@@ -37,7 +34,7 @@ class TankController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Tank $tank)
+    public function show(Training $training)
     {
         //
     }
@@ -45,7 +42,7 @@ class TankController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Tank $tank)
+    public function edit(Training $training)
     {
         //
     }
@@ -53,7 +50,7 @@ class TankController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Tank $tank)
+    public function update(Request $request, Training $training)
     {
         //
     }
@@ -61,7 +58,7 @@ class TankController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Tank $tank)
+    public function destroy(Training $training)
     {
         //
     }

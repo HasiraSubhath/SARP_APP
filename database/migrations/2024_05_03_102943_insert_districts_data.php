@@ -23,10 +23,10 @@ return new class extends Migration
 
         // Insert provided data
         DB::table('districts')->insert([
-            ['district' => 'Anuradhapura', 'province_id' => 1], // North Central
-            ['district' => 'Puttalam', 'province_id' => 7], // North Western
+            ['district' => 'Anuradhapura', 'province_id' => 7], // North Central
+            ['district' => 'Puttalam', 'province_id' => 6], // North Western
             ['district' => 'Vavuniya', 'province_id' => 3], // Northern
-            ['district' => 'Kurunegala', 'province_id' => 7], // North Western
+            ['district' => 'Kurunegala', 'province_id' => 6], // North Western
             ['district' => 'Mannar', 'province_id' => 3], // Northern
             ['district' => 'Mathale', 'province_id' => 5], // Central
         ]);

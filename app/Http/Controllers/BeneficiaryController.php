@@ -16,10 +16,10 @@ class BeneficiaryController extends Controller
         $beneficiaries = Beneficiary::latest()->get();
         $filename = 'beneficiary_report.csv';
         $fp = fopen($filename, 'w+'); // Corrected file path
-        fputcsv($fp, ['NIC','First Name', 'Last Name','gender','dob','address','phone','income','family_members_count','education','land_ownership','age','province_name','district_name','ds_division_name','gn_division_name','as_center','tank_name','acc_number','acc_name']);
+        fputcsv($fp, ['NIC','First Name', 'Last Name','gender','dob','address','phone','income','family_members_count','education','land_ownership','age','province_name','district_name','ds_division_name','gn_division_name','as_center','tank_name','acc_number','acc_name','latitude','longitude']);
     
         foreach ($beneficiaries as $row) {
-            fputcsv($fp, [$row->nic,$row->first_name, $row->last_name,$row->gender,$row->dob,$row->address,$row->phone,$row->income,$row->family_members_count,$row->education,$row->land_ownership,$row->age,$row->province_name,$row->district_name,$row->ds_division_name,$row->gn_division_name,$row->as_center,$row->tank_name,$row->acc_number,$row->acc_name]);
+            fputcsv($fp, [$row->nic,$row->first_name, $row->last_name,$row->gender,$row->dob,$row->address,$row->phone,$row->income,$row->family_members_count,$row->education,$row->land_ownership,$row->age,$row->province_name,$row->district_name,$row->ds_division_name,$row->gn_division_name,$row->as_center,$row->tank_name,$row->acc_number,$row->acc_name,$row->latitude,$row->longitude]);
         }
         fclose($fp);
         $headers = [
@@ -83,6 +83,8 @@ class BeneficiaryController extends Controller
             $beneficiary->tank_name = $request->input('tank_name');
             $beneficiary->acc_number = request('acc_number');
             $beneficiary->acc_name = request('acc_name');
+            $beneficiary->latitude = request('latitude');
+            $beneficiary->longitude = request('longitude');
             $beneficiary->save();
 
         return redirect('/beneficiary');
@@ -144,6 +146,8 @@ class BeneficiaryController extends Controller
             $beneficiary->tank_name = $request->input('tank_name');
             $beneficiary->acc_number = request('acc_number');
             $beneficiary->acc_name = request('acc_name');
+            $beneficiary->latitude = request('latitude');
+            $beneficiary->longitude = request('longitude');
 
          $beneficiary->save();
 
@@ -156,8 +160,19 @@ class BeneficiaryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Beneficiarymodel $beneficiarymodel)
+    public function destroy(Beneficiary $beneficiary)
     {
-        
+        // Retrieve all associated family members for the beneficiary
+        $familyMembers = $beneficiary->family;
+    
+        // Delete each family member
+        foreach ($familyMembers as $familyMember) {
+            $familyMember->delete();
+        }
+    
+        // Now, delete the beneficiary
+        $beneficiary->delete();
+    
+        return redirect('/beneficiary')->with('success', 'Beneficiary and associated family members deleted successfully');
     }
 }
