@@ -45,9 +45,14 @@
                                             <input type="hidden" id="provinceName" name="province">
                                         </div>
                         
-            
+                                        <div class="col-md-4 mb-3">
+                                            <label for=""> district</label>
+                                            <input type="text" class="form-control" value="{{$training->district}}" id="conductorName" name="district" placeholder="Enter Conductor Name" required>
+                                        </div>
+
                             <div class="form-group">
-                                <label for="districtDropdown">District</label>
+                                <label for="districtDropdown" >District</label>
+                               
                                 <select class="form-control" value="{{$training->district}}" id="districtDropdown" name="district" required>
                                     {{-- <option value="">Select District</option> --}}
                                     <!-- Options will be populated by jQuery -->
@@ -200,6 +205,11 @@
                             text: province.name
                         }));
                     });
+            // // Pre-select the province based on existing value
+            // $('#provinceDropdown').val({{$training->province}});
+
+            // // Trigger change event to populate districts based on pre-selected province
+            // $('#provinceDropdown').change();
                 }
             });
         
@@ -235,6 +245,8 @@
                                     text: district.district
                                 }));
                             });
+    //                         $('#districtDropdown').val({{$training->district}});
+    // $('#districtDropdown').change();
                         },
                         error: function(xhr, status, error) {
                             console.error(xhr.responseText);
@@ -287,6 +299,8 @@
                                     text: dsDivision.division
                                 }));
                             });
+    //                         $('#dsDivisionDropdown').val({{$training->ds_division}});
+    // $('#dsDivisionDropdown').change();
                         },
                         error: function(xhr, status, error) {
                             console.error(xhr.responseText);
@@ -329,6 +343,7 @@
                                     text: gnd.gn_division
                                 }));
                             });
+                            // $('#gndDropdown').val({{$training->gn_division}});
                         },
                         error: function(xhr, status, error) {
                             console.error(xhr.responseText);
