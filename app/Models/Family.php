@@ -15,4 +15,5 @@ class Family extends Model
         return $this->belongsTo(Beneficiary::class);
     }
     //one benificiary can have many family members , 'beneficiary_id', 'id'
+
 }

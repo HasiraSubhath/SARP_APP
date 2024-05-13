@@ -13,7 +13,8 @@ class FamilyController extends Controller
      */
     public function index()
     {
-        $families = Family::all();
+        // $families = Family::all();
+        $families = Family::latest()->paginate(10); // Change 10 to the desired number of records per page
         return view('family\family_index', compact('families'));
     }
 
@@ -30,6 +31,8 @@ class FamilyController extends Controller
      */
     public function store(Request $request)
     {
+
+
         $family = new Family;
 
         $family->first_name = request('first_name');
@@ -41,33 +44,35 @@ class FamilyController extends Controller
         $family->education = request('education');
         $family->employment = request('employment');
         $family->nutrition_level = request('nutrition_level');
-       // $family->beneficiary_id = request('beneficiary_id');
+        $beneficiaryId = $request->input('beneficiary_id');
 
-         // Get the beneficiary ID from the request
-          $beneficiaryId = $request->input('beneficiary_id');
-
+        // Get the beneficiary ID from the request
+    $beneficiaryId = $request->input('beneficiary_id');
          // Find the beneficiary
          $beneficiary = Beneficiary::findOrFail($beneficiaryId);
 
          // Associate the family member with the beneficiary
           $family->beneficiary()->associate($beneficiary);
 
-       try {
         $family->save();
-    } catch (\Exception $e) {
-        dd($e->getMessage()); // This will print any error messages
-    }
-        return redirect('/family');
+
+        return redirect('/family')->with('success', 'Family member added successfully!');
+   
+   
+   
 
 
     }
+
+   
+
 
     /**
      * Display the specified resource.
      */
     public function show(Family $family)
     {
-        //
+        return view('family.family_show', compact('family'));
     }
 
     /**
@@ -75,15 +80,32 @@ class FamilyController extends Controller
      */
     public function edit(Family $family)
     {
-        //
+        return view('family.family_edit', compact('family'));
     }
-
+    // public function editDetails(Family $family)
+    // {
+    //     return view('family.family_edit', compact('family'));
+    // }
+    
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, Family $family)
     {
-        //
+        $family->first_name = request('first_name');
+        $family->last_name = request('last_name');
+        $family->phone = request('phone');
+        $family->gender = request('gender');
+        $family->dob = request('dob');
+        $family->youth = request('youth');
+        $family->education = request('education');
+        $family->employment = request('employment');
+        $family->nutrition_level = request('nutrition_level');
+        $family->save();
+
+        return redirect('/family')->with('success', 'Family member updated successfully!');
+        //return back()->with('success', 'Family member updated successfully!');
+
     }
 
     /**
@@ -91,6 +113,7 @@ class FamilyController extends Controller
      */
     public function destroy(Family $family)
     {
-        //
+        $family->delete();
+        return redirect('/family');
     }
 }

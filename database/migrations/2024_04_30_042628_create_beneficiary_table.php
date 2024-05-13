@@ -26,6 +26,21 @@ return new class extends Migration
             $table->string("education");
             $table->string("land_ownership");
             $table->string("age");
+            // $table->string("province");
+            // $table->string("district");
+            // $table->string("ds_division");
+            $table->string("province_name");
+            $table->string("district_name");
+            $table->string("ds_division_name");
+            $table->string("gn_division_name");
+            $table->string("as_center");
+            $table->string("tank_name");
+            $table->string("acc_number");
+            $table->string("acc_name");
+            $table->string("latitude");
+            $table->string("longitude");
+
+
 
             $table->timestamps();
         });
