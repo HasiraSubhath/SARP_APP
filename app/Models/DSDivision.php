@@ -15,4 +15,9 @@ class DSDivision extends Model
     {
         return $this->belongsTo(District::class);
     }
+
+    public function gnDivisions()
+    {
+        return $this->hasMany(GNDivision::class);
+    }
 }

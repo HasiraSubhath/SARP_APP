@@ -12,6 +12,9 @@
     <!-- Include jQuery UI library -->
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
     <style>
         /* Optional: Style for calendar icon */
         .ui-datepicker-trigger {
@@ -88,6 +91,27 @@
     
 </head>
 <body>
+    <!-- Success Modal -->
+<div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="successModalLabel">Success</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+               Beneficiary Details successfully Registerd.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
     @include('dashboard.navbar')
     <div class="container mt-5 border rounded border-primary p-4">
     <form class="form-horizontal" method="POST" action="/beneficiary">
@@ -106,157 +130,7 @@
                 <div class="container-fluid py-3">
             <div class="row">
        
-       {{-- <!-- Tank Name Dropdown -->
-       
-       <div class="col-md-4 mb-3">
-        <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle btn-block text-black " type="button" id="" data-bs-toggle="dropdown" aria-expanded="false" style="padding-top: 10px; padding-bottom: 10px";>
-                Select Tank Name
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="tankNameDropdownButton">
-                
-            </ul>
-        </div>
-    </div>
-    
-    <!-- Province Dropdown -->
-    <div class="col-md-4 mb-3">
-        <div class="dropdown">
-            <select class="btn btn-secondary dropdown-toggle btn-block text-black " style="padding-top: 10px; padding-bottom: 10px"  id="provinceDropdown" name="province_name" required>
-                        
-                <option value="">Select Province</option>
-                <!-- Options will be populated by jQuery -->
-            </select>
-            <input type="hidden" id="provinceName" name="province_name">
-        </div>
-        
-    </div>
-    
-    <!-- District Dropdown -->
-    <div class="col-md-4 mb-3">
-        <div class="dropdown">
-            <select class="btn btn-secondary dropdown-toggle btn-block text-black " id="districtDropdown" name="district" style="padding-top: 10px; padding-bottom: 10px" required>
-               
-                <option value="">Select District</option>
-                <!-- Options will be populated by jQuery -->
-            </select>
-            <input type="hidden" id="districtName" name="district_name">
 
-        </div>
-    </div>
-
-
-
-</div>
- 
-<!-- Second Row -->
-<div class="row">
-   
-     <!-- DSD Dropdown -->
- <div class="col-md-4 mb-3">
-    <div class="dropdown">
-        <select class="btn btn-secondary dropdown-toggle btn-block text-black" style="padding-top: 10px; padding-bottom: 10px" id="dsDivisionDropdown" name="ds_division" required>
-            
-            <option value="">Select DS Division</option>
-            <!-- Options will be populated by jQuery -->
-        </select>
-        <input type="hidden" id="ds_division_name" name="ds_division_name">
-
-    </div>
-</div>
-    <!-- GND Dropdown -->
-    <div class="col-md-4 mb-3">
-        <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle btn-block text-black " type="button" id="" data-bs-toggle="dropdown" aria-expanded="false"style="padding-top: 10px; padding-bottom: 10px";>
-                Select GND
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="gndDropdownButton">
-                <li><a class="dropdown-item" href="#">GND1</a></li>
-                <li><a class="dropdown-item" href="#">GND2</a></li>
-                <li><a class="dropdown-item" href="#">GND3</a></li>
-                <!-- Add more items as needed -->
-            </ul>
-        </div>
-    </div>
-    
-    <!-- ASC Dropdown -->
-    <div class="col-md-4 mb-3">
-        <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle btn-block text-black " type="button" id="" data-bs-toggle="dropdown" aria-expanded="false"style="padding-top: 10px; padding-bottom: 10px";>
-                Select ASC
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="ascDropdownButton">
-                <li><a class="dropdown-item" href="#">ASC1</a></li>
-                <li><a class="dropdown-item" href="#">ASC2</a></li>
-                <li><a class="dropdown-item" href="#">ASC3</a></li>
-                <!-- Add more items as needed -->
-            </ul>
-        </div>
-    </div>
-</div>
-        --}}
-        <div class="col-md-4 mb-3">
-        <div class="dropdown">
-            <label for="province" class="form-label dropdown-label">Province</label>
-            
-            <select id="province" name="province_name" button class="btn btn-secondary dropdown-toggle" onchange="populateDistricts()">
-            
-              <option value="">Select Province</option>
-              <!-- Sample Province Data -->
-              <option value="North Central">North Central</option>
-              <option value="Northern">Northern</option>
-              <option value="Central">Central</option>
-              <option value="North Western">North Western</option>
-              <!-- Add more options as needed -->
-            </select>
-            </div>
-              </div>
-              <div class="col-md-4 mb-3">
-               
-                 
-              <div class="dropdown">
-            <label for="district" class="form-label dropdown-labelbutton">District</label>
-            <select id="district" name="district_name" button class="btn btn-secondary dropdown-toggle" onchange="populateDSDs()" disabled>
-              <option value="">Select District</option>
-              <!-- Add a default option -->
-              <option value="" disabled hidden>Select District</option>
-              <!-- Sample District Data -->
-              {{-- <option value=" NorthCentral"> North Central</option> --}}
-              <option value="Vavuniya">Vavuniya</option>
-              <option value="Mannar">Mannar</option>
-              <option value="Mathale">Mathale</option>
-              <option value="Kurunagala">Kurunagala</option>
-              <option value="Puttalam">Puttalam</option>
-              <!-- Add more options as needed -->
-            </select>
-            </div>
-          </div>
-          <div class="col-md-4 mb-3">
-              <div class="dropdown">
-            <label for="dsd" class="form-label dropdown-label">DSD</label>
-            <select id="dsd" name="ds_division_name" button class="btn btn-secondary dropdown-toggle" onchange="populateGNDASC()" disabled>
-              <option value="">Select DSD</option>
-            </select>
-            </div>
-          </div>
-          
-          <div class="col-md-4 mb-3">
-              <div class="dropdown">
-            <label for="gnd" class="form-label dropdown-label">GND</label>
-            <select id="gnd" name="gn_division_name" button class="btn btn-secondary dropdown-toggle" disabled>
-              <option value="">Select GND</option>
-            </select>
-            </div>
-          </div>
-          <div class="col-md-4 mb-3">
-              <div class="dropdown">
-            <label for="asc"  class="form-label dropdown-label">ASC</label>
-            <select id="asc" name="as_center" button class="btn btn-secondary dropdown-toggle" disabled>
-              <option value="">Select ASC</option>
-            </select>
-            </div>
-          </div>
-          
           <div class="col-md-4 mb-3">
                 
               <div class="dropdown">
@@ -268,7 +142,7 @@
                 
             </div>
             </div>
-                </div>
+                </div> 
        
         <form action="#" method="post">
             <div class="row">
@@ -376,17 +250,21 @@
                     </div>
                 </div>
             </div> 
-                {{-- <div class="form-group">
-                    <label for="provinceDropdown">Province</label>
+                <div class="form-group">
+                    <label for="provinceDropdown">Province</label> 
                     <select class="form-control" id="provinceDropdown" name="province_name" required>
                         
                         <option value="">Select Province</option>
                         <!-- Options will be populated by jQuery -->
                     </select>
                     <input type="hidden" id="provinceName" name="province_name">
-                </div> --}}
+                </div>
                 
-                {{-- <div class="form-group">
+                
+
+
+
+                <div class="form-group">
                     <label for="districtDropdown">District</label>
                     <select class="form-control" id="districtDropdown" name="district" required>
                         <option value="">Select District</option>
@@ -396,20 +274,72 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="dsDivisionDropdown">DS Division</label>
+                    <label for="dsDivisionDropdown"  >DS Division</label>
                     <select class="form-control" id="dsDivisionDropdown" name="ds_division" required>
                         <option value="">Select DS Division</option>
                         <!-- Options will be populated by jQuery -->
                     </select>
                     <input type="hidden" id="dsDivisionName" name="ds_division_name">
-                </div> --}}
+                </div>
+
+                <div class="form-group">
+                    <label for="gndDropdown">GND</label>
+                    <select class="form-control" id="gndDropdown" name="gn_division_name" required>
+                        <option value="">Select GND</option>
+                        <!-- Options will be populated by jQuery -->
+                    </select>
+                    <input type="hidden" id="gndName" name="gn_division_name">
+                </div>
                 
+                <div class="dropdown">
+                    <label for="" style="float: left" >Select ASC</label>
+                    <select class="form-control" id="ascDropdown"button  name="as_center"   required>
+                        <option value="">Select ASC</option>
+                    </select>
+
                 <button type="submit" name="button" class="btn btn-primary mt-3">Submit</button>
                 </form>
-        
+                
         </div>
         </div>
+<!-- Success message div -->
+<div id="successMessage" class="alert alert-success mt-3" style="display: none;">
+    <strong>Success!</strong> Beneficiary registration completed successfully.
+</div>
+<script>
+ $(document).ready(function() {
+    // Handle form submission
+    $('form').submit(function(event) {
+        // Prevent default form submission behavior
+        event.preventDefault();
 
+        // Perform AJAX form submission
+        $.ajax({
+            url: $(this).attr('action'),
+            type: $(this).attr('method'),
+            data: $(this).serialize(),
+            success: function(response) {
+                // Show success modal
+                $('#successModal').modal('show');
+
+                // Automatically close the modal after 5 seconds (5000 milliseconds)
+                setTimeout(function() {
+                    $('#successModal').modal('hide');
+                }, 1000);
+
+                // Optionally, reset the form fields
+                $('form')[0].reset();
+            },
+            error: function(xhr, status, error) {
+                // Handle error
+                console.error(xhr.responseText);
+                // You can display an error message here if needed
+            }
+        });
+    });
+});
+
+</script>
         <script>
             $(document).ready(function () {
                 // Fetch tank names from the API endpoint
@@ -423,172 +353,25 @@
                     });
                 });
             });
+
+            $(document).ready(function () {
+                // Fetch ASC names from the API endpoint
+                $.get('/asc', function (data) {
+                    // Populate the dropdown menu with ASC names
+                    $.each(data, function (index, asc) {
+                        $('#ascDropdown').append($('<option>', {
+                            value: asc.asc_name,
+                            text: asc.asc_name 
+                        }));
+                    });
+                });
+            });
         </script>
 
-        <script>
-            function populateDistricts() {
-              var provinceSelect = document.getElementById("province");
-              var districtSelect = document.getElementById("district");
-              districtSelect.innerHTML = ""; // Clear previous options
-              var selectedProvince = provinceSelect.value;
-              if (selectedProvince !== "") {
-                // Sample Data: Districts based on Province
-                var districts = {
-                  "North Central": ["Select District","Anuradhapura"],
-                  "Northern": ["Select District","Vavuniya", "Mannar"],
-                  "Central": ["Select District","Mathale"],
-                  "North Western": ["Select District","Kurunagala", "Puttalam"]
-                  // Add more districts as needed
-                };
-                districts[selectedProvince].forEach(function(district) {
-                  var option = document.createElement("option");
-                  option.value = district;
-                  option.textContent = district;
-                  districtSelect.appendChild(option);
-                });
-                districtSelect.disabled = false; // Enable district dropdown
-              } else {
-                districtSelect.disabled = true; // Disable district dropdown if no province selected
-              }
-              // Reset downstream dropdowns
-              document.getElementById("dsd").innerHTML = "<option value=''>Select DSD</option>";
-              document.getElementById("gnd").innerHTML = "<option value=''>Select GND</option>";
-              document.getElementById("asc").innerHTML = "<option value=''>Select ASC</option>";
-              document.getElementById("dsd").disabled = true;
-              document.getElementById("gnd").disabled = true;
-              document.getElementById("asc").disabled = true;
-            }
-          
-            function populateDSDs() {
-              var districtSelect = document.getElementById("district");
-              var dsdSelect = document.getElementById("dsd");
-              dsdSelect.innerHTML = ""; // Clear previous options
-              var selectedDistrict = districtSelect.value;
-              if (selectedDistrict !== "") {
-                // Sample Data: DSDs based on District
-                var dsds = {
-                  "Anuradhapura": ["Select DSD","Galenbidunuwewa", "Ma.Nu.Pa", "Mahavilachchiya", "Medawachchiya", "Mihintale", "N.P.C", "Na.Nu.Pa", "Palugaswewa", "Rambewa", "Thirappane"],
-                  "Vavuniya": ["Select DSD","Vengalacheddikulam", "Vavuniya", "Vavuniya South"],
-                  "Mannar": ["Select DSD","Musali","Nanattan","Manthai West","Mannar Town"],
-                  "Mathale": ["Select DSD","Yatawatta"],
-                  "Kurunagala": ["Select DSD","Giribawa","Polpithigama","Galgamuwa","Ehetuwewa","Kobeigane","Ambanpola"],
-                  "Puttalam": ["Select DSD","Wanathavilluwa","Pallama","Anamaduwa","Nawagaththegama"]
-                  // Add more DSDs as needed
-                };
-                if (dsds[selectedDistrict]) {
-                  dsds[selectedDistrict].forEach(function(dsd) {
-                    var option = document.createElement("option");
-                    option.value = dsd;
-                    option.textContent = dsd;
-                    dsdSelect.appendChild(option);
-                  });
-                  dsdSelect.disabled = false; // Enable DSD dropdown
-                } else {
-                  dsdSelect.disabled = true; // Disable DSD dropdown if no DSDs found for the district
-                }
-              } else {
-                dsdSelect.disabled = true; // Disable DSD dropdown if no district selected
-              }
-              // Reset downstream dropdowns
-              document.getElementById("gnd").innerHTML = "<option value=''>Select GND</option>";
-              document.getElementById("asc").innerHTML = "<option value=''>Select ASC</option>";
-              document.getElementById("gnd").innerHTML = "<option value=''>Select gnd</option>";
-              document.getElementById("asc").disabled = true;
-            }
-          
-            function populateGNDASC() {
-              var dsdSelect = document.getElementById("dsd");
-              var gndSelect = document.getElementById("gnd");
-              var ascSelect = document.getElementById("asc");
-              gndSelect.innerHTML = ""; // Clear previous options
-              ascSelect.innerHTML = ""; // Clear previous options
-              var selectedDSD = dsdSelect.value;
-              if (selectedDSD !== "") {
-                // Sample Data: GNDs and ASCs based on DSD
-                var gnds = {
-                  
-                  "Galenbidunuwewa": ["Select GND","Manankattiya"],
-                  "Ma.Nu.Pa": ["Select GND","Maha Ehetuwewa"],
-                  "Mahavilachchiya": ["Select GND"," 369-Sadamaleliya"],
-                  "Medawachchiya": ["Select GND","Lindawewa", "Karambankulama", "Madawachchiya East","Sangilikanadarawa","Puleliya","Prabodhagama","Kidawarankulama","Poonewa","Maha Kumbukgollewa","Kadawath Rambewa","Kidagalegama",],
-                  "Mihintale": ["Select GND","Katukeliyawa", "Seeppukulama"],
-                  "N.P.C": ["Select GND","Galpottegama"],
-                  "Na.Nu.Pa": ["Select GND","Kawarakkulama"],
-                  "Palugaswewa": ["Select GND","Horiwila"],
-                  "Rambewa": ["Select GND","Kallanachiya", "Kapiriggama", "Pihimbiyagollewa"],
-                  "Thirappane": ["Select GND","Labunoruwa"],
-                  "Vengalacheddikulam": ["Select GND","Kanthasaminager", "Sooduventhapulavu", "Kannadi"],
-                  "Vavuniya": ["Select GND","Asikulam"],
-                  "Vavuniya South": ["Select GND","Kalukunnammaduwa", "Allagalla"],
-                  "Musali": ["Select GND","Veppankulam", "S.P Potkerni", "Puthuveli", "Maruthamadu", "Poonochchi", "P.P Potkerni", "Kondachchi","Arippu west","Koolankulam","Akathimurippu"],
-                  "Nanattan": ["Select GND","Sirukkandal", "Ilahadipiddy", "Vanchiyankulam", "Isamalaithalvu", "Valkkaipettankandal", "Parikarikandal", "Razoolputhuveli", "Ilanthaimoddai"],
-                  "Manthai West": ["Select GND","Minnukkan", "Pappamoddai"],
-                  "Mannar Town": ["Select GND","Puthukkamam", "Periyanavatkulam"],
-                  "Yatawatta": ["Select GND","Udagama West", "Aluthwatta", "Mathalapitiya", "Mathalapitiya South", "Raththinda"],
-                  "Giribawa": ["Select GND","Sangappalaya", "Wannikudawewa", "Gampola", "Aliyawetunawewa"],
-                  "Polpithigama": ["Select GND","Galgiriyawa", "IhalaThimbiriyawa", "Kambuwatawana", "Kubukkadawala", "Moragollagama", "Nikawewa", "Niyandawanaya", "Serugasyaya"],
-                  "Galgamuwa": ["Select GND","Nahettikulama", "Madadombe"],
-                  "Ehetuwewa": ["Select GND","Thimbiriyawa", "Hunugallewa", "Ethinimole", "Galapitadigana", "Ihala Embogama", "Kaduruwewa", "Eriyawa", "Ratnadivulwewa", "Hiddewa"],
-                  "Kobeigane": ["Select GND","Mawathagama"],
-                  "Ambanpola": ["Select GND","Bakmeewewa"],
-                  "Wanathavilluwa": ["Select GND","Mailankulama"],
-                  "Pallama": ["Select GND","Wathupola"],
-                  "Anamaduwa": ["Select GND","Alankulama", "Kottukachchiya", "Colony 1"],
-                  "Nawagaththegama": ["Select GND","Mahameddewa", "Rambakanayagama", "Miyellewa","Amunuwewa"]
-                  // Add more GNDs as needed
-                };
-                var ascs = {
-            "Galenbidunuwewa": ["Select ASC","Galenbidunuwewa"],
-            "Ma.Nu.Pa": ["Select ASC","Elayapaththuwa"],
-            "Mahavilachchiya": ["Select ASC","Punewa"],
-            "Medawachchiya": ["Select ASC","Medawachchiya", "Poonewa", "Punewa","Athakada"],
-            "Mihintale": ["Select ASC","Mihinthale"],
-            "N.P.C": ["Select ASC","Gambirigaswewa"],
-            "Na.Nu.Pa": ["Select ASC","Anuradhapura"],
-            "Palugaswewa": ["Select ASC","Palugaswewa"],
-            "Rambewa": ["Select ASC","Kallanchiya"],
-            "Thirappane": ["Select ASC","Thirappane"],
-            "Vengalacheddikulam": ["Select ASC","Cheddikulam", "Kurukkalputhukulam"],
-            "Vavuniya": ["Select ASC","Kovilkulam"],
-            "Vavuniya South": ["Select ASC","Madukanda"],
-            "Musali": ["Select ASC","potkerni", "Silawathurai", "P.P.Potkeny"],
-            "Nanattan": ["Select ASC","Murunkan", "Nanattan", "Uyilankulam"],
-            "Manthai West": ["Select ASC","Manthai"],
-            "Mannar Town": ["Select ASC","Manthai", "Uyilankulam"],
-            "Yatawatta": ["Select ASC","Yatawatta", "Walawela"],
-            "Giribawa": ["Select ASC","Thambuththa"],
-            "Polpithigama": ["Select ASC","Rambe", "Moragollagama"],
-            "Galgamuwa": ["Select ASC","Galgamuwa", "Maha Nanneriya"],
-            "Ehetuwewa": ["Select ASC","Ehatuwewa"],
-            "Kobeigane": ["Select ASC","Kobeigane"],
-            "Ambanpola": ["Select ASC","Ambanpola"],
-            "Wanathavilluwa": ["Select ASC","Wanathawilluwa"],
-            "Pallama": ["Select ASC","Serukele"],
-            "Anamaduwa": ["Select ASC","Anamaduwa"],
-            "Nawagaththegama": ["Select ASC","Nawagaththegama"]
-            // Add more ASCs as needed
-                };
-                gnds[selectedDSD].forEach(function(gnd) {
-                  var option = document.createElement("option");
-                  option.value = gnd;
-                  option.textContent = gnd;
-                  gndSelect.appendChild(option);
-                });
-                ascs[selectedDSD].forEach(function(asc) {
-                  var option = document.createElement("option");
-                  option.value = asc;
-                  option.textContent = asc;
-                  ascSelect.appendChild(option);
-                });
-                gndSelect.disabled = false; // Enable GND dropdown
-                ascSelect.disabled = false; // Enable ASC dropdown
-              } else {
-                gndSelect.disabled = true; // Disable GND dropdown if no DSD selected
-                ascSelect.disabled = true; // Disable ASC dropdown if no DSD selected
-              }
-            }
-          </script>
-{{-- <script>
+
+        {{-- dynamicalyy get dsd gnd --}}
+       
+<script> 
         $(document).ready(function() {
             // Fetch provinces
             $.ajax({
@@ -620,6 +403,10 @@
                         value: '',
                         text: 'Select DS Division'
                     }));
+                    $('#gndDropdown').empty().append($('<option>', {
+                        value: '',
+                        text: 'Select GND'
+                    }));
         
                     // Fetch districts only if a valid province ID is selected
                     $.ajax({
@@ -649,11 +436,16 @@
                         value: '',
                         text: 'Select DS Division'
                     }));
+                    $('#gndDropdown').empty().append($('<option>', {
+                        value: '',
+                        text: 'Select GND'
+                    }));
                 }
                 // Reset hidden fields
                 $('#provinceName').val('');
                 $('#districtName').val('');
                 $('#dsDivisionName').val('');
+                $('#gndName').val('');
             });
         
             // Fetch DS Divisions based on selected district
@@ -696,6 +488,48 @@
                 // Reset hidden field
                 $('#dsDivisionName').val('');
             });
+
+            // Fetch GNDs based on selected DS Division
+            $('#dsDivisionDropdown').change(function() {
+                var dsDivisionId = $(this).val();
+        
+                // Check if a DS Division is selected
+                if (dsDivisionId !== '') {
+                    // Fetch GNDs only if a valid DS Division ID is selected
+                    $.ajax({
+                        url: '/ds-divisions/' + dsDivisionId + '/gn-divisions',
+                        type: 'GET',
+                        success: function(data) {
+                            console.log(data);
+                            // Clear the GND dropdown
+                            $('#gndDropdown').empty().append($('<option>', {
+                                value: '',
+                                text: 'Select GND'
+                            }));
+        
+                            // Populate GND dropdown
+                            $.each(data, function(index, gnd) {
+                                $('#gndDropdown').append($('<option>', {
+                                    value: gnd.id,
+                                    text: gnd.gn_division
+                                }));
+                            });
+                        },
+                        error: function(xhr, status, error) {
+                            console.error(xhr.responseText);
+                            // Handle error - show a message to the user or handle it as needed
+                        }
+                    });
+                } else {
+                    // Clear the GND dropdown if no DS Division is selected
+                    $('#gndDropdown').empty().append($('<option>', {
+                        value: '',
+                        text: 'Select GND'
+                    }));
+                }
+                // Reset hidden field
+                $('#gndName').val('');
+            });
         
             // Update hidden fields when options are selected
             $('#provinceDropdown').change(function() {
@@ -709,8 +543,12 @@
             $('#dsDivisionDropdown').change(function() {
                 $('#dsDivisionName').val($(this).find('option:selected').text());
             });
+
+            $('#gndDropdown').change(function() {
+                $('#gndName').val($(this).find('option:selected').text());
+            });
         });
-</script> --}}
+</script>
     
         
     

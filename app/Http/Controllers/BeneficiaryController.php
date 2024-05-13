@@ -87,7 +87,10 @@ class BeneficiaryController extends Controller
             $beneficiary->longitude = request('longitude');
             $beneficiary->save();
 
-        return redirect('/beneficiary');
+        // return redirect('/beneficiary');
+
+        // return Redirect::back()->with('success', 'Beneficiary registered successfully.');
+         return redirect('/beneficiary')->with('success', 'Beneficiary registered successfully.');
 
         // After saving the beneficiary, get its ID
         $beneficiaryId = $beneficiary->id; // Assuming you've saved the $beneficiary instance
@@ -102,6 +105,8 @@ class BeneficiaryController extends Controller
      */
     public function show(Beneficiary $beneficiary)
     {
+        
+
         return view('beneficiary.beneficiary_show', compact('beneficiary'));
     }
 
@@ -153,6 +158,7 @@ class BeneficiaryController extends Controller
 
         return redirect('/beneficiary')->with('success', 'Beneficiary updated successfully');
      
+
 
         
     }

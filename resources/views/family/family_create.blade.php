@@ -15,6 +15,9 @@
 
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
 
     <script>
         $(function() {
@@ -48,6 +51,27 @@
     </script>
 </head>
 <body>
+    {{-- @include('dashboard.navbar') --}}
+  <!-- Success Modal -->
+  <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="successModalLabel">Success</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+               Family Member Details successfully Registerd.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+    
     <div class="container mt-5 border rounded border-primary p-4">
         <h2 class="text-center mb-4">Family Member Registration</h2>
     <form class="form-horizontal" action="/family" method="POST">
@@ -138,12 +162,49 @@
             
             <input type="text" class="form-control" id="address" name="address" placeholder="Enter Address" required> 
 
-            <button type="button" id="addFamilyMember" class="btn btn-primary">Add Family Member</button>
+          
         <button type="submit" name="button" class="btn btn-primary mt-3">Submit</button>
         
 
         
     </form>
+
+    <!-- Success message div -->
+
+<script>
+ $(document).ready(function() {
+    // Handle form submission
+    $('form').submit(function(event) {
+        // Prevent default form submission behavior
+        event.preventDefault();
+
+        // Perform AJAX form submission
+        $.ajax({
+            url: $(this).attr('action'),
+            type: $(this).attr('method'),
+            data: $(this).serialize(),
+            success: function(response) {
+                // Show success modal
+                $('#successModal').modal('show');
+
+                // Automatically close the modal after 5 seconds (5000 milliseconds)
+                setTimeout(function() {
+                    $('#successModal').modal('hide');
+                }, 2000);
+
+                // Optionally, reset the form fields
+                $('form')[0].reset();
+            },
+            error: function(xhr, status, error) {
+                // Handle error
+                console.error(xhr.responseText);
+                // You can display an error message here if needed
+            }
+        });
+    });
+});
+
+</script>
 
 </body>
 </html>

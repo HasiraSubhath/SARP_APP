@@ -7,10 +7,12 @@ use App\Http\Controllers\FamilyController;
 use App\Http\Controllers\ProvinceController;
 use App\Http\Controllers\DistrictController;
 use App\Http\Controllers\DSDivisionController;
+use App\Http\Controllers\GNDivisionController;
 use App\Http\Controllers\TankRehabilitationController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\TankController;
 use App\Http\Controllers\TrainingController;
+use App\Http\Controllers\ASCController;
 
 
 Route::get('/', function () {
@@ -63,6 +65,8 @@ Route::get('/dashboard', function () {
     
     Route::get('/tanks', [TankController::class, 'index']);
 
+    Route::get('/asc', [ASCController::class, 'index']);
+
     // Route::get('/provinces/{province}/districts', [DistrictController::class, 'index']);
 
 Route::get('/provinces/{province}/districts', [DistrictController::class, 'indexByProvince']);
@@ -71,6 +75,10 @@ Route::get('/provinces/{province}/districts', [DistrictController::class, 'index
 Route::get('/districts/{district}/ds-divisions', [DSDivisionController::class, 'getDSByDistrict']);
 
 Route::get('/ds-divisions', [DSDivisionController::class, 'getDSByDistrict']);
+
+Route::get('/ds-divisions/{dsDivision}/gn-divisions', [GNDivisionController::class, 'getGNByDS']);
+
+Route::get('/gn-divisions', [GNDivisionController::class, 'getGNByDS']);
 
 Route::resource('tank_rehabilitation', TankRehabilitationController::class);
 

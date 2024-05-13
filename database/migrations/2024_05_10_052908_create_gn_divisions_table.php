@@ -14,26 +14,26 @@ return new class extends Migration
         Schema::create('gn_divisions', function (Blueprint $table) {
             $table->id();
             $table->string('gn_division');
-            $table->unsignedBigInteger('ds_division_id');
-            $table->foreign('ds_division_id')->references('id')->on('ds_divisions')->onDelete('cascade');
+            $table->unsignedBigInteger('d_s_division_id');
+            $table->foreign('d_s_division_id')->references('id')->on('d_s_division_id')->onDelete('cascade');
             
         });
 
         // Insert provided data
         DB::table('gn_divisions')->insert([
             
-            ['gn_division' => 'Medawachchiya', 'ds_division_id' => 1], 
-            ['gn_division' => 'Kebithigollewa', 'ds_division_id' => 1], 
-            ['gn_division' => 'Thalawa', 'ds_division_id' => 1], 
-            ['gn_division' => 'Horowpathana', 'ds_division_id' => 1], 
-            ['gn_division' => 'Nochchiyagama', 'ds_division_id' => 1], 
-            ['gn_division' => 'Rambewa', 'ds_division_id' => 2], 
-            ['gn_division' => 'Thirappane', 'ds_division_id' => 3], 
-            ['gn_division' => 'Galenbidunuwewa', 'ds_division_id' => 4], 
-            ['gn_division' => 'Palugaswewa', 'ds_division_id' => 5], 
-            ['gn_division' => 'Mihintale', 'ds_division_id' => 6], 
-            ['gn_division' => 'Mahavilachchiya', 'ds_division_id' => 7], 
-            ['gn_division' => 'Na.Nu.Pa', 'ds_division_id' => 8]
+            ['gn_division' => 'Medawachchiya', 'd_s_division_id' => 1], 
+            ['gn_division' => 'Kebithigollewa', 'd_s_division_id' => 1], 
+            ['gn_division' => 'Thalawa', 'd_s_division_id' => 1], 
+            ['gn_division' => 'Horowpathana', 'd_s_division_id' => 1], 
+            ['gn_division' => 'Nochchiyagama', 'd_s_division_id' => 1], 
+            ['gn_division' => 'Rambewa', 'd_s_division_id' => 2], 
+            ['gn_division' => 'Thirappane', 'd_s_division_id' => 3], 
+            ['gn_division' => 'Galenbidunuwewa', 'd_s_division_id' => 4], 
+            ['gn_division' => 'Palugaswewa', 'd_s_division_id' => 5], 
+            ['gn_division' => 'Mihintale', 'd_s_division_id' => 6], 
+            ['gn_division' => 'Mahavilachchiya', 'd_s_division_id' => 7], 
+            ['gn_division' => 'Na.Nu.Pa', 'd_s_division_id' => 8]
     ]);
     }
 

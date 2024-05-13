@@ -160,6 +160,9 @@
         </li>
     </ul>
 </nav>
+
+
+
 <h1>BAR CHART </h1>
 <div id="donut-chart"></div>
 <div id="myChart" style="width:100%;max-width:600px"></div>
@@ -254,65 +257,7 @@
 
 
 
-<!-- JavaScript to open modal and populate form fields -->
-{{-- <script>
-    $(document).ready(function() {
-        // Function to populate modal fields with beneficiary details
-        $('.edit-btn').click(function() {
-            var beneficiaryId = $(this).data('id');
-            $.ajax({
-                url: '/beneficiary/' + beneficiaryId,
-                type: 'GET',
-                success: function(response) {
-                    // Populate modal fields with beneficiary details
-                    $('#editBeneficiary' + beneficiaryId + ' #editNic').val(response.nic);
-                $('#editBeneficiary' + beneficiaryId + ' #editFirstName').val(response.first_name);
-                $('#editBeneficiary' + beneficiaryId + ' #editlastName').val(response.last_name);
-                $('#editBeneficiary' + beneficiaryId + ' #editAddress').val(response.address);
-                $('#editBeneficiary' + beneficiaryId + ' #editDob').val(response.dob);
-                $('#editBeneficiary' + beneficiaryId + ' #editGender').val(response.gender);
-                $('#editBeneficiary' + beneficiaryId + ' #editAge').val(response.age);
-                $('#editBeneficiary' + beneficiaryId + ' #editPhone').val(response.phone);
-                $('#editBeneficiary' + beneficiaryId + ' #editIncome').val(response.income);
-                $('#editBeneficiary' + beneficiaryId + ' #editFamilyMembersCount').val(response.family_members_count);
-                $('#editBeneficiary' + beneficiaryId + ' #editEducation').val(response.education);
-                $('#editBeneficiary' + beneficiaryId + ' #editLandOwnership').val(response.land_ownership);
 
-                    // Repeat for other fields
-                    // Open the modal
-                    $('#editBeneficiary' + beneficiaryId).modal('show');
-                },
-                error: function(xhr) {
-                    // Handle errors
-                    console.log(xhr.responseText);
-                }
-            });
-        });
-    });
-</script> --}}
-
-    {{-- <script>
-        $(document).ready(function() {
-    // Function to populate modal fields with beneficiary details
-    $('.edit-btn').click(function() {
-        var beneficiaryId = $(this).data('beneficiaryid');
-        $.ajax({
-            url: '/beneficiary/' + beneficiaryId, // Adjust the URL as per your route
-            type: 'GET',
-            success: function(response) {
-                // Populate modal fields with beneficiary details
-                $('#editBeneficiaryModal #beneficiaryId').val(response.id);
-                $('#editBeneficiaryModal #editFirstName').val(response.first_name);
-                // Repeat for other fields
-            },
-            error: function(xhr) {
-                // Handle errors
-                console.log(xhr.responseText);
-            }
-        });
-    });
-});
-        </script> --}}
 
 {{-- PIE CHART TEST --}}
 <script src=
@@ -357,6 +302,8 @@
 
 
 
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
 
 
 <script>
