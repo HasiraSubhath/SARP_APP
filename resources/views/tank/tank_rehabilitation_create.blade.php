@@ -188,18 +188,13 @@
     </div>
     <div class="col">
      
-        <div class="dropdown">
-            <label for="tank">Cascade Name</label>
-            <select class="form-control btn btn-secondary"  name="cascade_name" data-bs-toggle="dropdown" aria-expanded="false" required>
-                <option value="">Cascade Name</option>
-                <option value="Dumminnegama">Dumminnegama</option>
-                <option value="Kardan Kulam">Kardan Kulam</option>
-                <option value="Lidawewa">Lidawewa</option>
-                <option value="Sangilikanadarawa">Sangilikanadarawa</option>
-                <option value="Boo Oya">Boo Oya</option>
-                <option value="Pahala Moragollagama wewa">Pahala Moragollagama wewa</option>
-            </select>
-      </div>
+      <div class="dropdown">
+        <label for="tank">Cascade Name</label>
+        <select class="form-control btn btn-secondary" id="cascadeDropdown" name="cascade_name" data-bs-toggle="dropdown" aria-expanded="false" required>
+            <option value="">Select Cascade name</option>
+            
+        </select>
+  </div>
 
       
     </div>
@@ -290,6 +285,20 @@
           });
       });
   });
+
+  $(document).ready(function () {
+        // Fetch cascade names from the API endpoint
+        $.get('/cascades', function (data) {
+            // Populate the dropdown menu with cascade names
+            $.each(data, function (index, cascade) {
+                $('#cascadeDropdown').append($('<option>', {
+                    value: cascade.cascade_name,
+                    text: cascade.cascade_name 
+                }));
+            });
+        });
+    });
+
 </script>
 
 <!--  JavaScript to cascade dropdown -->

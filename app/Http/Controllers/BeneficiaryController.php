@@ -37,8 +37,18 @@ class BeneficiaryController extends Controller
         $maleCount = Beneficiary::where('gender', 'male')->count();
         $femaleCount = Beneficiary::where('gender', 'female')->count();
         return view('beneficiary\beneficiary_index', compact('beneficiaries', 'maleCount', 'femaleCount'));
+        // return response()->json($beneficiaries);
         // return view('dashboard.dashboard', compact('maleCount', 'femaleCount'));
         
+    }
+
+    public function dashboard()
+    {
+        $maleCount = Beneficiary::where('gender', 'male')->count();
+        $femaleCount = Beneficiary::where('gender','female')->count();
+        $youthCount = Beneficiary::where('age','<', 30)->count();
+        $middleAgeCount = Beneficiary::where('age','>=', 30)->count();
+        return view('dashboard.dashboard', compact('maleCount', 'femaleCount', 'youthCount', 'middleAgeCount'));
     }
 
     /**

@@ -13,6 +13,8 @@ use App\Http\Controllers\ReportController;
 use App\Http\Controllers\TankController;
 use App\Http\Controllers\TrainingController;
 use App\Http\Controllers\ASCController;
+use App\Http\Controllers\CascadesController;
+use App\Models\Beneficiary;
 
 
 Route::get('/', function () {
@@ -24,7 +26,13 @@ Route::get('/test', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard.dashboard');
+    $maleCount = Beneficiary::where('gender', 'male')->count();
+    $femaleCount = Beneficiary::where('gender', 'female')->count();
+    $youthCount = Beneficiary::where('age','<', 30)->count();
+    $middleAgeCount = Beneficiary::where('age','>=', 30)->count();
+
+
+    return view('dashboard.dashboard', compact('maleCount', 'femaleCount', 'youthCount', 'middleAgeCount'));
 });
 
 // Route::get('/',[CrudeController::class, 'index']);
@@ -66,6 +74,8 @@ Route::get('/dashboard', function () {
     Route::get('/tanks', [TankController::class, 'index']);
 
     Route::get('/asc', [ASCController::class, 'index']);
+
+    Route::get('/cascades', [CascadesController::class, 'index']);
 
     // Route::get('/provinces/{province}/districts', [DistrictController::class, 'index']);
 
