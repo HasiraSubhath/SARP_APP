@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    {{-- @vite('resources/css/app.css') --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 
     {{-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -15,10 +16,10 @@
 
     <!-- Bootstrap CSS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    {{-- @include('dashboard.navbar') --}}
+    @include('dashboard.navbar')
 </head>
 <body>
-    @include('dashboard.navbar')
+
     {{-- <body class="h-screen overflow-hidden flex items-center justify-center" style="background: #edf2f7;"> --}}
     
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -40,11 +41,15 @@
         </div>
         <div class="row">
             <div class="col">
+                <div class="d-flex justify-content-center">
                 <input placeholder="beneficiary"/>
+                </div>
+                <div class="d-flex justify-content-center">
                 <button onclick="window.location.href='{{ route('beneficiary.create') }}'" class="btn btn-primary"> + Add New </button>
-            
-                <a href="{{route('download.csv')}}" class="btn btn-primary">Generate CSV Report</a>
-                
+                </div>
+                <div class="d-flex justify-content-end">
+                <a href="{{route('download.csv')}}"  class="btn btn-primary">Generate CSV Report</a>
+                </div>
             </div>
             
            

@@ -82,7 +82,7 @@ class TankRehabilitationController extends Controller
      */
     public function show(TankRehabilitation $tankRehabilitation)
     {
-        //
+        return view('tank.tank_rehabilitation_show', compact('tankRehabilitation'));
     }
 
     /**

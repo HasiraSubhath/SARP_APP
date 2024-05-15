@@ -11,6 +11,17 @@ class BeneficiaryController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public function search(Request $request)
+    {
+        $search = $request->get('search');
+        $beneficiaries = Beneficiary::where('nic', 'like', '%'.$search.'%')
+            ->orWhere('first_name', 'like', '%'.$search.'%')
+            ->orWhere('last_name', 'like', '%'.$search.'%')
+            ->get();
+        
+        return view('beneficiary.beneficiary_index', compact('beneficiaries'));
+    }
+
     public function generateCsv()
     {
         $beneficiaries = Beneficiary::latest()->get();

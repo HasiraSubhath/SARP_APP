@@ -291,13 +291,14 @@
                     <input type="hidden" id="gndName" name="gn_division_name">
                 </div>
                 
-                <div class="dropdown">
-                    <label for="" style="float: left" >Select ASC</label>
+                <div class="form-group">
+                    <label for="gndDropdown">Select ASC</label>
                     <select class="form-control" id="ascDropdown"button  name="as_center"   required>
                         <option value="">Select ASC</option>
                     </select>
-
-                <button type="submit" name="button" class="btn btn-primary mt-3">Submit</button>
+                    <div class="d-flex justify-content-center align-items-center">
+                        <button type="submit" name="button" class="btn btn-primary mt-3">Submit</button>
+                    </div>
                 </form>
                 
         </div>
