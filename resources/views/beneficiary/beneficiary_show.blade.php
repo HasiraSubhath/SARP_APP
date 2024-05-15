@@ -193,7 +193,11 @@
                                 <div class="icon-container">
                                     <a href="" class="text-primary me-2"><i class="fas fa-edit"></i></a>
                                     <a class="btn btn-primary  mr-2" href='/family/{{$familyMember->id}}/edit'>Edit</a>
-                                    <a href="#" class="text-danger"><i class="fas fa-trash-alt"></i></a>
+                                    <form action="/family/{{ $familyMember->id }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
