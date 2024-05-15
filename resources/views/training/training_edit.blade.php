@@ -42,6 +42,8 @@
                                                 {{-- <option value="">Select Province</option> --}}
                                                 <!-- Options will be populated by jQuery -->
                                             </select>
+                                         
+                                            </select>
                                             <input type="hidden" id="provinceName" name="province">
                                         </div>
                         

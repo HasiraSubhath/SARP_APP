@@ -30,6 +30,25 @@ class TankRehabilitationController extends Controller
         return response()->download($filename, 'tank_rehabilitation_report.csv', $headers);
     }
 
+    public function search(Request $request){
+
+        $search = $request->get('search');
+        $tankRehabilitations = TankRehabilitation::where('tank_id', 'like', '%'.$search.'%')
+            ->orWhere('tank_name', 'like', '%'.$search.'%')
+            ->orWhere('river_basin', 'like', '%'.$search.'%')
+            ->orWhere('cascade_name', 'like', '%'.$search.'%')
+            ->orWhere('province', 'like', '%'.$search.'%')
+            ->orWhere('district', 'like', '%'.$search.'%')
+            ->orWhere('ds_division', 'like', '%'.$search.'%')
+            ->orWhere('gn_division', 'like', '%'.$search.'%')
+            ->orWhere('as_centre', 'like', '%'.$search.'%')
+            ->orWhere('agency', 'like', '%'.$search.'%')
+            ->orWhere('payment', 'like', '%'.$search.'%')
+            ->orWhere('status', 'like', '%'.$search.'%')
+            ->paginate(10);
+
+        return view('tank.tank_rehabilitation_index', compact('tankRehabilitations', 'search'));
+    }
 
     public function index()
     {
@@ -82,7 +101,7 @@ class TankRehabilitationController extends Controller
      */
     public function show(TankRehabilitation $tankRehabilitation)
     {
-        //
+        return view('tank.tank_rehabilitation_show', compact('tankRehabilitation'));
     }
 
     /**

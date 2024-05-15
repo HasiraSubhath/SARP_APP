@@ -11,6 +11,23 @@ class BeneficiaryController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public function search(Request $request)
+    {
+        $search = $request->get('search');
+        $beneficiaries = Beneficiary::where('nic', 'like', '%'.$search.'%')
+            ->orWhere('first_name', 'like', '%'.$search.'%')
+            ->orWhere('last_name', 'like', '%'.$search.'%')
+            ->orWhere('province_name', 'like', '%'.$search.'%')
+            ->orWhere('district_name', 'like', '%'.$search.'%')
+            ->orWhere('ds_division_name', 'like', '%'.$search.'%')
+            ->orWhere('gn_division_name', 'like', '%'.$search.'%')
+            ->orWhere('as_center', 'like', '%'.$search.'%')
+            ->orWhere('tank_name', 'like', '%'.$search.'%')
+            ->paginate(10);
+        
+        return view('beneficiary.beneficiary_index', compact('beneficiaries', 'search'));
+    }
+
     public function generateCsv()
     {
         $beneficiaries = Beneficiary::latest()->get();
@@ -31,14 +48,23 @@ class BeneficiaryController extends Controller
 
     public function index()
     {
-       // return view('beneficiary.beneficiary_index');
-        // $beneficiaries = Beneficiary::all();
-        $beneficiaries = Beneficiary::latest()->paginate(10); // Change 10 to the desired number of records per page
+        $beneficiaries = Beneficiary::latest()->paginate(10); // Paginate the results
+       
         $maleCount = Beneficiary::where('gender', 'male')->count();
         $femaleCount = Beneficiary::where('gender', 'female')->count();
-        return view('beneficiary\beneficiary_index', compact('beneficiaries', 'maleCount', 'femaleCount'));
+        return view('beneficiary.beneficiary_index', compact('beneficiaries', 'maleCount', 'femaleCount'));
+        // return response()->json($beneficiaries);
         // return view('dashboard.dashboard', compact('maleCount', 'femaleCount'));
         
+    }
+
+    public function dashboard()
+    {
+        $maleCount = Beneficiary::where('gender', 'male')->count();
+        $femaleCount = Beneficiary::where('gender','female')->count();
+        $youthCount = Beneficiary::where('age','<', 30)->count();
+        $middleAgeCount = Beneficiary::where('age','>=', 30)->count();
+        return view('dashboard.dashboard', compact('maleCount', 'femaleCount', 'youthCount', 'middleAgeCount'));
     }
 
     /**

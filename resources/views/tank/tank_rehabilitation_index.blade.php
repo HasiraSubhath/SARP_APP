@@ -21,11 +21,26 @@
   <div class="center-heading" style="text-align: center;">
       <h1>Tank Rehabilitation Details</h1>
   </div>
-  <div >
-    <a href="{{route('downloadtank.csv')}}" class="btn btn-primary" >Generate CSV Report</a>
-    <a href="{{route('tank_rehabilitation.create')}}" class="btn btn-primary" >Add</a>
+  <!-- Search form -->
+<form method="GET" action="{{ route('searchTank') }}">
+  <div class="input-group mb-3  mt-2 ">
+    <input type="text" class="form-control" placeholder="Search" name="search">
+    <div class="input-group-append">
+      <button class="btn btn-outline-secondary" type="submit">Search</button>
+    </div>
   </div>
 </form>
+  
+    <div class="form-group">
+      <div class="d-flex justify-content-between">
+        <a href="{{route('tank_rehabilitation.create')}}" class="btn btn-primary">Add</a>
+        <a href="{{route('downloadtank.csv')}}" class="btn btn-primary">Generate CSV Report</a>
+      </div>
+    </div>
+
+
+
+
 <div class="row table-container">
   <div class="col">
       <table  class="table table-bordered ">

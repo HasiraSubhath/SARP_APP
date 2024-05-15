@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CrudeController;
+
 use App\Http\Controllers\BeneficiaryController;
 use App\Http\Controllers\FamilyController;
 use App\Http\Controllers\ProvinceController;
@@ -13,6 +13,8 @@ use App\Http\Controllers\ReportController;
 use App\Http\Controllers\TankController;
 use App\Http\Controllers\TrainingController;
 use App\Http\Controllers\ASCController;
+use App\Http\Controllers\CascadesController;
+use App\Models\Beneficiary;
 
 
 Route::get('/', function () {
@@ -24,20 +26,16 @@ Route::get('/test', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard.dashboard');
+    $maleCount = Beneficiary::where('gender', 'male')->count();
+    $femaleCount = Beneficiary::where('gender', 'female')->count();
+    $youthCount = Beneficiary::where('age','<', 30)->count();
+    $middleAgeCount = Beneficiary::where('age','>=', 30)->count();
+
+
+    return view('dashboard.dashboard', compact('maleCount', 'femaleCount', 'youthCount', 'middleAgeCount'));
 });
 
-// Route::get('/',[CrudeController::class, 'index']);
-// Route::get('/create',[CrudeController::class, 'create']);
-// Route::post('/create',[CrudeController::class, 'store']);
-// Route::get('/show/{id}',[CrudeController::class, 'show']);
 
-// Route::get('/crud', function () {
-//     return view('crud.create');
-// });
-// Route::get('/crud', 'CrudeController@create');
-//Route::resource('crud', 'CrudeController');
-    Route::resource('crud', CrudeController::class);
 
     //Route::get('/beneficiary/{beneficiary}/edit', 'BeneficiaryController@edit')->name('beneficiary_edit');
 
@@ -67,6 +65,8 @@ Route::get('/dashboard', function () {
 
     Route::get('/asc', [ASCController::class, 'index']);
 
+    Route::get('/cascades', [CascadesController::class, 'index']);
+
     // Route::get('/provinces/{province}/districts', [DistrictController::class, 'index']);
 
 Route::get('/provinces/{province}/districts', [DistrictController::class, 'indexByProvince']);
@@ -89,7 +89,9 @@ Route::get('generateCsv', [BeneficiaryController::class, 'generateCsv'])->name('
 
 Route::resource('training', TrainingController::class);
 
+Route::get('search', [BeneficiaryController::class, 'search'])->name('search');
 
+Route::get('searchTank', [TankRehabilitationController::class, 'search'])->name('searchTank');
 
     
 

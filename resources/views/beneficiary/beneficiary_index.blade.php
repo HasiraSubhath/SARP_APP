@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    {{-- @vite('resources/css/app.css') --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 
     {{-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -15,10 +16,10 @@
 
     <!-- Bootstrap CSS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    {{-- @include('dashboard.navbar') --}}
+    @include('dashboard.navbar')
 </head>
 <body>
-    @include('dashboard.navbar')
+
     {{-- <body class="h-screen overflow-hidden flex items-center justify-center" style="background: #edf2f7;"> --}}
     
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -35,20 +36,31 @@
 
 
     <div class="container-fluid">
-        <div class="center-heading">
+        <div class="center-heading" style="text-align: center;">
             <h1>Beneficiary Details</h1>
         </div>
-        <div class="row">
-            <div class="col">
-                <input placeholder="beneficiary"/>
-                <button onclick="window.location.href='{{ route('beneficiary.create') }}'" class="btn btn-primary"> + Add New </button>
-            
-                <a href="{{route('download.csv')}}" class="btn btn-primary">Generate CSV Report</a>
+       
+                <!-- Search form -->
+                <form method="GET" action="{{ route('search') }}">
+                    <div class="input-group mt-3 mb-3">
+                        <input type="text" name="search" class="form-control" placeholder="Search beneficiary">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="submit">Search</button>
+                          </div>
+                    </div>
+                    </form>
+                   
+                    <div class="form-group">
+                        <div class="d-flex justify-content-between">
+                <a href="{{ route('beneficiary.create') }}" class="btn btn-primary"> + Add New </button>
+                <a href="{{route('download.csv')}}"  class="btn btn-primary">Generate CSV Report</a>
                 
+            </div>
+                    
             </div>
             
            
-            
+    
         </div>
        
         <div class="row table-container">
@@ -85,6 +97,7 @@
                         </tr>
                     </thead>
                     <tbody>
+                       
                         @foreach ($beneficiaries as $beneficiary)
                         <tr>
                             <td>{{$beneficiary->nic}}</td>
@@ -136,6 +149,8 @@
                             </td>
                         </tr>
                         @endforeach
+                        
+                        
                         </tbody>
                 </table>
             
@@ -175,6 +190,9 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
 
+
+
+    
     @foreach ($beneficiaries as $beneficiary)
     {{-- popup modal --}}
     <!-- Bootstrap modal code -->
@@ -306,7 +324,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
 
 
-<script>
+{{-- <script>
   
 
 
@@ -332,7 +350,7 @@
         },
         bindto: "#donut-chart",
     });
-</script>
+</script> --}}
 
             {{-- <a href="{{ route('beneficiary/create') }}" class="btn btn-primary">Add Beneficiary</a> --}}
             <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>

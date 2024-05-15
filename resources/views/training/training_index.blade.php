@@ -41,7 +41,7 @@
                 <th scope="col">Program</th>
                 <th scope="col">Males</th>
                 <th scope="col">Females</th>
-                <th scope="col">Youts</th>
+                <th scope="col">Youth</th>
                 <th scope="col">Senior</th>
                 <th scope="col">Date</th>
                 <th scope="col">Location</th>

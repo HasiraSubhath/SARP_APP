@@ -11,16 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('cruds', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('fname');
-            $table->string('lname');
-            $table->string('phone');
+        Schema::create('agrilivestock', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('beneficiary_id'); 
+            $table->string('agri_livestock_type');
+            
+            
             $table->timestamps();
-
-
-
-
         });
     }
 
@@ -29,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('crud');
+        Schema::dropIfExists('agrilivestock');
     }
 };
