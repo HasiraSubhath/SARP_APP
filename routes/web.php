@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CrudeController;
+
 use App\Http\Controllers\BeneficiaryController;
 use App\Http\Controllers\FamilyController;
 use App\Http\Controllers\ProvinceController;
@@ -35,17 +35,7 @@ Route::get('/dashboard', function () {
     return view('dashboard.dashboard', compact('maleCount', 'femaleCount', 'youthCount', 'middleAgeCount'));
 });
 
-// Route::get('/',[CrudeController::class, 'index']);
-// Route::get('/create',[CrudeController::class, 'create']);
-// Route::post('/create',[CrudeController::class, 'store']);
-// Route::get('/show/{id}',[CrudeController::class, 'show']);
 
-// Route::get('/crud', function () {
-//     return view('crud.create');
-// });
-// Route::get('/crud', 'CrudeController@create');
-//Route::resource('crud', 'CrudeController');
-    Route::resource('crud', CrudeController::class);
 
     //Route::get('/beneficiary/{beneficiary}/edit', 'BeneficiaryController@edit')->name('beneficiary_edit');
 
