@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('agrilivestock', function (Blueprint $table) {
             $table->id();
-            $table->string('beneficiary_name');
-            $table->string('beneficiary_nic');
+            $table->unsignedBigInteger('beneficiary_id'); 
+            $table->string('agri_livestock_type');
+            
             
             $table->timestamps();
         });

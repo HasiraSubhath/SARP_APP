@@ -68,14 +68,16 @@
         @csrf
         @method('PUT')
 
-        1<div class="row">
+        <div class="row">
             <div class="col">
                 <div class="dropdown">
           <label for="province" class="form-label dropdown-label">Province</label>
           
           <select id="provinceDropdown" name="province" button class="btn btn-secondary dropdown-toggle" required>
         
-            <option value="">{{ $tankRehabilitation->province }}</option>
+            {{-- <option value="{{ $tankRehabilitation->province }}">{{ $tankRehabilitation->province }}</option> --}}
+            
+            <option value= "province"{{ $tankRehabilitation->province == 'province' ? 'selected' : '' }}>{{ $tankRehabilitation->province }}</option>
           </select>
               <input type="hidden" id="provinceName" name="province">
           </div>
@@ -334,7 +336,7 @@
     </form>
 
 {{-- Tank names and asc  --}}
-<script>
+  <script>
     $(document).ready(function () {
         // Fetch tank names from the API endpoint
         $.get('/tanks', function (data) {
@@ -376,7 +378,9 @@
     });
 
 
-  </script>
+    </script>
+  
+  
   
   <!--  JavaScript to cascade dropdown -->
   <script> 

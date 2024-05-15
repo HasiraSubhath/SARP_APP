@@ -36,24 +36,31 @@
 
 
     <div class="container-fluid">
-        <div class="center-heading">
+        <div class="center-heading" style="text-align: center;">
             <h1>Beneficiary Details</h1>
         </div>
-        <div class="row">
-            <div class="col">
-                <div class="d-flex justify-content-center">
-                <input placeholder="beneficiary"/>
-                </div>
-                <div class="d-flex justify-content-center">
-                <button onclick="window.location.href='{{ route('beneficiary.create') }}'" class="btn btn-primary"> + Add New </button>
-                </div>
-                <div class="d-flex justify-content-end">
+       
+                <!-- Search form -->
+                <form method="GET" action="{{ route('search') }}">
+                    <div class="input-group mt-3 mb-3">
+                        <input type="text" name="search" class="form-control" placeholder="Search beneficiary">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="submit">Search</button>
+                          </div>
+                    </div>
+                    </form>
+                   
+                    <div class="form-group">
+                        <div class="d-flex justify-content-between">
+                <a href="{{ route('beneficiary.create') }}" class="btn btn-primary"> + Add New </button>
                 <a href="{{route('download.csv')}}"  class="btn btn-primary">Generate CSV Report</a>
-                </div>
+                
+            </div>
+                    
             </div>
             
            
-            
+    
         </div>
        
         <div class="row table-container">
@@ -90,6 +97,7 @@
                         </tr>
                     </thead>
                     <tbody>
+                       
                         @foreach ($beneficiaries as $beneficiary)
                         <tr>
                             <td>{{$beneficiary->nic}}</td>
@@ -141,6 +149,8 @@
                             </td>
                         </tr>
                         @endforeach
+                        
+                        
                         </tbody>
                 </table>
             
@@ -314,7 +324,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
 
 
-<script>
+{{-- <script>
   
 
 
@@ -340,7 +350,7 @@
         },
         bindto: "#donut-chart",
     });
-</script>
+</script> --}}
 
             {{-- <a href="{{ route('beneficiary/create') }}" class="btn btn-primary">Add Beneficiary</a> --}}
             <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>

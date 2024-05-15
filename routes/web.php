@@ -99,7 +99,9 @@ Route::get('generateCsv', [BeneficiaryController::class, 'generateCsv'])->name('
 
 Route::resource('training', TrainingController::class);
 
+Route::get('search', [BeneficiaryController::class, 'search'])->name('search');
 
+Route::get('searchTank', [TankRehabilitationController::class, 'search'])->name('searchTank');
 
     
 
