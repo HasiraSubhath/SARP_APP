@@ -39,10 +39,11 @@
             <tr>
              
                 <th scope="col">Program</th>
-                <th scope="col">Males</th>
-                <th scope="col">Females</th>
-                <th scope="col">Youth</th>
-                <th scope="col">Senior</th>
+                <th scope="col">Beneficiary Nic</th>
+                <th scope="col">Beneficiary First Name</th>
+                <th scope="col">Beneficiary Last Name</th>
+                <th scope="col">Beneficiary Gender</th>
+                <th scope="col">Beneficiary Age</th>
                 <th scope="col">Date</th>
                 <th scope="col">Location</th>
                 <th scope="col">Program Conductor</th>
@@ -59,10 +60,11 @@
             @foreach ($trainings as $training)
             <tr>
                 <td>{{ $training->program_name }}</td>
-                <td>{{ $training->male }}</td>
-                <td>{{ $training->female }}</td>
-                <td>{{ $training->youth }}</td>
-                <td>{{ $training->senior }}</td>
+                <td>{{ $training->beneficiary->nic ?? 'N/A' }}</td>
+                <td>{{ $training->beneficiary->first_name ?? 'N/A' }}</td>
+                <td>{{ $training->beneficiary->last_name ?? 'N/A' }}</td>
+                <td>{{ $training->beneficiary->gender ?? 'N/A' }}</td>
+                <td>{{ $training->beneficiary->age < 35 ? 'Youth' : 'Senior' }}</td>
                 <td>{{ $training->date }}</td>
                 <td>{{ $training->place }}</td>
                 <td>{{ $training->conductor_name }}</td>
@@ -89,5 +91,9 @@
             @endforeach
         </tbody>
     </table>
+    {{ $trainings->links() }}
+</div>
+</div>
+</div>
 </body>
 </html>

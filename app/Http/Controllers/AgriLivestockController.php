@@ -12,7 +12,7 @@ class AgriLivestockController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**

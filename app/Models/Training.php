@@ -9,4 +9,9 @@ class Training extends Model
 {
     use HasFactory;
     protected $table = 'training_program';
+
+    public function beneficiary()
+    {
+        return $this->belongsTo(Beneficiary::class);
+    }
 }

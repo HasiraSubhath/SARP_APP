@@ -58,12 +58,38 @@
 </head>
 <body>
     @include('dashboard.navbar')
+
+    <div class="container mt-5 border rounded border-primary p-4">
+        <form id="searchBeneficiaryForm" class="form-horizontal">
+            @csrf
+            <div class="col-md-12 text-center">
+                <h2>Search Beneficiary by NIC</h2>
+            </div>
+            <div class="form-group row">
+                <label for="nic" class="col-sm-2 col-form-label">NIC</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="nic" name="nic" placeholder="Enter NIC">
+                </div>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+        </form>
+
+        <div id="beneficiaryDetails" class="mt-4" style="display:none;">
+            <h4>Beneficiary Details</h4>
+            <p><strong>First Name:</strong> <span id="beneficiaryFirstName"></span></p>
+            <p><strong>Last Name:</strong> <span id="beneficiaryLastName"></span></p>
+        </div>
+
+
     <div class="container mt-5 border rounded border-primary p-4">
         <form class="form-horizontal" method="POST" action="/training">
             @csrf
             <div class="col-md-12 text-center">
-                <h2>Training Programe Registration</h2>
+                <h2>Training Programme Registration</h2>
             </div>
+            <input type="hidden" id="beneficiaryId" name="beneficiary_id">
 
             <div class="container mt-5">
                     <div class="row mb-4">
@@ -82,7 +108,7 @@
                             <option value="">Select Province</option>
                             <!-- Options will be populated by jQuery -->
                         </select>
-                        <input type="hidden" id="province" name="province">
+                        <input type="hidden" id="provinceName" name="province">
                     </div>
                     
                     
@@ -157,45 +183,11 @@
                     </div>
                 </div>
             </div>
-            <!-- Youth Section -->
-            <div>
-                <div class="row">
-                    <div class="col-md-12 mb-3 text-center">
-                        <h5>Participation  Gender wise</h5>
-                    </div>
-                </div>
-                <div class="row">
-                    <!-- Male Input -->
-                    <div class="col-md-6 mb-3">
-                        <label for="male">Male</label>
-                        <input type="number" class="form-control" id="male" name="male" placeholder="Number of Male" required>
-                    </div>
-                    <!-- Female Input -->
-                    <div class="col-md-6 mb-3">
-                        <label for="female">Female</label>
-                        <input type="number" class="form-control" id="female" name="female" placeholder="Number of Female" required>
-                    </div>
-                </div>
+           
 
-                <div>
-                </br>
-                    <div class="row">
-                        <div class="col-md-12 mb-3 text-center">
-                            <h5>Participation  Age wise</h5>
-                        </div>
-                    </div>
-                <div class="row">
-                    <!-- youth Input -->
-                    <div class="col-md-6 mb-3">
-                        <label for="youth">Youth</label>
-                        <input type="number" class="form-control" id="youth" name="youth" placeholder="Number of Youth" required>
-                    </div>
-                    <!-- Senior Input -->
-                    <div class="col-md-6 mb-3">
-                        <label for="senior">Senior</label>
-                        <input type="number" class="form-control" id="senior" name="senior" placeholder="Number of Senior" required>
-                    </div>
-                </div>
+               
+                   
+    
                 <!-- HTML -->
 <div class="row">
     <!-- Start Date Input -->
@@ -430,7 +422,37 @@
                     });
                 });
             });
-        
+    
+
     </script>
+
+    <script>
+ // Search Beneficiary by NIC
+$('#searchBeneficiaryForm').submit(function(event) {
+    event.preventDefault();
+    var nic = $('#nic').val();
+    $.ajax({
+        url: '/beneficiaries/' + nic,
+        type: 'GET',
+        success: function(data) {
+            if (data) {
+                $('#beneficiaryFirstName').text(data.first_name);
+                $('#beneficiaryLastName').text(data.last_name);
+                $('#beneficiaryId').val(data.id);
+                $('#beneficiaryDetails').show();
+                $('#trainingForm').show();
+            } else {
+                alert('No beneficiary found with the provided NIC.');
+            }
+        },
+        error: function(xhr, status, error) {
+            console.error(xhr.responseText);
+            alert('An error occurred while fetching beneficiary details.');
+        }
+    });
+});
+    </script>
+   
+
 </body>
 </html>
