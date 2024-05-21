@@ -47,6 +47,8 @@ class TrainingController extends Controller
     public function create()
     {
         return view('training.training_create');
+    //     $beneficiary = Beneficiary::all();
+    // return view('training.training_create', compact('beneficiary'));
     }
 
     /**
@@ -67,10 +69,18 @@ class TrainingController extends Controller
         $training->as_center = request('as_center');
         $training->beneficiary_id = request('beneficiary_id');
         $training->save();
-        return redirect('/training')->with('success', 'Training registered successfully.');
+       return redirect('/training')->with('success', 'Training registered successfully.');
+   }
 
+    // Attach beneficiaries to the training
+//     $beneficiaryIds = $request->input('beneficiary_ids');
+//     if ($beneficiaryIds) {
+//         $training->beneficiaries()->attach($beneficiaryIds);
+//     }
 
-    }
+//     return redirect('/training')->with('success', 'Training registered successfully.');
+// }
+   
 
     /**
      * Display the specified resource.
@@ -85,9 +95,14 @@ class TrainingController extends Controller
      */
     public function edit(Training $training)
     {
-        return view('training.training_edit', compact('training'));
-        // $training = Training::with('beneficiary')->findOrFail($id);
-        // return view('training.training.edit', compact('training'));
+        //return view('training.training_edit', compact('training'));
+        // $training = Training::with('beneficiaries')->findOrFail($training->id);
+        // return view('training.training_edit', compact('training'));
+
+        $training = Training::with('beneficiaries')->findOrFail($training->id);
+    $beneficiaries = Beneficiary::all();
+    return view('training.training_edit', compact('training', 'beneficiaries'));
+        
     }
 
     /**
@@ -106,10 +121,15 @@ class TrainingController extends Controller
         $training->ds_division = request('ds_division');
         $training->gn_division = request('gn_division');
         $training->as_center = request('as_center');
-        
-        
         $training->save();
-        return redirect('/training');
+
+        //return redirect('/training');
+        $beneficiaryIds = $request->input('beneficiary_ids');
+        if ($beneficiaryIds) {
+            $training->beneficiaries()->sync($beneficiaryIds);
+        }
+
+        return redirect('/training')->with('success', 'Training updated successfully.');
     
     }
 

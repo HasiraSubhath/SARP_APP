@@ -13,5 +13,7 @@ class Training extends Model
     public function beneficiary()
     {
         return $this->belongsTo(Beneficiary::class);
+       // return $this->belongsToMany(Beneficiary::class, 'beneficiary_training');
     }
+   
 }

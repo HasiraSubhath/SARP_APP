@@ -21,5 +21,8 @@ class Beneficiary extends Model
     public function training()
     {
         return $this->hasMany(Training::class, 'beneficiary_id', 'id');
+       // return $this->belongsToMany(Training::class, 'beneficiary_training');
+
+
     }
 }

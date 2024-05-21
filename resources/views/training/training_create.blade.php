@@ -76,6 +76,18 @@
             </div>
         </form>
 
+        {{-- <div class="row">
+            <div class="col-md-4 mb-3">
+                <label for="beneficiaryIds">Select Beneficiaries</label>
+                <select class="form-control" id="beneficiaryIds" name="beneficiary_ids[]" multiple>
+                    @foreach($beneficiaries as $beneficiary)
+                        <option value="{{ $beneficiary->id }}">{{ $beneficiary->first_name }} {{ $beneficiary->last_name }}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div> --}}
+
+
         <div id="beneficiaryDetails" class="mt-4" style="display:none;">
             <h4>Beneficiary Details</h4>
             <p><strong>First Name:</strong> <span id="beneficiaryFirstName"></span></p>
@@ -213,6 +225,18 @@
                     </div>
                 </div>
             </div>
+            
+            {{-- <div class="row">
+                <div class="col-md-4 mb-3">
+                    <label for="beneficiaryIds">Select Beneficiaries</label>
+                    <select class="form-control" id="beneficiaryIds" name="beneficiary_ids[]" multiple>
+                        @foreach($beneficiaries as $beneficiary)
+                            <option value="{{ $beneficiary->id }}">{{ $beneficiary->first_name }} {{ $beneficiary->last_name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div> --}}
+
             
                 <div class="text-center">
                     <button type="submit" class="btn btn-primary">Submit</button>

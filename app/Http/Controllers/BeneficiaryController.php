@@ -27,7 +27,7 @@ class BeneficiaryController extends Controller
         
         return view('beneficiary.beneficiary_index', compact('beneficiaries', 'search'));
     }
-
+//Report Generation
     public function generateCsv()
     {
         $beneficiaries = Beneficiary::latest()->get();
@@ -182,9 +182,7 @@ class BeneficiaryController extends Controller
         
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+   
     public function destroy(Beneficiary $beneficiary)
     {
         // Retrieve all associated family members for the beneficiary
