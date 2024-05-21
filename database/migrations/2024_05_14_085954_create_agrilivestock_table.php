@@ -11,6 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
+       
         Schema::create('agrilivestock', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('beneficiary_id'); 
@@ -19,6 +20,8 @@ return new class extends Migration
             
             $table->timestamps();
         });
+
+       
     }
 
     /**

@@ -13,11 +13,8 @@ return new class extends Migration
     {
         Schema::create('training_program', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('beneficiary_id'); // This is the foreign key
             $table->string('program_name');
-            $table->string('male');
-            $table->string('female');
-            $table->string('youth');
-            $table->string('senior');
             $table->string('date');
             $table->string('place');
             $table->string('conductor_name');
@@ -27,6 +24,10 @@ return new class extends Migration
             $table->string('ds_division');
             $table->string('gn_division');
             $table->string('as_center');
+
+            $table->timestamps();
+
+            $table->foreign('beneficiary_id')->references('id')->on('beneficiaries')->onDelete('cascade');
 
 
 

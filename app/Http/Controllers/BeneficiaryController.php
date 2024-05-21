@@ -27,7 +27,7 @@ class BeneficiaryController extends Controller
         
         return view('beneficiary.beneficiary_index', compact('beneficiaries', 'search'));
     }
-
+//Report Generation
     public function generateCsv()
     {
         $beneficiaries = Beneficiary::latest()->get();
@@ -94,13 +94,6 @@ class BeneficiaryController extends Controller
             $beneficiary->education = request('education');
             $beneficiary->land_ownership = request('land_ownership');
             $beneficiary->age = request('age');
-            // $beneficiary->province = request('province');
-            // $beneficiary->district = request('district');
-            // $beneficiary->ds_division = request('ds_division');
-
-            // $beneficiary->province_name = request('province_name');
-            // $beneficiary->district_name = request('district_name');
-            // $beneficiary->ds_division_name = request('ds_division_name');
             $beneficiary->province_name = $request->input('province_name');
             $beneficiary->district_name = $request->input('district_name');
             $beneficiary->ds_division_name = $request->input('ds_division_name');
@@ -189,9 +182,7 @@ class BeneficiaryController extends Controller
         
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+   
     public function destroy(Beneficiary $beneficiary)
     {
         // Retrieve all associated family members for the beneficiary
@@ -206,5 +197,15 @@ class BeneficiaryController extends Controller
         $beneficiary->delete();
     
         return redirect('/beneficiary')->with('success', 'Beneficiary and associated family members deleted successfully');
+    }
+
+    public function getBeneficiaryByNIC($nic)
+    {
+        $beneficiary = Beneficiary::where('nic', $nic)->first();
+        if ($beneficiary) {
+            return response()->json($beneficiary);
+        } else {
+            return response()->json(['message' => 'Beneficiary not found'], 404);
+        }
     }
 }

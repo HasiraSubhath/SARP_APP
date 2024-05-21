@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-
+   
     <!-- Include Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <!-- Include jQuery library -->
@@ -16,15 +15,17 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
+<title>Edit Training</title>
+
 
 </head>
 <body>
     @include('dashboard.navbar')
+    @csrf
 
-
-    <div class="container mt-5 border rounded border-primary p-4">
+    {{-- <div class="container mt-5 border rounded border-primary p-4">
         <form class="form-horizontal" method="POST" action="/training">
-            @csrf
+            
             <div class="col-md-12 text-center">
                 <h2>Edit Training Programe Details </h2>
             </div>
@@ -39,8 +40,7 @@
                                         <div class="form-group">
                                             <label for="provinceDropdown">Province</label> 
                                             <select class="form-control" value="{{$training->province}}" id="provinceDropdown" name="province" required>
-                                                {{-- <option value="">Select Province</option> --}}
-                                                <!-- Options will be populated by jQuery -->
+                                                
                                             </select>
                                          
                                             </select>
@@ -56,8 +56,7 @@
                                 <label for="districtDropdown" >District</label>
                                
                                 <select class="form-control" value="{{$training->district}}" id="districtDropdown" name="district" required>
-                                    {{-- <option value="">Select District</option> --}}
-                                    <!-- Options will be populated by jQuery -->
+                                    
                                 </select>
                                 <input type="hidden" id="districtName" name="district">
                             </div>
@@ -65,8 +64,7 @@
                             <div class="form-group">
                                 <label for="dsDivisionDropdown"  >DS Division</label>
                                 <select class="form-control" value="{{$training->ds_division}}" id="dsDivisionDropdown" name="ds_division" required>
-                                    {{-- <option value="">Select DS Division</option> --}}
-                                    <!-- Options will be populated by jQuery -->
+                                    
                                 </select>
                                 <input type="hidden" id="dsDivisionName" name="ds_division">
                             </div>
@@ -74,8 +72,7 @@
                             <div class="form-group">
                                 <label for="gndDropdown">GND</label>
                                 <select class="form-control" value="{{$training->gn_division}}" id="gndDropdown" name="gn_division" required>
-                                    {{-- <option value="">Select GND</option> --}}
-                                    <!-- Options will be populated by jQuery -->
+                                    
                                 </select>
                                 <input type="hidden" id="gndName" name="gn_division">
                             </div>
@@ -83,7 +80,7 @@
                             <div class="dropdown">
                                 <label for="" style="float: left" >Select ASC</label>
                                 <select class="form-control" id="ascDropdown"button value="{{$training->as_center}}"  name="as_center"   required>
-                                    {{-- <option value="">Select ASC</option> --}}
+                                    
                                 </select>
                   </div>
                 </div>
@@ -97,7 +94,7 @@
         
         
                 
-                <!-- Rest of the Form Fields -->
+                
                 
                  
                 <div class="row">
@@ -120,64 +117,25 @@
                     </div>
                 </div>
             </div>
-            <!-- Youth Section -->
-            <div>
-                <div class="row">
-                    <div class="col-md-12 mb-3 text-center">
-                        <h5>Participation  Gender wise</h5>
-                    </div>
-                </div>
-                <div class="row">
-                    <!-- Male Input -->
-                    <div class="col-md-6 mb-3">
-                        <label for="male">Male</label>
-                        <input type="number" value="{{$training->male}}" class="form-control" id="male" name="male" placeholder="Number of Male" required>
-                    </div>
-                    <!-- Female Input -->
-                    <div class="col-md-6 mb-3">
-                        <label for="female">Female</label>
-                        <input type="number" class="form-control" value="{{$training->female}}" id="female" name="female" placeholder="Number of Female" required>
-                    </div>
-                </div>
-
-                <div>
-                </br>
-                    <div class="row">
-                        <div class="col-md-12 mb-3 text-center">
-                            <h5>Participation  Age wise</h5>
-                        </div>
-                    </div>
-                <div class="row">
-                    <!-- youth Input -->
-                    <div class="col-md-6 mb-3">
-                        <label for="youth">Youth</label>
-                        <input type="number" class="form-control" value="{{$training->youth}}" id="youth" name="youth" placeholder="Number of Youth" required>
-                    </div>
-                    <!-- Senior Input -->
-                    <div class="col-md-6 mb-3">
-                        <label for="senior">Senior</label>
-                        <input type="number" class="form-control" value="{{$training->senior}}" id="senior" name="senior" placeholder="Number of Senior" required>
-                    </div>
-                </div>
-                <!-- HTML -->
+        
 <div class="row">
-    <!-- Start Date Input -->
+    
     <div class="col-md-4 mb-3">
         <label for="startDate">Start Date</label>
         <input type="text" class="form-control" value="{{$training->date}}" id="startDate" name="date" placeholder="Select Start Date" required>
     </div>
 </div>
 
-                <!-- Place Input -->
+                
                 <div class="row">
-                    <!-- Cost Input -->
+                   
                     <div class="col-md-4 mb-3">
                         <label for="">Conductor Name</label>
                         <input type="text" class="form-control" value="{{$training->conductor_name}}" id="conductorName" name="conductor_name" placeholder="Enter Conductor Name" required>
                     </div>
                 </div>
                 <div class="row">
-                    <!-- Cost Input -->
+                    
                     <div class="col-md-4 mb-3">
                         <label for="">Conductor Payment</label>
                         <input type="text" class="form-control" value="{{$training->conductor_payment}}" id="conductorPayment" name="conductor_payment" placeholder="Enter Conductor Payment" required>
@@ -190,7 +148,134 @@
                   </div>
             
         </form>
+    </div> --}}
+    <div class="container-fluid">
+        <div class="center-heading" style="text-align: center;">
+            <h2>Edit Training Program Details</h2>
+        </div>
+
+        {{-- <form class="form-horizontal" method="POST" action="/training/{{ $training->id }}"> --}}
+            <form class="form-horizontal" method="POST" action="/training">
+            @csrf
+            @method('PUT')
+            
+            <div class="container mt-5">
+                <div class="row mb-4">
+                    <div class="container-fluid py-3">
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="beneficiaryNic">Beneficiary NIC</label>
+                                    <input type="text" class="form-control" id="beneficiaryNic" value="{{ $training->beneficiary->nic }}" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="beneficiaryFirstName">Beneficiary First Name</label>
+                                    <input type="text" class="form-control" id="beneficiaryFirstName" value="{{ $training->beneficiary->first_name }}" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="beneficiaryLastName">Beneficiary Last Name</label>
+                                    <input type="text" class="form-control" id="beneficiaryLastName" value="{{ $training->beneficiary->last_name }}" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="beneficiaryLastName">Beneficiary Genfer</label>
+                                    <input type="text" class="form-control" id="beneficiaryLastName" value="{{ $training->beneficiary->gender }}" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="beneficiaryLastName">Beneficiary Age</label>
+                                    <input type="text" class="form-control" id="beneficiaryLastName" value="{{ $training->beneficiary->Age < 35 ? 'Youth' : 'Senior' }}" readonly>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="provinceDropdown">Province</label>
+                                    <select class="form-control" id="provinceDropdown" name="province" required>
+                                        <!-- Options will be populated by jQuery -->
+                                    </select>
+                                    <input type="hidden" id="provinceName" name="province" value="{{ $training->province }}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="districtDropdown">District</label>
+                                    <select class="form-control" id="districtDropdown" name="district" required>
+                                        <!-- Options will be populated by jQuery -->
+                                    </select>
+                                    <input type="hidden" id="districtName" name="district" value="{{ $training->district }}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="dsDivisionDropdown">DS Division</label>
+                                    <select class="form-control" id="dsDivisionDropdown" name="ds_division" required>
+                                        <!-- Options will be populated by jQuery -->
+                                    </select>
+                                    <input type="hidden" id="dsDivisionName" name="ds_division" value="{{ $training->ds_division }}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="gndDropdown">GND</label>
+                                    <select class="form-control" id="gndDropdown" name="gn_division" required>
+                                        <!-- Options will be populated by jQuery -->
+                                    </select>
+                                    <input type="hidden" id="gndName" name="gn_division" value="{{ $training->gn_division }}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="ascDropdown">ASC</label>
+                                    <select class="form-control" id="ascDropdown" name="as_center" required>
+                                        <!-- Options will be populated by jQuery -->
+                                    </select>
+                                    <input type="hidden" id="ascName" name="as_center" value="{{ $training->as_center }}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label for="place">Place</label>
+                        <input type="text" class="form-control" id="place" name="place" value="{{ $training->place }}" required>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <div class="form-group">
+                            <label for="programName">Training Program Type</label>
+                            <select class="form-control" id="programName" name="program_name" required>
+                                <option value="Type 1" {{ $training->program_name == 'Type 1' ? 'selected' : '' }}>Type 1</option>
+                                <option value="Type 2" {{ $training->program_name == 'Type 2' ? 'selected' : '' }}>Type 2</option>
+                                <option value="Type 3" {{ $training->program_name == 'Type 3' ? 'selected' : '' }}>Type 3</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label for="startDate">Start Date</label>
+                        <input type="text" class="form-control" id="startDate" name="date" value="{{ $training->date }}" required>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label for="conductorName">Conductor Name</label>
+                        <input type="text" class="form-control" id="conductorName" name="conductor_name" value="{{ $training->conductor_name }}" required>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label for="conductorPayment">Conductor Payment</label>
+                        <input type="text" class="form-control" id="conductorPayment" name="conductor_payment" value="{{ $training->conductor_payment }}" required>
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </form>
     </div>
+
       {{-- dynamicalyy get dsd gnd --}}
        
       <script> 

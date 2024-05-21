@@ -17,4 +17,12 @@ class Beneficiary extends Model
     {
         return $this->hasMany(Family::class, 'beneficiary_id', 'id');
     }
+
+    public function training()
+    {
+        return $this->hasMany(Training::class, 'beneficiary_id', 'id');
+       // return $this->belongsToMany(Training::class, 'beneficiary_training');
+
+
+    }
 }
